@@ -15,31 +15,21 @@ class Artifacts extends Service {
 
     const app = this.ctx.app;
     resultObj.rows.forEach((element, index)=>{
-      if (element.profileImage.indexOf('pinwall.fzcloud') == -1){
-        element.profileImage = app.signatureUrl(app.imagePath + element.profileImage, "thumb_360_360");
-      }
+      element.profileImage = app.signatureUrl(app.imagePath + element.profileImage, "thumb_360_360");
 
       for (let subElement of element.artifact_assets){
-        if (subElement.profileImage.indexOf('pinwall.fzcloud') == -1){
-          subElement.profileImage = app.signatureUrl(app.imagePath + subElement.profileImage, "thumb_1000");
-        }
+        subElement.profileImage = app.signatureUrl(app.imagePath + subElement.profileImage, "thumb_1000");
+
         if (subElement.type == 2 && subElement.mediaFile != null){
-          if (subElement.mediaFile.indexOf('pinwall.fzcloud') == -1){
             subElement.mediaFile = app.signatureUrl(app.pdfPath + subElement.mediaFile);
-          }
         }
         else if (subElement.type == 3 && subElement.mediaFile != null){
-          if (subElement.mediaFile.indexOf('pinwall.fzcloud') == -1){
             subElement.mediaFile = app.signatureUrl(app.rar_zipPath + subElement.mediaFile);
-          }
         }
         else if (subElement.type == 4 && subElement.mediaFile != null){
-          if (subElement.mediaFile.indexOf('pinwall.fzcloud') == -1){
             subElement.mediaFile = app.signatureUrl(app.videoPath + subElement.mediaFile);
-          }
         }
       }
-
     });
 
     return resultObj;
@@ -50,28 +40,19 @@ class Artifacts extends Service {
     const artifact = await this.ctx.model.Artifacts.findArtifactById(id);
     const app = this.ctx.app;
 
-    if (artifact.profileImage.indexOf('pinwall.fzcloud') == -1){
-      artifact.profileImage = app.signatureUrl(app.imagePath + artifact.profileImage, "thumb_360_360");
-    }
+    artifact.profileImage = app.signatureUrl(app.imagePath + artifact.profileImage, "thumb_360_360");
 
     for (let subElement of artifact.artifact_assets){
-      if (subElement.profileImage.indexOf('pinwall.fzcloud') == -1){
-        subElement.profileImage = app.signatureUrl(app.imagePath + subElement.profileImage, "thumb_1000");
-      }
+      subElement.profileImage = app.signatureUrl(app.imagePath + subElement.profileImage, "thumb_1000");
+
       if (subElement.type == 2 && subElement.mediaFile != null){
-        if (subElement.mediaFile.indexOf('pinwall.fzcloud') == -1){
-          subElement.mediaFile = app.signatureUrl(app.pdfPath + subElement.mediaFile);
-        }
+        subElement.mediaFile = app.signatureUrl(app.pdfPath + subElement.mediaFile);
       }
       else if (subElement.type == 3 && subElement.mediaFile != null){
-        if (subElement.mediaFile.indexOf('pinwall.fzcloud') == -1){
-          subElement.mediaFile = app.signatureUrl(app.rar_zipPath + subElement.mediaFile);
-        }
+        subElement.mediaFile = app.signatureUrl(app.rar_zipPath + subElement.mediaFile);
       }
       else if (subElement.type == 4 && subElement.mediaFile != null){
-        if (subElement.mediaFile.indexOf('pinwall.fzcloud') == -1){
-          subElement.mediaFile = app.signatureUrl(app.videoPath + subElement.mediaFile);
-        }
+        subElement.mediaFile = app.signatureUrl(app.videoPath + subElement.mediaFile);
       }
     }
 
@@ -197,23 +178,21 @@ class Artifacts extends Service {
       try{
 
         for (const artifactAssets of artifact.artifact_assets){
-          if (artifactAssets.profileImage.indexOf('pinwall.fzcloud') == -1){
-              if(ctx.app.judgeImageStringInArrayObject(artifactAssets.profileImage,updates.artifact_assets)){
-                deleteAliOSSArray.push(ctx.app.imagePath + artifactAssets.profileImage);
-              }
+          if(ctx.app.judgeImageStringInArrayObject(artifactAssets.profileImage,updates.artifact_assets)){
+            deleteAliOSSArray.push(ctx.app.imagePath + artifactAssets.profileImage);
           }
 
-          if(artifactAssets.type == 2 &&  artifactAssets.mediaFile.indexOf('pinwall.fzcloud') == -1){
+          if(artifactAssets.type == 2){
             if(ctx.app.judgeMediaStringInArrayObject(artifactAssets.mediaFile,updates.artifact_assets)){
               deleteAliOSSArray.push(ctx.app.pdfPath + artifactAssets.mediaFile);
             }
           }
-          else if(artifactAssets.type == 3 &&  artifactAssets.mediaFile.indexOf('pinwall.fzcloud') == -1){
+          else if(artifactAssets.type == 3){
             if(ctx.app.judgeMediaStringInArrayObject(artifactAssets.mediaFile,updates.artifact_assets)){
               deleteAliOSSArray.push(ctx.app.rar_zipPath + artifactAssets.mediaFile);
             }
           }
-          else if(artifactAssets.type == 4 &&  artifactAssets.mediaFile.indexOf('pinwall.fzcloud') == -1){
+          else if(artifactAssets.type == 4){
             if(ctx.app.judgeMediaStringInArrayObject(artifactAssets.mediaFile,updates.artifact_assets)){
               deleteAliOSSArray.push(ctx.app.videoPath + artifactAssets.mediaFile);
             }
@@ -257,22 +236,18 @@ class Artifacts extends Service {
 
       let deleteAliOSSArray = new Array();
       try{
-        if (artifact.profileImage.indexOf('pinwall.fzcloud') == -1){
-          deleteAliOSSArray.push(ctx.app.imagePath + artifact.profileImage);
-        }
+        deleteAliOSSArray.push(ctx.app.imagePath + artifact.profileImage);
 
         for (const artifactAssets of artifact.artifactAssets){
-          if (artifactAssets.profileImage.indexOf('pinwall.fzcloud') == -1){
-            deleteAliOSSArray.push(ctx.app.imagePath + artifactAssets.profileImage);
-          }
+          deleteAliOSSArray.push(ctx.app.imagePath + artifactAssets.profileImage);
 
-          if(artifactAssets.type == 2 && artifactAssets.mediaFile.indexOf('pinwall.fzcloud') == -1){
+          if(artifactAssets.type == 2){
             deleteAliOSSArray.push(ctx.app.pdfPath + artifactAssets.mediaFile);
           }
-          else if(artifactAssets.type == 3  && artifactAssets.mediaFile.indexOf('pinwall.fzcloud') == -1){
+          else if(artifactAssets.type == 3){
             deleteAliOSSArray.push(ctx.app.rar_zipPath + artifactAssets.mediaFile);
           }
-          else if(artifactAssets.type == 4  && artifactAssets.mediaFile.indexOf('pinwall.fzcloud') == -1){
+          else if(artifactAssets.type == 4){
             deleteAliOSSArray.push(ctx.app.videoPath + artifactAssets.mediaFile);
           }
         }
@@ -313,28 +288,19 @@ class Artifacts extends Service {
     let resultObj = await this.ctx.model.Artifacts.getPersonalJobByUserId(query);
     const app = this.ctx.app;
     resultObj.rows.forEach((element, index)=>{
-      if (element.profileImage.indexOf('pinwall.fzcloud') == -1){
-        element.profileImage = app.signatureUrl(app.imagePath + element.profileImage, "thumb_360_360");
-      }
+      element.profileImage = app.signatureUrl(app.imagePath + element.profileImage, "thumb_360_360");
 
       for (let subElement of element.artifact_assets){
-        if (subElement.profileImage.indexOf('pinwall.fzcloud') == -1){
-          subElement.profileImage = app.signatureUrl(app.imagePath + subElement.profileImage, "thumb_1000");
-        }
+        subElement.profileImage = app.signatureUrl(app.imagePath + subElement.profileImage, "thumb_1000");
+
         if (subElement.type == 2 && subElement.mediaFile != null){
-          if (subElement.mediaFile.indexOf('pinwall.fzcloud') == -1){
-            subElement.mediaFile = app.signatureUrl(app.pdfPath + subElement.mediaFile);
-          }
+          subElement.mediaFile = app.signatureUrl(app.pdfPath + subElement.mediaFile);
         }
         else if (subElement.type == 3 && subElement.mediaFile != null){
-          if (subElement.mediaFile.indexOf('pinwall.fzcloud') == -1){
-            subElement.mediaFile = app.signatureUrl(app.rar_zipPath + subElement.mediaFile);
-          }
+          subElement.mediaFile = app.signatureUrl(app.rar_zipPath + subElement.mediaFile);
         }
         else if (subElement.type == 4 && subElement.mediaFile != null){
-          if (subElement.mediaFile.indexOf('pinwall.fzcloud') == -1){
-            subElement.mediaFile = app.signatureUrl(app.videoPath + subElement.mediaFile);
-          }
+          subElement.mediaFile = app.signatureUrl(app.videoPath + subElement.mediaFile);
         }
       }
 

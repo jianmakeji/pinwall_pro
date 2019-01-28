@@ -20,10 +20,8 @@ class Topics extends Service {
           element.profileImage = app.signatureUrl(app.imagePath + element.profileImage, "thumb_360_360");
 
           for (let subElement of element.artifacts){
-              if (subElement.profileImage.indexOf('pinwall.fzcloud') == -1){
             subElement.profileImage = app.signatureUrl(app.imagePath + subElement.profileImage, "thumb_360_360");
           }
-        }
     });
 
     return resultObj;
@@ -44,9 +42,7 @@ class Topics extends Service {
     resultObj.rows.forEach((element, index)=>{
 
           for (let subElement of element.artifacts){
-              if (subElement.profileImage.indexOf('pinwall.fzcloud') == -1){
-                subElement.profileImage = app.signatureUrl(app.imagePath + subElement.profileImage, "thumb_360_360");
-              }
+              subElement.profileImage = app.signatureUrl(app.imagePath + subElement.profileImage, "thumb_360_360");
           }
     });
 
@@ -136,10 +132,7 @@ class Topics extends Service {
     const app = this.ctx.app;
 
     topic.rows.artifacts.forEach((element, index)=>{
-      if (element.profileImage.indexOf('pinwall.fzcloud') == -1){
       element.profileImage = app.signatureUrl(app.imagePath + element.profileImage, "thumb_360_360");
-
-        }
     });
 
     return topic;
