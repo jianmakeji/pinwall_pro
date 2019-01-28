@@ -1,0 +1,42 @@
+{% extends "parent.html" %}
+
+{% block cssfolder %}
+	<link rel="stylesheet" type="text/css" href="public/css/lib/iview.css">
+	<link rel="stylesheet" type="text/css" href="public/css/src/base.css"/>
+	<link rel="stylesheet" type="text/css" href="public/css/src/model.css">
+	<link rel="stylesheet" type="text/css" href="public/css/src/commentManager.css"/>
+{% endblock %}
+
+{% block head_btn %}
+<a class="index" href="/">精选</a>
+<a class="topicsAbout" href="/topicsAbout">毕设展</a>
+<a class="topics" href="/topics">作业荚</a>
+{% endblock %}
+
+
+{% block container %}
+	<div class="container" :style="containerStyle">
+		<i-col span="24">评论管理</i-col><br/><br/>
+        <div class="search_box" style="">
+			<label>筛选规则：</label>
+			<i-select :value="groupModel" style="width:120px" @on-change="groupCheck">
+		        <i-option :value="1" :key="1">评论内容</i-option>
+				<i-option :value="2" :key="2">用户名</i-option>
+                <i-option :value="3" :key="3">作品标题</i-option>
+		    </i-select>
+            <i-input class="search_input" v-model="searchValue" placeholder="输入搜索信息" prefix="ios-brush-outline" @on-enter="searchComment" clearable></i-input>
+			<i-button type="default" icon="ios-search" @click="searchComment">筛选</i-button>
+		</div>
+        <i-table stripe :columns="columns" :data="dataList" style="margin-top:20px;" ></i-table>
+        <page v-model="totalPage" :page-size="12" :current="currentPage" :total="totalPage" @on-change="pageChange" show-total style="margin-top:20px;text-align:center;"></page>
+	</div>
+{% endblock %}
+
+{% block jsfolder %}
+	<script type="text/javascript" src="public/js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="public/js/lib/vue.min.js"></script>
+	<script type="text/javascript" src="public/js/lib/iview.min.js"></script>
+	<script type="text/javascript" src="public/js/lib/vue-resource.js"></script>
+	<script type="text/javascript" src="public/js/src/config.js"></script>
+	<script type="text/javascript" src="public/js/src/commentManager.js"></script>
+{% endblock %}

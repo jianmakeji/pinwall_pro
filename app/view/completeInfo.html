@@ -1,0 +1,60 @@
+{% extends "parent.html" %}
+
+{% block cssfolder %}
+<link rel="stylesheet" type="text/css" href="public/css/lib/iview.css">
+<link rel="stylesheet" type="text/css" href="public/css/src/base.css" />
+<link rel="stylesheet" type="text/css" href="public/css/src/completeInfo.css" />
+{% endblock %}
+
+{% block head_btn %}
+<a class="index" href="/">精选</a>
+<a class="topicsAbout" href="/topicsAbout">毕设展</a>
+<a class="topics" href="/topics">作业荚</a>
+{% endblock %}
+
+
+{% block container %}
+<div class="container">
+    <div class="complete_box">
+        <h3>注册/完善用户信息</h3>
+        <i-form ref="formItem" :model="formItem" :label-width="80" :rules="ruleValidate">
+			<form-item label="选择">
+		        <radio-group v-model="newOrOld" type="button" @on-change="radioChange">
+			        <radio label="0" value="0">注册新用户</radio>
+			        <radio label="1" value="1">绑定已有用户</radio>
+			    </radio-group>
+	        </form-item>
+	        <form-item label="邮箱" prop="email">
+	            <i-input type="email" v-model="formItem.email" placeholder="请输入邮箱"></i-input>
+	        </form-item>
+	        <form-item label="姓名" v-show="isRegister" prop="fullname">
+	            <i-input type="text" v-model="formItem.fullname" placeholder="请输入用户姓名"></i-input>
+	        </form-item>
+	        <form-item label="密码" v-show="isRegister" prop="password">
+	            <i-input type="password" v-model="formItem.password" placeholder="请输入密码"></i-input>
+	        </form-item>
+	        <form-item label="确认密码" v-show="isRegister" prop="confirmPassword">
+	            <i-input type="password" v-model="formItem.confirmPassword" @on-blur="conPwdBlur" placeholder="请重新输入密码"></i-input>
+	        </form-item>
+            <form-item label="验证码" v-show="isRegister">
+	            <i-input type="text" class="code_input" @on-change="checkCaptcha" v-model="formItem.captchaText" style="width:200px;margin-top:-35px;" placeholder="请输入图片验证码"></i-input>
+                <object style="width: 120px;"></object>
+                <icon type="md-refresh" size="30" @click="tapClick" style="margin-top: -35px;cursor:pointer;"></icon>
+	        </form-item>
+	        <form-item>
+	            <i-button type="success" long :disabled="disableSbt" @click="submit">提交</i-button>
+                <p class="error_tag" tag="{{tag}}" style="text-align:center;color:#ed4014;">{{message}}</p>
+	        </form-item>
+	    </i-form>
+    </div>
+</div>
+{% endblock %}
+
+{% block jsfolder %}
+<script type="text/javascript" src="public/js/lib/jquery.min.js"></script>
+<script type="text/javascript" src="public/js/lib/vue.min.js"></script>
+<script type="text/javascript" src="public/js/lib/iview.min.js"></script>
+<script type="text/javascript" src="public/js/lib/vue-resource.js"></script>
+<script type="text/javascript" src="public/js/src/config.js"></script>
+<script type="text/javascript" src="public/js/src/completeInfo.js"></script>
+{% endblock %}

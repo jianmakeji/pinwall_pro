@@ -1,0 +1,37 @@
+[v-cloak]{
+	display: none;
+}
+body{
+    background-color: #EFEFEF;
+}
+
+.recoverPwd_panel{
+	text-align: center;
+    width: 850px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.recoverPwd_panel .title{
+    color: #09bc72;
+    padding: 0 30px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+.footer {
+	padding: 5px 0;
+	color: #999;
+	text-shadow: 0 1px rgba(255, 255, 255, 1);
+	font-size: 12px;
+	height: 50px;
+	width: 100%;
+	overflow: hidden;
+	text-align: center;
+    position: absolute;
+    bottom: 0px
+}

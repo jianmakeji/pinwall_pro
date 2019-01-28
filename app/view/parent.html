@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>图钉墙 - HNU Design</title>
+
+		<!-- css文件引用 -->
+		{% block cssfolder %}
+
+		{% endblock %}
+
+	</head>
+	<body>
+    <div class="index" v-cloak>
+
+	<!-- 头部 -->
+		{% block header %}
+			<div class="header">
+				<a class="pinwall_logo" href="/">
+					<div class="div1">
+						<div class="div2">
+						</div>
+					</div>
+					<span class="title">图钉墙</span>
+				</a>
+				<!-- 精选 毕设展 作业荚 -->
+				{% block head_btn %}
+
+				{% endblock %}
+
+		        <a class="search" href="/search">探索...</a>
+
+				{% if user.Id %}
+				<a href="/users/{{user.Id}}?jobTag=2" class="user_profile">
+					{% if user.avatarUrl %}
+						<img class="photo" src="{{user.avatarUrl}}" title="用户头像">
+					{% else %}
+						<img class="photo" src="http://pinwall.design-engine.org/images/default_profile.jpg" title="用户头像">
+					{% endif %}
+					<span style="margin-left: 12px;overflow: hidden;white-space: nowrap;" title="{{user.fullname}}">{{user.fullname}}</span>
+				</a>
+				<div class="drawerShow" style="position:absolute;right:20px;">
+					<i-button type="text" ghost="true" @click="drawerShow = !drawerShow" size="small"><icon type="md-menu" size="30"></icon></i-button>
+				</div>
+				{% else %}
+				<div class="login">
+					<i-button type="text" ghost="true" to="/login" style="">
+						<icon type="md-person" style="font-size: 30px;" color="#fff"></icon>登陆/注册
+					</i-button>
+				</div>
+				{% endif %}
+			</div>
+		{% endblock %}
+
+		<!-- 内容 -->
+		{% block container %}
+
+		{% endblock %}
+
+		<!-- 右侧抽屉 -->
+		{% block drawer %}
+			<div class="rightMenu">
+				<drawer title="我的" :closable="false" v-model="drawerShow">
+			        <ul class="de_ext_nav">
+						{% if user.roles[0].name %}
+							<li style="display:flex;flex-direction: row;margin:5px auto;">
+								<i-button icon="md-book" type="default" size="large" long to="/users/0?jobTag=2" style="text-align: left;">我的作品集</i-button>
+								<i-button type="default" to="/uploadWork/2"><icon type="md-add" size="20"></icon></i-button>
+							</li>
+						{% endif %}
+						{% if user.roles[0].name == 'vip' %}
+							<li style="display:flex;flex-direction: row;margin:5px auto;">
+								<i-button icon="md-book" type="default" size="large" long to="/topics?myTopics=0" style="text-align: left;">我的作业荚</i-button>
+								<i-button type="default" to="/createTopics"><icon type="md-add" size="20"></icon></i-button>
+							</li>
+						{% endif %}
+						{% if user.roles[0].name == 'admin' %}
+						<li style="margin:5px auto;">
+							<i-button icon="md-book" type="default" size="large" long to="/createTopics?jobTag=2" style="text-align: left;">新建毕业设计作业荚</i-button>
+						</li>
+						<li style="margin:5px auto;">
+							<i-button icon="ios-construct" type="default" size="large" long style="text-align: left;" to="/userManager">用户管理</i-button>
+						</li>
+						<li style="margin:5px auto;">
+							<i-button icon="ios-construct" type="default" size="large" long style="text-align: left;" to="/workManager">作品管理</i-button>
+						</li>
+						<li style="margin:5px auto;">
+							<i-button icon="ios-construct" type="default" size="large" long style="text-align: left;" to="/commentManager">评论管理</i-button>
+						</li>
+						<li style="margin:5px auto;">
+							<i-button icon="ios-construct" type="default" size="large" long style="text-align: left;" to="/updateSE">更新搜索引擎</i-button>
+						</li>
+						{% endif %}
+						{% if user.roles[0].name %}
+						<li style="margin:5px auto;">
+							<i-button icon="md-card" type="default" size="large" long style="text-align: left;" to="/resetInfo">修改个人信息</i-button>
+						</li>
+						{% endif %}
+						{% if user.roles[0].name %}
+			        	<li style="margin:5px auto;">
+							<i-button icon="md-log-out" type="default" size="large" long style="text-align: left;" to="/logout">退出登录</i-button>
+						</li>
+						{% endif %}
+			        </ul>
+			    </drawer>
+			</div>
+		{% endblock %}
+
+		<!-- 底部 -->
+		{% block footer %}
+			<div class="footer">
+				<p>© 湖南大学设计艺术学院，保留所有权利。</p>
+			</div>
+		{% endblock %}
+
+	</div>
+	<!-- js文件引用 -->
+	{% block jsfolder %}
+
+	{% endblock %}
+</body>
+</html>

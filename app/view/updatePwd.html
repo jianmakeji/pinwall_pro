@@ -1,0 +1,39 @@
+{% extends "parent.html" %}
+
+{% block cssfolder %}
+	<link rel="stylesheet" type="text/css" href="../public/css/src/base.css"/>
+	<link rel="stylesheet" type="text/css" href="../public/css/lib/iview.css">
+	<link rel="stylesheet" type="text/css" href="../public/css/src/updatePwd.css"/>
+{% endblock %}
+
+{% block head_btn %}
+<a class="index" href="/">精选</a>
+<a class="topicsAbout" href="/topicsAbout">毕设展</a>
+<a class="topics" href="/topics">作业荚</a>
+{% endblock %}
+
+{% block container %}
+	<div class="container" v-cloak>
+        <div class="updatePwd_panel">
+            <p class="title">输入新密码</p>
+            <p style="color:#09bc72;margin:20px 80px;text-align: center;">输入新密码后，确定并提交</p>
+            <i-form ref="formItem" :model="formItem" :label-width="80" :rules="ruleValidate">
+                <form-item label="新密码" prop="newpwd">
+                    <i-input type="password" v-model="formItem.newpwd" placeholder="请输入新密码" ></i-input>
+                </form-item>
+                <form-item label="重新输入">
+                    <i-input type="password" v-model="checkPwd" @on-change="checkPassword" placeholder="请重新输入新密码" ></i-input>
+                </form-item>
+            </i-form>
+            <i-button long type="success" :disabled="disabledBtn" @click="submit">提交</i-button>
+        </div>
+	</div>
+{% endblock %}
+
+{% block jsfolder %}
+	<script type="text/javascript" src="../public/js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/js/lib/vue.min.js"></script>
+	<script type="text/javascript" src="../public/js/lib/iview.min.js"></script>
+	<script type="text/javascript" src="../public/js/src/config.js"></script>
+	<script type="text/javascript" src="../public/js/src/updatePwd.js"></script>
+{% endblock %}

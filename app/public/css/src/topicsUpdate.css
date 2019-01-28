@@ -1,0 +1,109 @@
+[v-cloak]{
+	display: none;
+}
+ body{
+    background-color: #EFEFEF;
+}
+
+.container h4{
+    margin: 20px auto;
+    text-align: center;
+    font-size: 24px;
+    color: #bbb;
+    text-shadow: 0 1px 0 #fff;
+    font-weight: normal;
+}
+.container .form_box{
+    display: flex;
+    flex-direction: row;
+    width: 950px;
+    margin: 0 auto;
+    background: white;
+}
+.container .form_box .left_form{
+	width: 50%;
+	padding: 40px 20px;
+}
+.container .form_box .left_form #label_formitem button:hover{
+	background-color: #ed4014;
+	border-color: #ed4014;
+}
+.container .form_box .left_form #label_formitem .ivu-icon-ios-brush:hover:before{
+    content:"\f379";
+}
+
+
+.container .form_box .right_form{
+	width: 50%;
+	padding: 40px 20px;
+}
+.container .form_box .right_form .status{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.container .form_box .right_form .status .current_state{
+	margin-left: 30px;
+    font-weight: bold;
+    font-size: 24px;
+    color: #39c;
+}
+.container .form_box .right_form .status h5{
+	font-weight: bold;font-size: 12px;
+}
+.container .form_box .right_form .status a{
+	font-weight: bold;
+	margin-left: 190px;color: #07af69;
+}
+.container .form_box .right_form .status a:hover{
+	margin-left: 190px;color: #000;
+}
+.container .form_box .right_form .error_infromation{
+	padding:20px 0;border-bottom: #ccc 1px dotted;
+}
+
+.container .form_box .right_form .info{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 20px 0;
+	border-bottom: #ccc 1px dotted;
+}
+.container .form_box .right_form .info .total{
+	margin-left: 10px;
+    font-weight: bold;
+    font-size: 24px;
+    color: #39c;
+}
+.container .form_box .right_form .info h5{
+	font-weight: bold;font-size: 12px;
+}
+.container .form_box .right_form .info a{
+	font-weight: bold;
+	margin-left: 200px;color: #07af69;
+}
+.container .form_box .right_form .info a:hover{
+	margin-left: 200px;color: #000;
+}
+.container .form_box .right_form .submit_box{
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top: #ccc 1px dotted;
+}
+
+
+
+
+
+.footer {
+	padding: 5px 0;
+	color: #999;
+	text-shadow: 0 1px rgba(255, 255, 255, 1);
+	font-size: 12px;
+	height: 50px;
+	width: 100%;
+	overflow: hidden;
+	text-align: center;
+	position: absolute;
+	bottom: 0px;
+}

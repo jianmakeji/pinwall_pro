@@ -1,0 +1,152 @@
+
+[v-cloak]{
+	display: none;
+}
+body{
+    background-color: #EFEFEF;
+}
+.header .search{
+	background: #222222;
+}
+.container .noResult{
+    margin: 20px 30px;
+    color: #999;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.container .searchResult {
+    font-size: 14px;
+    color: #999;
+    margin: 20px 50px;
+    text-shadow: 0 1px rgba(255,255,255,1);
+    font-weight: bold;
+}
+
+
+.de_project_grid {
+    text-align: left;
+    margin: 20px 0;
+    padding: 0 2%;
+}
+ .de_card_m {
+    background: #fff;
+    margin:10px 3%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.de_card_m .user_info {
+    position: absolute;
+    top: 20px;
+    left: 55%;
+    right: 10px;
+}
+.de_card_m .user_info .name {
+    position: absolute;
+    top: 4px;
+    left: 50px;
+    right: 0;
+    margin: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: left;
+    color: #666;
+}
+.de_card_m .user_info .date {
+    position: absolute;
+    top: 24px;
+    left: 50px;
+    right: 0;
+    text-align: left;
+    margin: 0;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    color: #ccc;
+}
+.de_card_m .user_info .photo {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 18px;
+    display: block;
+}
+.de_card_m .project_info {
+    width: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 0;
+}
+.de_card_m .project_info .thumb {
+    width: 100%;
+    border-right: #ccc 1px dotted; */
+    height: 100%;
+}
+.de_card_m .project_info h4 {
+    font-size: 14px;
+    text-align: left;
+    position: absolute;
+    left: 55%;
+    top: 70px;
+    right: 10px;
+    bottom: 40px;
+    overflow: hidden;
+    color: #09bc72;
+    margin: 0;
+    line-height: 1.5em;
+}
+.de_stats_tags_p {
+    padding: 10px 20px;
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.de_stats_tags_p .badges,.de_stats_tags_p .likes, .de_stats_tags_p .comments{
+	margin-right: 10px;
+    width: 40px;
+    height: 25px;
+    align-items: center;
+    justify-content: center;
+}
+.de_stats_tags_p img{
+    width: 20px;
+    height: 20px;
+    align-items: center;
+}
+.de_stats_tags_p span{
+	position: absolute;
+    top: 10px;
+	font-size: 18px;
+    width: 15px;
+    height: 20px;
+    color: #999;
+}
+
+
+
+
+
+
+
+
+
+
+
+.footer {
+	padding: 5px 0;
+	color: #999;
+	text-shadow: 0 1px rgba(255, 255, 255, 1);
+	font-size: 12px;
+	height: 50px;
+	width: 100%;
+	overflow: hidden;
+	text-align: center;
+}

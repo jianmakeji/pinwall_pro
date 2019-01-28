@@ -1,0 +1,54 @@
+{% extends "parent.html" %}
+
+{% block cssfolder %}
+	<link rel="stylesheet" type="text/css" href="public/css/lib/iview.css">
+	<link rel="stylesheet" type="text/css" href="public/css/src/base.css"/>
+	<link rel="stylesheet" type="text/css" href="public/css/src/register.css"/>
+{% endblock %}
+
+{% block head_btn %}
+<a class="index" href="/">精选</a>
+<a class="topicsAbout" href="/topicsAbout">毕设展</a>
+<a class="topics" href="/topics">作业荚</a>
+{% endblock %}
+
+
+{% block container %}
+	<div class="container" :style="containerStyle">
+        <div class="register_panel">
+            <p class="title">注册</p>
+            <i-form ref="formItem" :model="formItem" :label-width="80" :rules="ruleValidate">
+                <form-item label="姓名" prop="fullname">
+                    <i-input v-model="formItem.fullname" clearable placeholder="请输入姓名(无法修改)"></i-input>
+                </form-item>
+                <form-item label="邮箱" prop="email">
+                    <i-input v-model="formItem.email" clearable placeholder="请输入密码"></i-input>
+                </form-item>
+                <form-item label="密码" prop="password">
+                    <i-input type="password" v-model="formItem.password" clearable placeholder="请输入密码"></i-input>
+                </form-item>
+				<form-item label="确认密码" prop="confirmPassword">
+                    <i-input type="password" v-model="formItem.confirmPassword" @on-blur="conPwdBlur" clearable placeholder="请输入密码"></i-input>
+                </form-item>
+                <form-item label="验证码" class="captcha_box">
+                    <i-input type="text" v-model="formItem.captchaText" @on-change="checkCaptcha" clearable style="width:200px;margin-top:-35px;" placeholder="请重新图片验证码"></i-input>
+					<object style="width: 160px;height: 60px;"></object>
+					<icon type="md-refresh" size="30" @click="tapClick" style="margin-top: -35px;cursor:pointer;"></icon>
+                </form-item>
+                <form-item>
+                    <i-button type="success" @click="registerSubmit" :disabled="disabledBtn">注册</i-button>
+                </form-item>
+            </i-form>
+        </div>
+	</div>
+{% endblock %}
+
+{% block jsfolder %}
+	<script type="text/javascript" src="public/js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="public/js/lib/vue.min.js"></script>
+	<script type="text/javascript" src="public/js/lib/iview.min.js"></script>
+	<script type="text/javascript" src="public/js/lib/vue-resource.js"></script>
+	<script type="text/javascript" src="public/js/src/config.js"></script>
+	<script type="text/javascript" src="public/js/src/register.js"></script>
+
+{% endblock %}

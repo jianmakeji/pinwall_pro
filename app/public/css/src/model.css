@@ -1,0 +1,163 @@
+/* 搜索弹出层 */
+.search_panel{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: auto;
+	min-height: 400px;
+}
+.search_panel .search_input_result{
+	width: 50%;
+	height: auto;;
+	border-right: #ccc 1px dotted;
+}
+.search_panel .search_type{
+	width: 50%;
+}
+.search_panel .search_type h3{
+	font-size: 1em;
+	margin-top: 20px;
+	margin-left:30px;
+}
+.search_panel .search_type .directory_list{
+	font-size: 1em;
+	margin-top: 20px;
+	margin-left:30px;
+	white-space: normal;
+}
+
+
+
+/* 登陆弹出层 */
+.login_panel{
+	display: flex;
+	flex-direction: row;	/* 弹出层  column*/
+	width: 100%;
+	height: auto;
+	min-height: 400px;
+}
+.login_panel .login_info{
+	width: 50%;			/* 弹出层  90%*/
+	height: auto;
+}
+.login_panel .register{
+	width: 50%;			/* 弹出层  90%*/
+	padding-left: 20px;		/* 弹出层  0px*/
+	border-left: #ccc 1px dotted;	/* border-top: #ccc 1px dotted;*/
+	margin-left: 20px;
+}
+.login_panel .register h3{
+	font-weight: normal;
+	font-size: 16px;
+	color: #09bc72;
+	margin: 15px 0;
+}
+.ivu-modal-header p, .ivu-modal-header-inner{
+	font-size: 18px;
+	color: #09bc72;
+}
+/* 忘记密码弹出层 */
+.recoverPwd_panel{
+	text-align: center;
+}
+/* 修改资料弹出层 */
+.resetInfo_panel{
+	display: flex;
+	flex-direction: row;
+}
+.resetInfo_panel .photo_field{
+    width: 100px;
+	margin: 10px;
+    font-size: 12px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.resetInfo_panel .photo_field img{
+	width: 40px;
+	height: 40px;
+	border-radius: 40px;
+
+}
+.resetInfo_panel .photo_field p{
+	color: #333;
+}
+.resetInfo_panel .photo_field .uploadfile_img{
+	width: 100px;
+    height: 61px;
+    position: absolute;
+    top: 77px;
+    overflow: hidden;
+    z-index: 1;
+    opacity: 0;
+}
+.resetInfo_panel .photo_field .uploadfile_img input{
+	width: 100px;
+    height: 61px;
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    z-index: 999;
+    opacity: 0;
+	cursor: pointer;
+}
+.resetInfo_panel .user_info{
+	width: 50%;
+	margin-left: 30px;
+	padding-left: 20px;
+	border-left: #ccc 1px dotted;
+}
+.resetInfo_panel .user_info p{
+	font-style: normal;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+/*  修改密码 */
+.resetPwd_panel {
+	width: 50%;
+	padding: 5px 10px;
+	border-right: #ccc 1px dotted;
+}
+
+
+/* 菜单栏 */
+.de_ext_nav{
+	font-size: 12px;
+    background: #fff;
+    box-shadow: 0 0 30px rgba(0,0,0,0.1);
+}
+
+
+
+@media screen and (max-width: 768px){  /* 当屏幕尺寸小于1200px时，应用下面的CSS样式 */
+	/* 搜索弹出层 */
+	.search_panel{
+		display: flex;			/* 弹出层  */
+		flex-direction: column;	/* 弹出层  column*/
+	}
+	.search_panel .search_input_result{
+		width: 100%;				/* 弹出层  100%*/
+		height: auto;			/* 弹出层  50%*/
+	}
+	.search_panel .search_type{
+		width: 100%;				/* 弹出层  100%*/
+	}
+	.ivu-table td, .ivu-table th{
+		height:36px;
+	}
+
+	/* 登陆弹出层 */
+	.login_panel{
+		flex-direction: column;	/* 弹出层  column*/
+	}
+	.login_panel .login_info{
+		width: 90%;			/* 弹出层  90%*/
+	}
+	.login_panel .register{
+		width: 90%;			/* 弹出层  90%*/
+		padding-left: 0px;		/* 弹出层  0px*/
+		border-left: #ccc 0px dotted;	/* border-top: #ccc 1px dotted;*/
+		border-top: #ccc 1px dotted;
+	}
+}

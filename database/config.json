@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "root",
+    "database": "pinwall",
+    "host": "192.168.3.110",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "root",
+    "database": "pinwall",
+    "host": "192.168.3.110",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "root",
+    "database": "pinwall",
+    "host": "192.168.3.110",
+    "dialect": "mysql"
+  }
+}

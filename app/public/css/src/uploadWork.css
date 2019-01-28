@@ -1,0 +1,276 @@
+[v-cloak]{
+	display: none;
+}
+body{
+	background-color: #efefef;
+}
+.upload_project{
+	background: #EFEFEF;
+}
+
+.container .upload_title{
+    margin: 20px auto;
+    text-align: center;
+    font-size: 2em;
+    color: #bbb;
+    text-shadow: 0 1px 0 #fff;
+    font-weight: normal;
+}
+
+/* .step_box{
+    width: 50%;
+    margin: 0 33%;
+} */
+.step_nav{
+	width:40%;height:40px;margin: 0 auto;
+}
+.step_nav .step_nav_ul{
+	height: 50px;
+}
+.step_nav .step_nav_ul .step_nav_li{
+	float:left;cursor: pointer;    width: 33.3%;    height:50px;    line-height: 50px;    text-align: center;
+	background: #dedede;font-size: 14px;font-weight: bold;
+	border: #ccc 1px solid;border-bottom: none;    margin-left: -1px;
+}
+.step_nav .step_nav_ul .step_nav_li:hover{
+	color: #09bc72;
+}
+.step_nav .step_nav_ul .step_nav_li.active{
+	background: #fff;color: #09bc72;
+}
+
+
+
+.upload_form{
+    width: 60%;
+    min-height: 500px;
+    margin: 10px auto;
+    background-color: #fff;
+}
+
+.upload_form .step1{
+    padding-top: 50px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	min-height: 500px;
+}
+.upload_form .step1 .project_thumb{
+    width: 80%;
+    margin: 10px auto;
+}
+.upload_form .step1 #label_formitem button:hover{
+    background-color: #ed4014;
+	border-color: #ed4014;
+}
+.upload_form .step1 #label_formitem .ivu-icon-ios-brush:hover:before{
+    content:"\f379";
+}
+
+.upload_form .step2{
+    padding: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	min-height: 460px;
+}
+.upload_form .step2 .uploaded_list{
+    height: 460px;
+    background: #fff;
+    border: 1px solid #CECFCF;
+    overflow-y: auto;
+}
+.upload_form .step2 li{
+    cursor: pointer;
+}
+.upload_form .step2 .uploaded_list::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+    height: 4px;
+}
+.upload_form .step2 .uploaded_list::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.2);
+}
+.upload_form .step2 .uploaded_list::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 0;
+    background: rgba(0,0,0,0.1);
+}
+.upload_form .step2 .uploaded_list li {
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid #CECFCF;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.upload_form .step2 .uploaded_list li:hover {
+    background-color: #EFEFEF;
+}
+.upload_form .step2 .uploaded_list .thumb {
+    width: 42px;
+    height: 42px;
+    margin-left: 9px;
+}
+.upload_form .step2 .content{
+    width: 50%;
+    height: 460px;
+    padding: 20px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #CECFCF;
+    border-right: 1px solid #CECFCF;
+}
+.upload_form .step2 .content .label{
+    font-size: 12px;
+    font-weight: bold;
+    display: block;
+}
+.upload_form .step2 .content .tooltips{
+    font-size: 12px;
+    color: #3399cc;
+}
+.upload_form .step2 .other_info{
+    width: 50%;
+    height: 460px;
+    padding: 20px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #CECFCF;
+    border-right: 1px solid #CECFCF;
+}
+.upload_form .step2 .ivu-upload-select{
+	width: 100%;
+}
+.ivu-table th{
+	display: none;
+}
+.ivu-table td, .ivu-table th{
+	height:48px;
+}
+
+.upload_form .step3{
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.upload_form .step3 .user_info{
+	padding-top: 60px;
+	padding-left: 30px;
+}
+.upload_form .step3 .user_info a{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.upload_form .step3 .user_info .photo{
+	width: 40px;
+	height: 40px;
+	overflow: hidden;
+	border-radius: 18px;
+	display: block;
+}
+.upload_form .step3 .user_info .name {
+	font-size: 12px;
+	font-weight: bold;
+	color: #07af69;
+	margin-left: 15px;
+}
+.upload_form .step3 h2{
+	margin: 20px 30px;
+	font-size: 30px;
+	color: black;
+}
+.upload_form .step3 .abstract {
+    font-size: 14px;
+    line-height: 2em;
+    letter-spacing: 2px;
+    margin: 20px 30px;
+}
+.upload_form .step3 figure {
+    margin: 10px 0;
+    padding-top: 2em;
+    border-top: 1px #ccc dotted;
+}
+.upload_form .step3 figure img {
+    width: 100%;
+}
+.upload_form .step3 figcaption{
+    text-align: center;
+    color: #999;
+	display: flex;
+	flex-direction: column;
+}
+.upload_form .step3 figcaption .title{
+    font-size: 0.8em;
+    font-weight: bold;
+    line-height: 2em;
+    margin: 10px 30px 10px;
+    text-align: center;
+    color: #999;
+}
+.upload_form .step3 figcaption .des{
+	word-wrap: break-word;
+	text-align: left;
+	text-indent: 2em;
+}
+.submit_box{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 185px;
+    left: 72%;
+}
+.submit_box a{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+.submit_box a span{
+    font-size: 20px;
+    position: absolute;
+    top: 65px;
+    left: 20px;
+}
+.upload_form .step3 .submit_upload {
+	position: absolute;
+	top: 185px;
+	left: 70%;
+	width: 80px;
+	height: 128px;
+	background: url("http://pinwall.design-engine.org/images/app/flag_green.png") no-repeat;
+}
+.upload_form .step3 .submit_upload input {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 80px;
+    height: 128px;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    vertical-align: top;
+    font-family: "微软雅黑";
+    cursor: pointer;
+}
+.ivu-input-prefix i, .ivu-input-suffix i {
+    font-size: 40px;
+    line-height: 32px;
+    color: white;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.footer {
+	padding: 5px 0;
+	color: #999;
+	text-shadow: 0 1px rgba(255, 255, 255, 1);
+	font-size: 12px;
+	height: 50px;
+	line-height: 50px;
+	width: 100%;
+	overflow: hidden;
+	text-align: center;
+}

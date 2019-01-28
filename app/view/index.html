@@ -1,0 +1,69 @@
+{% extends "parent.html" %}
+
+{% block cssfolder %}
+	<link rel="stylesheet" type="text/css" href="public/css/lib/iview.css">
+	<link rel="stylesheet" type="text/css" href="public/css/src/base.css"/>
+	<link rel="stylesheet" type="text/css" href="public/css/src/model.css">
+	<link rel="stylesheet" type="text/css" href="public/css/src/index.css"/>
+{% endblock %}
+
+{% block head_btn %}
+	<a class="index" href="/">精选</a>
+	<a class="topicsAbout" href="/topicsAbout">毕设展</a>
+	<a class="topics" href="/topics">作业荚</a>
+{% endblock %}
+
+{% block container %}
+	<div class="container" :style="containerStyle">
+		<ul class="de_project_photowall">
+
+			<li v-for="(item, index) in dataList" :class="'item-'+index">
+				<div class="flip">
+			        <div class="front">
+			            <img :src="item.profileImage">
+			        </div>
+			        <div class="back">
+			            <div class="user_Info">
+			            	<a :href="'/users/'+item.user.Id">
+			            		<img v-if="index < 3" class="photo" :src="item.user.avatarUrl ? item.user.avatarUrl : 'http://pinwall.design-engine.org/images/default_profile.jpg'"/>
+			            		<p v-if="index < 3" class="name" v-text="item.user.fullname"></p>
+			            		<p v-if="index < 3" class="date" v-text="item.createAt"></p>
+			            	</a>
+			            </div>
+			            <div class="project_info">
+			            	<a :href="'/project/'+item.Id" target="_blank">
+			            		<h4 v-text="item.name"></h4>
+			            		<p class="abstract" v-if="!index" v-text="item.description"></p>
+			            	</a>
+			            </div>
+			            <!-- <p class="topic_title" v-if="!index">收录于</p>
+			            <a class="topic_title_url" :href="'topics/'+item.Id" v-if="!index">2016级2班 整合设计表达（2018-2019秋季学期）</a> -->
+			            <div class="de_stats_tags"  v-if="index < 3">
+			            	<div class="badges" title="勋章">
+			            		<icon type="ios-ribbon" style="font-size: 20px;" color="#fff"></icon>
+			            		<span v-text="item.medalCount"><span>
+			            	</div>
+			            	<div class="likes" title="赞">
+								<icon type="ios-thumbs-up" style="font-size: 20px;" color="#fff"></icon>
+			            		<span v-text="item.likeCount"><span>
+			            	</div>
+			            	<div class="comments" title="评论">
+			            		<icon type="md-text" style="font-size: 20px;" color="#fff"></icon>
+			            		<span v-text="item.commentCount"></span>
+			            	</div>
+			            </div>
+					</div>
+			    </div>
+			</li>
+		</ul>
+	</div>
+{% endblock %}
+
+{% block jsfolder %}
+	<script type="text/javascript" src="public/js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="public/js/lib/vue.min.js"></script>
+	<script type="text/javascript" src="public/js/lib/iview.min.js"></script>
+	<script type="text/javascript" src="public/js/lib/vue-resource.js"></script>
+	<script type="text/javascript" src="public/js/src/config.js"></script>
+	<script type="text/javascript" src="public/js/src/index.js"></script>
+{% endblock %}

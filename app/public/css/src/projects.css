@@ -1,0 +1,237 @@
+body{
+    background:rgba(240, 240, 240, 0.95);
+}
+.close_btn{
+    margin: 10px;
+    position: fixed;
+    top: 0;
+    right: 5%;
+}
+.zan_btn{
+    margin: 10px;
+    position: fixed;
+    top: 0;
+    left: 4%;
+}
+.zan_box{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0px;
+    left: 20px;
+}
+.zan_box a{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+.zan_box a span{
+    font-size: 20px;
+    position: absolute;
+    top: 65px;
+    left: 30px;
+}
+
+.opt_ul .edit_btn .ivu-btn{
+    position: absolute;top: 130px;left: 40px;width: 40px;height: 40px;font-size: 24px;
+}
+.opt_ul .delete_btn .ivu-btn{
+    position: absolute;top: 180px;left: 40px;width: 40px;height: 40px;font-size: 24px;
+}
+.opt_ul .show_btn .ivu-btn{
+    position: absolute;top: 230px;left: 40px;width: 40px;height: 40px;font-size: 24px;
+}
+
+.project_detail{
+    width: 80%;
+    margin:60px auto;
+    background: white;
+    padding: 70px 20px 20px;
+}
+.project_detail .score_box{
+    display: flex;
+    flex-direction: row;
+    margin:20px auto;
+    align-items: center;
+}
+.project_detail .score_box label{
+    width: 100px;
+    text-align: center;
+}
+.project_detail .score_box .ivu-input-wrapper{
+    width: 150px;
+    margin-right: 20px;
+}
+ .project_detail h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 60%;
+    color: #666;
+}
+.project_detail .publishtime a {
+    color: #07af69;
+    font-weight: bold;
+}
+
+.project_detail .user_info a {
+    width: 300px;
+    color: #333;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.project_detail .user_info .photo {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 18px;
+    display: block;
+}
+.project_detail .user_info .name {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    width: 200px;
+    font-weight: bold;
+    color: #07af69;
+    margin-left: 10px;
+}
+.project_detail .stats_tags{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 180px;
+    position: absolute;
+    right: 13%;
+    top: 90px;
+}
+.project_detail .stats_tags .badges,
+.project_detail .stats_tags .likes,
+.project_detail .stats_tags .comments{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.project_detail .abstract {
+    font-size: 14px;
+    line-height: 2em;
+    letter-spacing: 2px;
+    margin: 20px 0px;
+}
+
+/* 作品图片展示 */
+.main_content figure{
+    margin: 10px 0;
+    padding-top: 2em;
+    border-top: 1px #ccc dotted;
+}
+.main_content figure img{
+    width: 100%;
+}
+.main_content figure figcaption{
+    font-weight: bold;
+    margin: 20px 30px 40px;
+    text-align: center;
+    color: #999;
+    display: flex;
+    flex-direction: column;
+}
+.main_content figure figcaption .title{
+    font-size: 0.8em;
+    font-weight: bold;
+    line-height: 2em;
+    margin: 10px 30px 10px;
+    text-align: center;
+    color: #999;
+}
+.main_content figure figcaption .description{
+    font-weight: normal;
+    margin-left: 10px;
+    text-align: left;
+    text-indent: 2em;
+}
+
+
+
+/* 评论框 */
+.comment_box{
+    margin: 40px auto;
+    background: #fff;
+    width: 80%;
+}
+/* 其他用户评论 */
+.comment_list li {
+    padding: 20px 40px 20px 20px;
+    border-bottom: #ccc 1px dotted;
+    position: relative;
+}
+.comment_box .user_info {
+    float: left;
+}
+.comment_box .user_info .photo {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 18px;
+    margin: 5px auto;
+    display: block;
+    background: #999;
+}
+.comment_box .comment_wrapper {
+    margin-left: 55px;
+}
+.comment_box .name {
+    text-decoration: none;
+    color: #09bc72;
+    font-size: 14px;
+    font-weight: bold;
+    vertical-align: middle;
+}
+.comment_box .publishtime {
+    font-size: 12px;
+    color: #999;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+.comment_box .delete_comment {
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.comment_box .comment {
+    font-size: 14px;
+    line-height: 1.5em;
+    color: #666;
+    display: block;
+    margin: 8px 0;
+}
+/* 我的评论输入 */
+.comment_form {
+    padding: 20px;
+    position: relative;
+}
+
+
+.footer {
+	padding: 5px 0;
+	color: #999;
+	text-shadow: 0 1px rgba(255, 255, 255, 1);
+	font-size: 12px;
+	height: 50px;
+	line-height: 50px;
+	width: 100%;
+	overflow: hidden;
+	text-align: center;
+}

@@ -1,0 +1,100 @@
+{% extends "parent.html" %}
+
+{% block cssfolder %}
+	<link rel="stylesheet" type="text/css" href="public/css/src/base.css"/>
+	<link rel="stylesheet" type="text/css" href="public/css/lib/iview.css">
+	<link rel="stylesheet" type="text/css" href="public/css/src/topics.css"/>
+	<link rel="stylesheet" type="text/css" href="public/css/src/model.css"/>
+{% endblock %}
+
+{% block head_btn %}
+<a class="index" href="/">精选</a>
+<a class="topicsAbout" href="/topicsAbout">毕设展</a>
+<a class="topics" href="/topics">作业荚</a>
+{% endblock %}
+
+{% block container %}
+	<div class="container" :style="containerStyle">
+		<div class="container_header">
+			<div style="height: 35px;line-height: 35px;text-align: right;width: 170px;">
+				作业荚:
+			</div>
+			<i-button :type="checkAllType" @click="checkAll">全部</i-button>
+			<i-button :type="checkOpenType" @click="checkOpen">开放中</i-button>
+			<i-button :type="checkCloseType" @click="checkClose">已关闭</i-button>
+			<i-button :type="checkMyType" @click="checkMy" v-if="'{{user.Id}}'">由我创建</i-button>
+			<div class="">
+				<i-input v-model="searchValue" prefix="ios-search" @on-enter="searchTopics" placeholder="请输入作业荚关键词"/>
+			</div>
+		</div>
+		<div class="container_content">
+			<div class="de_topic_box" v-for="(item,index) in dataList">
+				<row>
+					<i-col :xs="12" :sm="2" :md="1" :lg="1">
+						<div class="user_info">
+							<a :href="'users/'+item.user.Id" >
+								<img :src="item.user.avatarUrl">
+								<p class="name" v-text="item.user.fullname"></p>
+							</a>
+						</div>
+
+					</i-col>
+					<i-col :xs="12" :sm="4" :md="4" :lg="4">
+						<div class="topic_info">
+							<p class="created_date" v-text="item.createAt"></p>
+							<a :href="'workFolder/'+item.Id">
+								<p class="topic_title" v-text="item.name"></p>
+							</a>
+							<ul class="de_stats_tags">
+								<li class="uploads">
+									<icon type="ios-cloud-upload" size="20"></icon>
+									<span v-text="item.user.gender"></span>
+								</li>
+							</ul>
+						</div>
+					</i-col>
+					<i-col :xs="0" :sm="{span:15,offset:8}" :md="{span:17,offset:6}" :lg="{span:18,offset:5}">
+						<ul class="project_info">
+							<li class="de_borderbox" v-for="subItem in item.artifacts">
+								<a :href="'/project/'+subItem.Id" target="_blank" class="de_entity_link">
+									<img :src="subItem.profileImage">
+								</a>
+							</li>
+							<li v-if="item.artifacts.length == 0"></li>
+						</ul>
+					</i-col>
+					<i-col :xs="0" :sm="1" :md="1" :lg="1">
+						<ul :class="{topic_action:!item.status, topic_closed:item.status}">
+							<li class="de_topic_action_view" v-if="item.status == 1" style="margin-top:5px;">
+								<i-button type="checkCloseType" size="large" shape="circle" icon="md-eye" @click="checkThisTopic(item.Id)" title="查看"></i-button>
+							</li>
+							<li class="de_topic_action_view" v-if="item.status == 0" style="margin-top:5px;">
+								<i-button type="checkCloseType" size="large" shape="circle" icon="md-cloud-upload" @click="uploadToTopic(item.Id)" title="上传"></i-button>
+							</li>
+							{% if user.roles[0].name != 'user' %}
+							<li class="de_topic_action_view" v-if="item.status == 1 && ('{{user.Id}}' == item.userId || '{{user.roles[0].name}}' == 'admin')" style="margin-top:5px;">
+								<i-button type="checkCloseType" size="large" shape="circle" icon="md-lock" @click="cockThisTopic(item.Id, item.status)" title="锁定"></i-button>
+							</li>
+							<li class="de_topic_action_view" v-if="item.status == 0 && ('{{user.Id}}' == item.userId || '{{user.roles[0].name}}' == 'admin')" style="margin-top:5px;">
+								<i-button type="checkCloseType" size="large" shape="circle" icon="md-unlock" @click="cockThisTopic(item.Id, item.status)" title="解锁"></i-button>
+							</li>
+							<li class="de_topic_action_view" v-if=" '{{user.roles[0].name}}' == 'admin' || '{{user.Id}}' == item.userId " style="margin-top:5px;">
+								<i-button type="checkCloseType" size="large" shape="circle" icon="ios-cog" @click="settingThisTopic(item.Id)" title="设置"></i-button>
+							</li>
+							{% endif %}
+						</ul>
+					</i-col>
+				</row>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block jsfolder %}
+	<script type="text/javascript" src="public/js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="public/js/lib/vue.min.js"></script>
+	<script type="text/javascript" src="public/js/lib/iview.min.js"></script>
+	<script type="text/javascript" src="public/js/lib/vue-resource.js"></script>
+	<script type="text/javascript" src="public/js/src/config.js"></script>
+	<script type="text/javascript" src="public/js/src/topics.js"></script>
+{% endblock %}

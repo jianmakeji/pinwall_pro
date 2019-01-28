@@ -1,0 +1,42 @@
+[v-cloak]{
+	display: none;
+}
+body{
+    background-color: #EFEFEF;
+}
+
+.container{
+    margin-top: 80px;
+    height: 500px;
+}
+
+.complete_box{
+    width: 950px;
+    height: 500px;
+    margin: 0 auto;
+    padding: 20px 60px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.complete_box h3{
+    font-size: 22px;
+    text-align: center;
+    color: #09bc72;
+}
+.completeInfo object svg{
+    height: 40px;
+}
+
+
+.footer {
+	padding: 5px 0;
+	color: #999;
+	text-shadow: 0 1px rgba(255, 255, 255, 1);
+	font-size: 12px;
+	height: 50px;
+	width: 100%;
+	overflow: hidden;
+	text-align: center;
+    position: absolute;
+    bottom: 0;
+}

@@ -1,0 +1,48 @@
+{% extends "parent.html" %}
+
+{% block cssfolder %}
+	<link rel="stylesheet" type="text/css" href="public/css/src/base.css"/>
+	<link rel="stylesheet" type="text/css" href="public/css/lib/iview.css">
+	<link rel="stylesheet" type="text/css" href="public/css/src/createTopics.css"/>
+{% endblock %}
+
+{% block head_btn %}
+<a class="index" href="/">精选</a>
+<a class="topicsAbout" href="/topicsAbout">毕设展</a>
+<a class="topics" href="/topics">作业荚</a>
+{% endblock %}
+
+{% block container %}
+	<div class="container" :style="containerStyle">
+        <h4 class="title">新建或设置作业荚</h4>
+        <div class="topic_form">
+            <i-form :model="formItem" :label-width="80" >
+                <form-item label="标题">
+                    <i-input v-model="formItem.name" placeholder="请输入标题"></i-input>
+                </form-item>
+                <form-item label="标签">
+                    <i-button type="success" size="small" icon="ios-brush" @click="deleteTerm(index)" v-for="(item,index) in terms_arr" style="margin-right:5px;"><span v-text="item.name"></span></i-button>
+                </form-item>
+                <form-item label="新建标签">
+                    <i-input v-model="terms_value" @on-blur="createTerm" @on-enter="createTerm" placeholder="请输入标签,按回车确认"></i-input>
+                </form-item>
+                <form-item label="内容说明">
+                    <i-input v-model="formItem.description" placeholder="请输入内容说明"></i-input>
+                </form-item>
+                <form-item>
+                    <i-button @click="submitData" type="success">确认</i-button>
+                </form-item>
+            <i-form>
+        </div>
+
+	</div>
+{% endblock %}
+
+{% block jsfolder %}
+	<script type="text/javascript" src="public/js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="public/js/lib/vue.min.js"></script>
+	<script type="text/javascript" src="public/js/lib/iview.min.js"></script>
+	<script type="text/javascript" src="public/js/lib/vue-resource.js"></script>
+	<script type="text/javascript" src="public/js/src/config.js"></script>
+	<script type="text/javascript" src="public/js/src/createTopics.js"></script>
+{% endblock %}

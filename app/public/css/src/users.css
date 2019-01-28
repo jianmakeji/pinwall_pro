@@ -1,0 +1,448 @@
+[v-cloak]{
+	display: none;
+}
+body{
+    background-color: #EFEFEF;
+}
+
+.container .container_header{
+    color: rgb(153, 153, 153);
+    margin: 20px auto;
+}
+
+.de_topic_box{
+    position: relative;
+    height: 140px;
+    box-sizing: border-box;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 30px 0 30px;
+}
+/* user信息 */
+.de_topic_box .user_info {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1;
+}
+
+.de_topic_box .user_info a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+.de_topic_box .user_info img {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 18px;
+    display: block;
+}
+.de_topic_box .user_info .name {
+    position: absolute;
+    top: 0;
+    left: 55px;
+    margin: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
+    width: 200px;
+    text-align: left;
+    color: #666;
+}
+/* 2018本科毕业设计作品 */
+.de_topic_box .topic_info {
+    position: absolute;
+    top: 30px;
+    left: 55px;
+    bottom: 0;
+    padding-left: 20px;
+    min-width: 240px;
+}
+.topic_info .created_date {
+    font-size: 12px;
+    margin: 8px 0;
+    color: #ccc;
+}
+.topic_info .topic_title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #07af69;
+    overflow: hidden;
+    margin: 0.8em 0;
+    width: 240px;
+    height: 3em;
+}
+.topic_info .de_stats_tags {
+    font-size: 0;
+    white-space: nowrap;
+    text-align: left;
+    height: 40px;
+    position: absolute;
+    left: 20px;
+    bottom: 0;
+    right: 0;
+    white-space: nowrap;
+}
+.de_stats_tags>li {
+    color: #999;
+    display: inline-block;
+    height: 40px;
+    width: 32.33%;
+    font-size: 12px;
+    line-height: 40px;
+    margin-top: 100px;
+}
+
+/* 中间作品详情 */
+.de_topic_box .project_info {
+    font-size: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    /* border-left: #ccc 1px dotted; */
+}
+.project_info li {
+    display: inline-block;
+    padding: 10px;
+    margin-right: -10px;
+}
+.project_info li img {
+    height: 120px;
+    width: 120px;
+}
+
+/* 查看 */
+.de_topic_box .topic_action {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 140px;
+    font-size: 0;
+    z-index: 1;
+    text-align: center;
+    background: repeating-linear-gradient( 45deg, #b1dddd, #b1dddd 10px, #beeeee 10px, #beeeee 20px);
+    overflow: hidden;
+}
+.de_topic_box .topic_action.topic_closed {
+    background: repeating-linear-gradient( 45deg, #ddd, #ddd 10px, #eee 10px, #eee 20px);
+}
+.topic_action li {
+    margin: 5px;
+}
+.topic_action li a {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    color: #666;
+    font-size: 0;
+    display: inline-block;
+    border-radius: 18px;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+    position: relative;
+}
+.topic_action li a img{
+    width: 100%;
+    height: auto;
+    border-radius: 40px;
+}
+.topic_description:before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background: #dedede;
+    position: absolute;
+    top: -6px;
+    left: 30px;
+    transform: rotate(45deg);
+}
+.topic_description {
+    font-size: 12px;
+    margin: 0 30px 20px 30px;
+    padding: 20px;
+    color: #666;
+    background: #dedede;
+    position: relative;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+}
+
+.de_project_grid {
+    text-align: left;
+    margin: 20px 0;
+    padding: 0 2%;
+}
+ .de_card_m {
+    background: #fff;
+    margin:10px 2%;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.de_card_m .user_info {
+    position: absolute;
+    top: 20px;
+    left: 51%;
+    right: 10px;
+}
+.de_card_m .user_info .name {
+    position: absolute;
+    top: 4px;
+    left: 50px;
+    right: 0;
+    margin: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: left;
+    color: #666;
+}
+.de_card_m .user_info .date {
+    position: absolute;
+    top: 24px;
+    left: 50px;
+    right: 0;
+    text-align: left;
+    margin: 0;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display: inline-block;
+    color: #ccc;
+}
+.de_card_m .user_info .photo {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 18px;
+    display: block;
+}
+.de_card_m .project_info {
+    width: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 0;
+}
+.de_card_m .project_info .thumb {
+    width: 100%;
+    border-right: #ccc 1px dotted; */
+    height: 100%;
+}
+.de_card_m .project_info h4 {
+    font-size: 14px;
+    text-align: left;
+    position: absolute;
+    left: 51%;
+    top: 70px;
+    right: 10px;
+    bottom: 40px;
+    overflow: hidden;
+    color: #09bc72;
+    margin: 0;
+    line-height: 1.5em;
+}
+.de_stats_tags_p {
+    padding: 10px 20px;
+    position: absolute;
+    bottom: 15px;
+    left: 48%;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.de_stats_tags_p .badges,.de_stats_tags_p .likes, .de_stats_tags_p .comments{
+	margin-right: 10px;
+    width: 40px;
+    height: 25px;
+    align-items: center;
+    justify-content: center;
+}
+.de_stats_tags_p img{
+    width: 20px;
+    height: 20px;
+    align-items: center;
+}
+.de_stats_tags_p span{
+	position: absolute;
+    top: 10px;
+	font-size: 18px;
+    width: 15px;
+    height: 20px;
+    color: #999;
+    margin-left: 5px;
+}
+
+/* 搜索弹出层 */
+.search_panel{
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: auto;
+	min-height: 400px;
+}
+.search_panel .search_input_result{
+	width: 50%;
+	height: auto;;
+}
+.search_panel .search_type{
+	width: 50%;
+}
+.search_panel .search_type h3{
+	font-size: 1em;
+	margin-top: 20px;
+	margin-left:30px;
+}
+.search_panel .search_type .directory_list{
+	font-size: 1em;
+	margin-top: 20px;
+	margin-left:30px;
+	white-space: normal;
+}
+.ivu-table th{
+	display: none;
+}
+.ivu-table td, .ivu-table th{
+	height:48px;
+}
+
+/* 登陆弹出层 */
+.login_panel{
+	display: flex;
+	flex-direction: row;	/* 弹出层  column*/
+	width: 100%;
+	height: auto;
+	min-height: 400px;
+}
+.login_panel .login_info{
+	width: 50%;			/* 弹出层  90%*/
+	height: auto;
+}
+.login_panel .register{
+	width: 50%;			/* 弹出层  90%*/
+	padding-left: 20px;		/* 弹出层  0px*/
+	border-left: #ccc 1px dotted;	/* border-top: #ccc 1px dotted;*/
+	margin-left: 20px;
+}
+.login_panel .register h3{
+	font-weight: normal;
+	font-size: 16px;
+	color: #09bc72;
+	margin: 15px 0;
+}
+.ivu-modal-header p, .ivu-modal-header-inner{
+	font-size: 18px;
+	color: #09bc72;
+}
+/* 忘记密码弹出层 */
+.recoverPwd_panel{
+	text-align: center;
+}
+
+.footer {
+	padding: 5px 0;
+	color: #999;
+	text-shadow: 0 1px rgba(255, 255, 255, 1);
+	font-size: 12px;
+	height: 50px;
+	line-height: 50px;
+	width: 100%;
+	overflow: hidden;
+	text-align: center;
+}
+
+@media screen and (max-width: 768px){  /* 当屏幕尺寸小于1200px时，应用下面的CSS样式 */
+
+	.de_stats_tags_p {
+	    padding: 10px 10px;
+	}
+	.de_topic_box{
+	    margin: 20px 10px 0 10px;
+	}
+	.topic_description {
+	    margin: 0 10px 20px 10px;
+	}
+	.de_stats_tags>li {
+	    width: 27%;
+	}
+	.de_stats_tags_p span{
+	    top: 12px;			/* 小屏幕 12px */
+		font-size: 14px;	/* 小屏幕 14px */
+	    margin-left: 0px;	/* 小屏幕 0px */
+	}
+	/* 搜索弹出层 */
+	.search_panel{
+		display: flex;			/* 弹出层  */
+		flex-direction: column;	/* 弹出层  column*/
+	}
+	.search_panel .search_input_result{
+		width: 100%;				/* 弹出层  100%*/
+		height: auto;			/* 弹出层  50%*/
+	}
+	.search_panel .search_type{
+		width: 100%;				/* 弹出层  100%*/
+	}
+	.ivu-table td, .ivu-table th{
+		height:36px;
+	}
+
+	/* 登陆弹出层 */
+	.login_panel{
+		flex-direction: column;	/* 弹出层  column*/
+	}
+	.login_panel .login_info{
+		width: 90%;			/* 弹出层  90%*/
+	}
+	.login_panel .register{
+		width: 90%;			/* 弹出层  90%*/
+		padding-left: 0px;		/* 弹出层  0px*/
+		border-left: #ccc 0px dotted;	/* border-top: #ccc 1px dotted;*/
+		border-top: #ccc 1px dotted;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px){  /* 当屏幕尺寸小于1200px时，应用下面的CSS样式 */
+
+	.de_stats_tags_p {
+	    padding: 10px 20px;
+	}
+	.de_topic_box{
+	    margin: 20px 20px 0 20px;
+	}
+	.topic_description {
+	    margin: 0 20px 20px 20px;
+	}
+	.de_stats_tags>li {
+	    width: 27%;
+	}
+	.de_stats_tags_p span{
+	    top: 12px;			/* 小屏幕 12px */
+		font-size: 14px;	/* 小屏幕 14px */
+	    margin-left: 0px;	/* 小屏幕 0px */
+	}
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px){  /* 当屏幕尺寸小于1200px时，应用下面的CSS样式 */
+
+	.de_stats_tags_p {
+	    padding: 10px 20px;
+	}
+	.de_topic_box{
+	    margin: 20px 20px 0 20px;
+	}
+	.topic_description {
+	    margin: 0 20px 20px 20px;
+	}
+	.de_stats_tags>li {
+	    width: 27%;
+	}
+	.de_stats_tags_p span{
+	    top: 12px;			/* 小屏幕 12px */
+		font-size: 14px;	/* 小屏幕 14px */
+	    margin-left: 0px;	/* 小屏幕 0px */
+	}
+}

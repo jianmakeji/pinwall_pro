@@ -1,0 +1,183 @@
+<!-- 作业荚 -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>图钉墙-HNU design</title>
+		<link rel="stylesheet" type="text/css" href="../public/css/src/base.css"/>
+		<link rel="stylesheet" type="text/css" href="../public/css/lib/iview.css">
+		<link rel="stylesheet" type="text/css" href="../public/css/src/projects.css"/>
+	</head>
+	<body>
+		<div class="projects" v-cloak :style="projectStyle">
+			<div class="zan_box">
+				{% if user.roles[0].name != "" %}
+					<a @click="zan('{{data.userId}}','{{user.roles[0].name}}')">
+						<img :src="artifactZanTag ? 'http://pinwall.design-engine.org/images/app/flag_green.png' : 'http://pinwall.design-engine.org/images/app/flag_gray.png'" alt="">
+						<icon type="ios-thumbs-up" style="font-size: 40px; position: absolute;top: 15px;left: 20px;"></icon>
+						<span>赞</span>
+					</a>
+				{% else %}
+					<a @click="zan('{{data.userId}}','{{user.roles[0].name}}')">
+						<img src="http://pinwall.design-engine.org/images/app/flag_gray.png" alt="">
+						<icon type="ios-thumbs-up" style="font-size: 40px; position: absolute;top: 15px;left: 20px;"></icon>
+						<span>赞</span>
+					</a>
+				{% endif %}
+			</div>
+			<ul class="opt_ul">
+				<li class="edit_btn" v-if="'{{user.roles[0].name}}' == 'admin' || '{{data.topics[0].userId}}' == '{{user.Id}}'  && {{data.topics.length}} != 0 || '{{data.userId}}' == '{{user.Id}}'">
+					<i-button shape="circle" icon="md-create" @click="editArtifact('{{data.jobTag}}')" size="large"></i-button>
+				</li>
+
+				{% if data.topics[0].status == 0 %}
+					<li class="delete_btn" v-if="'{{user.roles[0].name}}' == 'admin' || '{{data.topics[0].userId}}' == '{{user.Id}}' || '{{data.userId}}' == '{{user.Id}}'">
+						<i-button shape="circle" icon="ios-trash" @click="deleteArtifact" size="large"></i-button>
+					</li>
+				{% endif %}
+
+				<li class="delete_btn" v-if="'{{data.jobTag}}' == '2' && '{{data.userId}}' == '{{user.Id}}'">
+					<i-button shape="circle" icon="ios-trash" @click="deleteArtifact" size="large"></i-button>
+				</li>
+
+				<!-- <li class="show_btn" v-if="'{{user.roles[0].name}}' == 'admin'">
+					<i-button shape="circle" icon="md-eye" @click="showArtifact" size="large"></i-button>
+				</li> -->
+			</ul>
+			<i-button class="close_btn" type="default" shape="circle" icon="md-close" size="large" @click="closeThePage"></i-button>
+			<back-top></back-top>
+            <div class="project_detail">
+				<div class="score_box" v-if="'{{data.topics[0].userId}}' == '{{user.Id}}' && {{data.topics.length}} != 0">
+					<label>作品分数：</label>
+					<i-input type="text" value="{{data.artifact_scores[0].score}}" @on-change="scoreChange(event,{{data.Id}})" placeholder="0~100之间的整数" size="large" number autofocus></i-input>
+					<i-button type="success" @click="submitScore">打分</i-button>
+				</div>
+                <div class="stats_tags">
+                    <div class="badges">
+						<icon type="ios-ribbon" style="font-size: 22px;color:#999;"></icon>
+                        <span>{{data.medalCount}}</span>
+                    </div>
+                    <div class="likes">
+						<icon type="ios-thumbs-up" style="font-size: 22px;color:#999;"></icon>
+                        <span>{{data.likeCount}}</span>
+                    </div>
+                    <div class="comments">
+						<icon type="md-text" style="font-size: 20px;color:#999;"></icon>
+                        <span>{{data.commentCount}}</span>
+                    </div>
+                </div>
+                <div class="user_info">
+                    <a href="/users/{{data.user.Id}}">
+						{% if data.user.avatarUrl %}
+						<img class="photo" src="{{data.user.avatarUrl}}" alt="">
+						{% else %}
+                        <img class="photo" src="http://pinwall.design-engine.org/images/default_profile.jpg" alt="">
+						{% endif %}
+                        <p class="name">{{data.user.fullname}}</p>
+                    </a>
+                </div>
+                <h2>{{data.name}}</h2>
+                <p class="publishtime">
+                    {{data.createAt.getFullYear()}}-{{data.createAt.getMonth() + 1}}-{{data.createAt.getDate()}}，收录于
+						{% for item in data.topics %}
+	                    	<a href="/workFolder/{{data.topics[0].Id}}">{{item.name}}</a>
+						{% endfor %}
+                </p>
+                <p class="abstract">
+                    {{data.description}}
+                </p>
+	            <div class="main_content">
+					{% for item in data.artifact_assets %}
+						{% if item.viewUrl %}
+							<figure class="attach_figure">
+								<i-button v-if="{{item.type}} == 3 || {{item.type}} == 32 || {{item.type}} == 256" shape="circle" icon="md-albums" type="default" size="large" @click="downAttach('{{item.mediaFile}}')" style="position: absolute;margin-left: 10px;margin-top: 10px;"></i-button>
+								<i-button v-else="{{item.type}} != 3" shape="circle" icon="md-arrow-dropright-circle" type="default" size="large" @click="downAttach('{{item.mediaFile}}')" style="position: absolute;margin-left: 10px;margin-top: 10px;"></i-button>
+								<a href="{{item.mediaFile}}" target="_blank">
+									<img src="{{item.profileImage}}" alt="">
+									<figcaption>
+										{% if item.name %}
+										<span class="title">{{item.name}}</span>
+										{% endif %}
+										{% if item.description %}
+										<span class="description">{{item.description}}</span>
+										{% endif %}
+									</figcaption>
+								</a>
+							</figure>
+						{% else %}
+							<figure>
+								<img src="{{item.profileImage}}" alt="">
+
+								<figcaption>
+									{% if item.name %}
+									<span>{{item.name}}</span>
+									{% endif %}
+									{% if item.description %}
+									<span class="description">{{item.description}}</span>
+									{% endif %}
+								</figcaption>
+
+							</figure>
+						{% endif %}
+					{% endfor %}
+	            </div>
+            </div>
+			<div class="comment_box">
+				<ul class="comment_list">
+					<li v-for="item in dataList">
+						<div class="user_info">
+							<a :href="'/users/'+item.user.Id">
+								<img class="photo" :src="item.user.avatarUrl ? item.user.avatarUrl : 'http://pinwall.design-engine.org/images/default_profile.jpg'">
+							</a>
+						</div>
+						<div class="comment_wrapper">
+							<a :href="'/users/'+item.user.Id" class="name">${ item.user.fullname }</a>
+							{% if user.roles[0].name == 'admin' %}
+								<i-button class="delete_comment" type="error" shape="circle" icon="md-trash" @click="deleteComment(item.Id)"></i-button>
+							{% endif %}
+							<p class="comment">${item.content}</p>
+						</div>
+					</li>
+				</ul>
+				{% if user.Id %}
+				<div class="comment_form">
+					<div class="user_info">
+						<a href="/users/{{user.Id}}">
+							<img class="photo" src="http://pinwall.design-engine.org/images/default_profile.jpg" alt="">
+						</a>
+					</div>
+					<div class="comment_wrapper">
+						<a href="/users/{{user.Id}}" class="name">{{user.fullname}}</a>
+						<i-form>
+							<form-item>
+								<i-input v-model="artifactCommentData.content" type="textarea" placeholder="您的评论……" /><br>
+							</form-item>
+							<form-item>
+								<i-button type="success" @click="addComment('{{user.Id}}')">提交</i-button>
+							</form-item>
+						</i-form>
+					</div>
+				</div>
+				{% else %}
+				<div class="comment_form">
+					<i-button type="warning" to="/login">发表评论前请先登录</i-button>
+				</div>
+				{% endif %}
+			</div>
+			<modal v-model="deleteModal" @on-ok="ok" title="警告！！！">
+		        <p style="color:#ed3f14;text-align:center">
+		            <icon type="information-circled"></icon>
+		            <span style="font-size: 15px;">确定删除该作品?</span>
+		        </p>
+		    </modal>
+			<div class="footer">
+				<p>© 湖南大学设计艺术学院，保留所有权利。</p>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../public/js/lib/jquery.min.js"></script>
+	    <script type="text/javascript" src="../public/js/lib/vue.min.js"></script>
+	    <script type="text/javascript" src="../public/js/lib/iview.min.js"></script>
+	    <script type="text/javascript" src="../public/js/src/projects.js"></script>
+	</body>
+</html>

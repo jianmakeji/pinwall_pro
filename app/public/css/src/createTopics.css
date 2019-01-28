@@ -1,0 +1,46 @@
+[v-cloak]{
+	display: none;
+}
+body{
+    background: #efefef;
+}
+.upload_project{
+	background: #EFEFEF;
+}
+
+.container .title{
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+    color: #bbb;
+    font-weight: normal;
+    text-shadow: 0 1px 0 #fff;
+}
+
+.topic_form{
+    width: 950px;
+    margin: 20px auto;
+    padding: 40px 20px;
+    background: #fff;
+}
+.topic_form button:hover{
+    background-color: #ed4014;
+	border-color: #ed4014;
+}
+.topic_form .ivu-icon-ios-brush:hover:before{
+    content:"\f379";
+}
+
+.footer {
+	padding: 5px 0;
+	color: #999;
+	text-shadow: 0 1px rgba(255, 255, 255, 1);
+	font-size: 12px;
+	height: 50px;
+	line-height: 50px;
+	width: 100%;
+	overflow: hidden;
+	text-align: center;
+    position: absolute;
+    bottom: 10px;
+}

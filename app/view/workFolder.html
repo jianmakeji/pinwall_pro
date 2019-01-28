@@ -1,0 +1,106 @@
+{% extends "parent.html" %}
+
+{% block cssfolder %}
+	<link rel="stylesheet" type="text/css" href="../public/css/lib/iview.css">
+	<link rel="stylesheet" type="text/css" href="../public/css/src/base.css"/>
+	<link rel="stylesheet" type="text/css" href="../public/css/src/workFolder.css"/>
+{% endblock %}
+
+{% block head_btn %}
+<a class="index" href="/">精选</a>
+<a class="topicsAbout" href="/topicsAbout">毕设展</a>
+<a class="topics" href="/topics">作业荚</a>
+{% endblock %}
+
+{% block container %}
+	<div class="container" :style="containerStyle" v-cloak>
+		<div class="de_topic_box">
+			<row>
+				<i-col :xs="12" :sm="2" :md="1" :lg="1">
+					<div class="user_info">
+						<a :href="'/users/' + headInfo.Id">
+							<img :src="headInfo.avatarUrl ? headInfo.avatarUrl : 'http://pinwall.design-engine.org/images/default_profile.jpg'">
+							<p class="name" v-text="headInfo.fullname"></p>
+						</a>
+					</div>
+
+				</i-col>
+				<i-col :xs="12" :sm="4" :md="4" :lg="4">
+					<div class="topic_info">
+						<p class="created_date" v-text="headInfo.date"></p>
+						<a>
+							<p class="topic_title" v-text="headInfo.name"></p>
+						</a>
+						<ul class="de_stats_tags">
+							<li class="uploads">
+								<icon type="ios-cloud-upload" size="20"></icon>
+								<span v-text="uploadTotal"></span>
+							</li>
+						</ul>
+					</div>
+				</i-col>
+				<i-col :xs="0" :sm="{span:17,offset:6}" :md="{span:18,offset:5}" :lg="{span:18,offset:5}">
+					<ul class="project_info">
+						<li class="de_borderbox" v-for="item in headDataList">
+							<a :href="'/project/' + item.Id" target="_blank" class="de_entity_link">
+								<img :src="item.profileImage">
+							</a>
+						</li>
+						<li v-if="headDataList.length == 0"></li>
+					</ul>
+				</i-col>
+				<i-col :xs="0" :sm="1" :md="1" :lg="1">
+					<ul class="topic_action">
+					</ul>
+				</i-col>
+			</row>
+		</div>
+		<p class="topic_description"></p>
+
+		<ul class="de_project_grid">
+			<row>
+				<i-col :xs="24" :sm="12" :md="8" :lg="8" v-for="item in dataList">
+					<li class="de_card_m">
+						<div class="user_info">
+							<a :href="'/users/' + item.user.Id">
+								<img class="photo" :src="item.user.avatarUrl ? item.user.avatarUrl : 'http://pinwall.design-engine.org/images/default_profile.jpg'" alt="">
+								<p class="name" v-text="item.user.fullname"></p>
+								<p class="date" v-text="item.createAt.split('T')[0]"></p>
+							</a>
+						</div>
+						<div class="project_info">
+							<a :href="'/project/' + item.Id" target="_blank">
+								<img class="thumb" v-lazy="item.profileImage" loading="../public//images/default_thumb_500.png">
+								<h4 v-text="item.name"></h4>
+							</a>
+						</div>
+						<div class="de_stats_tags_p">
+							<div class="badges" title="勋章">
+								<icon type="ios-ribbon" style="font-size: 20px;" color="#999"></icon>
+								<span v-text="item.medalCount"></span>
+							</div>
+							<div class="likes" title="赞">
+								<icon type="ios-thumbs-up" style="font-size: 20px;" color="#999"></icon>
+								<span v-text="item.likeCount"></span>
+							</div>
+							<div class="comments" title="评论">
+								<icon type="md-text" style="font-size: 20px;" color="#999"></icon>
+								<span v-text="item.commentCount"></span>
+							</div>
+						</div>
+					</li>
+				</i-col>
+
+			</row>
+		</ul>
+	</div>
+{% endblock %}
+
+{% block jsfolder %}
+	<script type="text/javascript" src="../public/js/lib/vue-lazyload.js"></script>
+	<script type="text/javascript" src="../public/js/lib/jquery.min.js"></script>
+	<script type="text/javascript" src="../public/js/lib/vue.min.js"></script>
+	<script type="text/javascript" src="../public/js/lib/iview.min.js"></script>
+	<script type="text/javascript" src="../public/js/src/config.js"></script>
+	<script type="text/javascript" src="../public/js/src/workFolder.js"></script>
+{% endblock %}
