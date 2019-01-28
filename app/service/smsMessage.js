@@ -8,7 +8,7 @@ class SmsMessage extends Service {
     let code = this.ctx.app.randomNumber(6);
     smsMessage.code = code;
     Date curDate = new Date();
-    let preDate = new Date(curDate.getTime() - 24*60*60*1000);
+    let preDate = new Date(curDate.getTime() - 24 * 60 * 60 * 1000);
     smsMessage.createtime = preDate;
     let count = await this.ctx.model.SmsMessage.getCountDataByDatetime(smsMessage);
     let result = "发送成功!"
