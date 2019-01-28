@@ -4,6 +4,7 @@
   "description": "",
   "private": true,
   "dependencies": {
+    "@alicloud/pop-core": "^1.7.5",
     "ali-oss": "^6.0.1",
     "egg": "^2.2.1",
     "egg-alinode": "^2.0.1",
