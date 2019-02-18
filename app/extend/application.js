@@ -31,7 +31,7 @@ module.exports = {
   videoPath: 'video/',
 
   email_host:'smtp.exmail.qq.com',
-  email_user:'d_seniors2-18@cidic.cn',
+  email_user:'d_seniors2018@cidic.cn',
   email_pwd:'Yl2018',
   email_send_address:'admin@design-engine.org',
   email_verify_address:'https://beta.pinwall.design-engine.org/website/users/updateAcviveByActiveCodeAndEmail',
