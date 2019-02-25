@@ -176,6 +176,37 @@ class Artifacts extends Service {
       }
       await transaction.commit();
 
+      try{
+        let artiObj = await this.ctx.model.Artifacts.transterDataToESById(id);
+        if (artiObj){
+          await ctx.service.esUtils.updateobject(artiObj.Id, artiObj);
+          let object = {};
+          object.Id = artiObj.Id;
+          object.suggest = new Array();
+
+          let name_suggest = {};
+          name_suggest.input = artiObj.name;
+          name_suggest.weight = 10;
+          object.suggest.push(name_suggest);
+
+          let fullname_suggest = {};
+          fullname_suggest.input = artiObj.user.fullname;
+          fullname_suggest.weight = 16;
+          object.suggest.push(fullname_suggest);
+
+          artiObj.terms.forEach((term,index)=>{
+            let term_suggest = {};
+            term_suggest.input = term.name;
+            term_suggest.weight = 8;
+            object.suggest.push(term_suggest);
+          });
+          await ctx.service.esUtils.updateSuggestObject(artiObj.Id, artiObj);
+        }
+      }
+      catch(e){
+        ctx.getLogger('elasticLogger').info("update ID:"+id+": "+e.message+"\n");
+      }
+      
       let deleteAliOSSArray = new Array();
       try{
 

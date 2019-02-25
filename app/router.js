@@ -116,10 +116,24 @@ module.exports = app => {
   router.resources('website.artifactMedalLike', '/website/artifactMedalLike', ajaxAuthCheck, controller.website.artifactMedalLike);
 
   //微信接口
-  router.resources('wx.topics', '/wx/topics',  controller.wx.topics);
   router.get('/wx/artifacts/getMedalDataByRandom/:limit', controller.wx.artifacts.getMedalDataByRandom);
+  router.get('/wx/artifacts/getArtifactById/:id', controller.wx.artifacts.getArtifactById);
+  router.get('/wx/artifacts/findCommentsByArtifactIdWithPage', controller.wx.artifacts.findCommentsByArtifactIdWithPage);
+  router.get('/wx/artifacts/getMedalLikeDataByUserIdAndArtifactsId', controller.wx.artifacts.getMedalLikeDataByUserIdAndArtifactsId);
+
   router.get('/wx/topics/getTopicAndArtifactById', controller.wx.topics.getTopicAndArtifactById);
   router.get('/wx/topics/findArtifactByTopicId', controller.wx.topics.findArtifactByTopicId);
+  router.post('wx.users.createWxUser', '/wx/users/createWxUser', controller.wx.users.createWxUser);
+  router.post('wx.users.bindWeixinInfoByEmail', '/wx/users/bindWeixinInfoByEmail', controller.wx.users.bindWeixinInfoByEmail);
+  router.get('wx.users.getWxActiveCodeByEmail', '/wx/users/getWxActiveCodeByEmail', controller.wx.users.getWxActiveCodeByEmail);
+  router.get('wx.users.refreshUserInfo', '/wx/users/refreshUserInfo/:id', controller.wx.users.refreshUserInfo);
 
+  router.get('/wx/users/getWxCode', controller.wx.users.getWxCode);
+  router.post('/wx/artifacts/createComment', controller.wx.artifacts.createComment);
+  router.post('/wx/artifacts/createScore', controller.wx.artifacts.createScore);
+  router.post('/wx/artifacts/createLike', controller.wx.artifacts.createLike);
+  router.get('/wx/artifacts/getPersonalJobByUserId', controller.wx.artifacts.getPersonalJobByUserId);
+
+  router.resources('wx.topics', '/wx/topics',  controller.wx.topics);
 
 };

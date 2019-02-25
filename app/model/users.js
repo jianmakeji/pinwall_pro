@@ -32,6 +32,10 @@ module.exports = app => {
       type: STRING(64),
       allowNull: true
     },
+    unionId:{
+      type: STRING(64),
+      allowNull: true
+    },
     nickname: {
       type: STRING(30),
       allowNull: true
@@ -154,11 +158,11 @@ module.exports = app => {
     return user.destroy();
   }
 
-  Users.findByOpenId = async function (openId){
+  Users.findByUnionId = async function (unionId){
 
     return await this.findOne({
       where:{
-        openId:{[app.Sequelize.Op.eq]:openId}
+        unionId:{[app.Sequelize.Op.eq]:unionId}
       },
       include:[
         {
@@ -252,12 +256,13 @@ module.exports = app => {
     });
   }
 
-  Users.updateWxActiveByActiveCodeAndOpenId = async function(openId,activeCode,wxActive){
+  Users.updateWxActiveByActiveCodeAndUnionId = async function(unionId,activeCode,wxActive){
     return await this.update({
-      wxActive:wxActive
+      wxActive:wxActive,
+      active:wxActive
     },{
       where:{
-        openId:openId,
+        unionId:unionId,
         activeCode:activeCode
       }
     });
@@ -267,13 +272,23 @@ module.exports = app => {
     return await this.findOne({
       where:{
         email:email
-      }
+      },
+      include:[
+        {
+          model: app.model.Roles,
+          through:{
+            attributes:['userId','roleId'],
+          },
+          attributes:['Id','name']
+        }
+      ],
     });
   }
 
   Users.updateWxInfoByEmail = async function(wxInfo){
     return await this.update({
       openId:wxInfo.openId,
+      unionId:wxInfo.unionId,
       nickname:wxInfo.nickname,
       avatarUrl:wxInfo.avatarUrl,
       gender:wxInfo.gender,

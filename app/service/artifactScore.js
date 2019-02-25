@@ -67,6 +67,22 @@ class ArtifactScore extends Service {
     const artifact = await this.ctx.model.ArtifactScores.delArtifactScoresByArtifactId(artifactId);
     return artifact;
   }
+
+  async wxCreateScore(artifactScores,scorerId) {
+    const ctx = this.ctx;
+    artifactScores.scorerId = scorerId;
+    const artifactScoreObj = await this.ctx.model.ArtifactScores.findOneByArtifactIdAndScorerId({
+      artifactId:artifactScores.artifactId,
+      scorerId:artifactScores.scorerId
+    });
+
+    if (!artifactScoreObj){
+      return await this.ctx.model.ArtifactScores.createArtifactScores(artifactScores);
+    }
+    else{
+      return await this.ctx.model.ArtifactScores.updateScore(artifactScores.artifactId, artifactScores.scorerId, artifactScores.score);
+    }
+  }
 }
 
 module.exports = ArtifactScore;

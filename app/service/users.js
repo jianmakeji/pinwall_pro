@@ -41,14 +41,14 @@ class Users extends Service {
             await this.ctx.service.emailService.sendActiveEmail(user.email, user.activeCode);
           }
           else if(category == 1){
-            await this.ctx.service.emailService.sendWxActiveEmail(user.email, user.openId, user.activeCode);
+            await this.ctx.service.emailService.sendWxActiveEmail(user.email, user.unionId, user.activeCode);
           }
 
-          return true
+          return createUserObj;
         } catch (e) {
           console.log(e.message);
           await transaction.rollback();
-          return false
+          return false;
         }
       }
     }
@@ -76,8 +76,8 @@ class Users extends Service {
 
   }
 
-  async findByOpenId(openId){
-    return await this.ctx.model.Users.findByOpenId(openId);
+  async findByUnionId(unionId){
+    return await this.ctx.model.Users.findByUnionId(unionId);
   }
 
   async findByUserWithEmail(email){
@@ -106,20 +106,27 @@ class Users extends Service {
     wxInfo.province = user.province;
     wxInfo.city = user.city;
     wxInfo.country = user.country;
+    wxInfo.unionId = user.unionid;
     wxInfo.activeCode = UUID.v1();
 
     try{
-      await this.ctx.model.Users.updateWxInfoByEmail(wxInfo);
-      await this.ctx.service.emailService.sendWxActiveEmail(email,user.openid,wxInfo.activeCode);
-      return true;
+      let userObject = this.ctx.model.Users.findUserByEmail(email);
+      if(userObject){
+        await this.ctx.model.Users.updateWxInfoByEmail(wxInfo);
+        await this.ctx.service.emailService.sendWxActiveEmail(email,user.unionid,wxInfo.activeCode);
+        return userObject;
+      }
+      else{
+        return false;
+      }
     }
     catch(e){
       return false;
     }
   }
 
-  async updateWxActiveByActiveCodeAndOpenId(openId,activeCode){
-    return await this.ctx.model.Users.updateWxActiveByActiveCodeAndOpenId(openId,activeCode,1);
+  async updateWxActiveByActiveCodeAndUnionId(unionId,activeCode){
+    return await this.ctx.model.Users.updateWxActiveByActiveCodeAndUnionId(unionId,activeCode,1);
   }
 
   async updatePwd(userId,newPwd){
@@ -173,6 +180,16 @@ class Users extends Service {
 
   async searchByEmail(query){
     return await this.ctx.model.Users.searchByEmail(query);
+  }
+
+  async getWxActiveCodeByEmail(email){
+    let user = await this.ctx.model.Users.findUserByEmail(email);
+    if(user.wxActive){
+      return true
+    }
+    else{
+      return false;
+    }
   }
 }
 

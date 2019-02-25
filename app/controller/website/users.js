@@ -181,15 +181,15 @@ class UsersController extends BaseController{
     }
   }
 
-  async getUserByOpenId(){
-    const openId = this.ctx.query.openId;
-    return await ctx.service.users.findByOpenId(openId);
+  async getUserByUnionId(){
+    const unionId = this.ctx.query.unionId;
+    return await ctx.service.users.findByUnionId(unionId);
   }
 
   async bindWeixin(){
     const ctx = this.ctx;
-    const openId = ctx.user.openid;
-    const user = await ctx.service.users.findByOpenId(openId);
+    const unionId = ctx.user.unionid;
+    const user = await ctx.service.users.findByUnionId(unionId);
     if(user){
       if(user.Id && user.email){
         if(user.wxActive == 0){
@@ -226,10 +226,10 @@ class UsersController extends BaseController{
 
   async updateWxActive(){
     const ctx = this.ctx;
-    const openId = ctx.query.openId;
+    const unionId = ctx.query.unionId;
     const activeCode = ctx.query.activeCode;
     try{
-      await ctx.service.users.updateWxActiveByActiveCodeAndOpenId(openId,activeCode);
+      await ctx.service.users.updateWxActiveByActiveCodeAndUnionId(unionId,activeCode);
       if (ctx.user){
         ctx.redirect('/index');
       }
@@ -262,6 +262,7 @@ class UsersController extends BaseController{
           province:ctx.user.province,
           country:ctx.user.country,
           avatarUrl:ctx.user.headimageurl,
+          unionId:ctx.user.unionid,
         };
         try{
           const result = await ctx.service.users.createUser(user,1);
