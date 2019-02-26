@@ -6,9 +6,9 @@ class esUtils extends Service {
 
   async createObject(id, searchObject){
     const ctx = this.ctx;
-    await ctx.app.elasticsearch.create({
-      index: ctx.app.es_index,
-      type: ctx.app.es_type,
+    await ctx.helper.elasticsearch.create({
+      index: ctx.helper.es_index,
+      type: ctx.helper.es_type,
       id: id,
       body: searchObject
     });
@@ -16,18 +16,18 @@ class esUtils extends Service {
 
   async deleteObjectById(id){
     const ctx = this.ctx;
-    await ctx.app.elasticsearch.delete({
-      index: ctx.app.es_index,
-      type: ctx.app.es_type,
+    await ctx.helper.elasticsearch.delete({
+      index: ctx.helper.es_index,
+      type: ctx.helper.es_type,
       id: id
     });
   }
 
   async updateobject(id, updateObject){
-    const ctx = this.ctx; 
-    const response = await ctx.app.elasticsearch.update({
-      index: ctx.app.es_index,
-      type: ctx.app.es_type,
+    const ctx = this.ctx;
+    const response = await ctx.helper.elasticsearch.update({
+      index: ctx.helper.es_index,
+      type: ctx.helper.es_type,
       id: id,
       body: {
         doc: updateObject
@@ -40,9 +40,9 @@ class esUtils extends Service {
     let i = 0;
     for (let object of batchObject){
       console.log(i++);
-      await ctx.app.elasticsearch.create({
-        index: ctx.app.es_index,
-        type: ctx.app.es_type,
+      await ctx.helper.elasticsearch.create({
+        index: ctx.helper.es_index,
+        type: ctx.helper.es_type,
         id: object.Id,
         body: object
       });
@@ -54,9 +54,9 @@ class esUtils extends Service {
     let i = 0;
     for (let object of batchObject){
       console.log(i++);
-      await ctx.app.elasticsearch.create({
-        index: ctx.app.es_search_suggest_index,
-        type: ctx.app.es_search_suggest_type,
+      await ctx.helper.elasticsearch.create({
+        index: ctx.helper.es_search_suggest_index,
+        type: ctx.helper.es_search_suggest_type,
         id: object.Id,
         body: object
       });
@@ -65,9 +65,9 @@ class esUtils extends Service {
 
   async createSuggestObject(id, suggestObject){
     const ctx = this.ctx;
-    await ctx.app.elasticsearch.create({
-      index: ctx.app.es_search_suggest_index,
-      type: ctx.app.es_search_suggest_type,
+    await ctx.helper.elasticsearch.create({
+      index: ctx.helper.es_search_suggest_index,
+      type: ctx.helper.es_search_suggest_type,
       id: id,
       body: suggestObject
     });
@@ -75,18 +75,18 @@ class esUtils extends Service {
 
   async deleteSuggestObjectById(id){
     const ctx = this.ctx;
-    await ctx.app.elasticsearch.delete({
-      index: ctx.app.es_search_suggest_index,
-      type: ctx.app.es_search_suggest_type,
+    await ctx.helper.elasticsearch.delete({
+      index: ctx.helper.es_search_suggest_index,
+      type: ctx.helper.es_search_suggest_type,
       id: id
     });
   }
 
   async updateSuggestObject(id, updateObject){
     const ctx = this.ctx;
-    const response = await ctx.app.elasticsearch.update({
-      index: ctx.app.es_search_suggest_index,
-      type: ctx.app.es_search_suggest_type,
+    const response = await ctx.helper.elasticsearch.update({
+      index: ctx.helper.es_search_suggest_index,
+      type: ctx.helper.es_search_suggest_type,
       id: id,
       body: {
         doc: updateObject

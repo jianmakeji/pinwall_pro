@@ -123,7 +123,7 @@ class UsersController extends BaseController{
   async sendBindingEmailCode(){
     const ctx = this.ctx;
     const email = ctx.query.email;
-    const activeCode = ctx.app.randomNumber(6);
+    const activeCode = ctx.helper.randomNumber(6);
     try{
       const result = await ctx.service.email.sendActiveEmail(email,activeCode,1);
       if (result){
@@ -166,7 +166,7 @@ class UsersController extends BaseController{
     const state = this.ctx.query.state;
     if (state == 'hello-pinwall'){
 
-      const accessTempObject = await wxUtil.getAccessToken(this.ctx.app.wx_appid,this.ctx.app.wx_secret,code);
+      const accessTempObject = await wxUtil.getAccessToken(this.ctx.helper.wx_appid,this.ctx.helper.wx_secret,code);
       const accessObject = JSON.parse(accessTempObject);
       if(!accessObject.errcode){
         const userObject = await wxUtil.getUserInfo(accessObject.access_token,accessObject.openid);
@@ -293,7 +293,7 @@ class UsersController extends BaseController{
     const newPwd = ctx.request.body.newPwd;
     if(ctx.user){
       const userObject = await ctx.service.users.find(ctx.user.Id);
-      const app = this.ctx.app;
+      const app = this.ctx.helper;
       const crypwd = app.cryptoPwd(app.cryptoPwd(password));
       if(userObject.password != crypwd){
         super.failure('旧密码不正确!');

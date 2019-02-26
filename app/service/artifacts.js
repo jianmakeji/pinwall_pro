@@ -13,7 +13,7 @@ class Artifacts extends Service {
       jobTag,
     });
 
-    const app = this.ctx.app;
+    const app = this.ctx.helper;
     resultObj.rows.forEach((element, index)=>{
       element.profileImage = app.signatureUrl(app.imagePath + element.profileImage, "thumb_360_360");
 
@@ -38,7 +38,7 @@ class Artifacts extends Service {
   async find(id) {
 
     const artifact = await this.ctx.model.Artifacts.findArtifactById(id);
-    const app = this.ctx.app;
+    const app = this.ctx.helper;
 
     artifact.profileImage = app.signatureUrl(app.imagePath + artifact.profileImage, "thumb_360_360");
 
@@ -206,34 +206,34 @@ class Artifacts extends Service {
       catch(e){
         ctx.getLogger('elasticLogger').info("update ID:"+id+": "+e.message+"\n");
       }
-      
+
       let deleteAliOSSArray = new Array();
       try{
 
         for (const artifactAssets of artifact.artifact_assets){
-          if(ctx.app.judgeImageStringInArrayObject(artifactAssets.profileImage,updates.artifact_assets)){
-            deleteAliOSSArray.push(ctx.app.imagePath + artifactAssets.profileImage);
+          if(ctx.helper.judgeImageStringInArrayObject(artifactAssets.profileImage,updates.artifact_assets)){
+            deleteAliOSSArray.push(ctx.helper.imagePath + artifactAssets.profileImage);
           }
 
           if(artifactAssets.type == 2){
-            if(ctx.app.judgeMediaStringInArrayObject(artifactAssets.mediaFile,updates.artifact_assets)){
-              deleteAliOSSArray.push(ctx.app.pdfPath + artifactAssets.mediaFile);
+            if(ctx.helper.judgeMediaStringInArrayObject(artifactAssets.mediaFile,updates.artifact_assets)){
+              deleteAliOSSArray.push(ctx.helper.pdfPath + artifactAssets.mediaFile);
             }
           }
           else if(artifactAssets.type == 3){
-            if(ctx.app.judgeMediaStringInArrayObject(artifactAssets.mediaFile,updates.artifact_assets)){
-              deleteAliOSSArray.push(ctx.app.rar_zipPath + artifactAssets.mediaFile);
+            if(ctx.helper.judgeMediaStringInArrayObject(artifactAssets.mediaFile,updates.artifact_assets)){
+              deleteAliOSSArray.push(ctx.helper.rar_zipPath + artifactAssets.mediaFile);
             }
           }
           else if(artifactAssets.type == 4){
-            if(ctx.app.judgeMediaStringInArrayObject(artifactAssets.mediaFile,updates.artifact_assets)){
-              deleteAliOSSArray.push(ctx.app.videoPath + artifactAssets.mediaFile);
+            if(ctx.helper.judgeMediaStringInArrayObject(artifactAssets.mediaFile,updates.artifact_assets)){
+              deleteAliOSSArray.push(ctx.helper.videoPath + artifactAssets.mediaFile);
             }
           }
         }
 
         if (deleteAliOSSArray.length > 0){
-          ctx.app.deleteOssMultiObject(deleteAliOSSArray);
+          ctx.helper.deleteOssMultiObject(deleteAliOSSArray);
         }
       }
       catch(e){
@@ -269,23 +269,23 @@ class Artifacts extends Service {
 
       let deleteAliOSSArray = new Array();
       try{
-        deleteAliOSSArray.push(ctx.app.imagePath + artifact.profileImage);
+        deleteAliOSSArray.push(ctx.helper.imagePath + artifact.profileImage);
 
         for (const artifactAssets of artifact.artifactAssets){
-          deleteAliOSSArray.push(ctx.app.imagePath + artifactAssets.profileImage);
+          deleteAliOSSArray.push(ctx.helper.imagePath + artifactAssets.profileImage);
 
           if(artifactAssets.type == 2){
-            deleteAliOSSArray.push(ctx.app.pdfPath + artifactAssets.mediaFile);
+            deleteAliOSSArray.push(ctx.helper.pdfPath + artifactAssets.mediaFile);
           }
           else if(artifactAssets.type == 3){
-            deleteAliOSSArray.push(ctx.app.rar_zipPath + artifactAssets.mediaFile);
+            deleteAliOSSArray.push(ctx.helper.rar_zipPath + artifactAssets.mediaFile);
           }
           else if(artifactAssets.type == 4){
-            deleteAliOSSArray.push(ctx.app.videoPath + artifactAssets.mediaFile);
+            deleteAliOSSArray.push(ctx.helper.videoPath + artifactAssets.mediaFile);
           }
         }
         if (deleteAliOSSArray.length > 0){
-          ctx.app.deleteOssMultiObject(deleteAliOSSArray);
+          ctx.helper.deleteOssMultiObject(deleteAliOSSArray);
         }
 
       }
@@ -319,7 +319,7 @@ class Artifacts extends Service {
 
   async getPersonalJobByUserId(query) {
     let resultObj = await this.ctx.model.Artifacts.getPersonalJobByUserId(query);
-    const app = this.ctx.app;
+    const app = this.ctx.helper;
     resultObj.rows.forEach((element, index)=>{
       element.profileImage = app.signatureUrl(app.imagePath + element.profileImage, "thumb_360_360");
 

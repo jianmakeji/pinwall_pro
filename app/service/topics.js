@@ -14,13 +14,13 @@ class Topics extends Service {
       userId,
     });
 
-    const app = this.ctx.app;
+    const helper = this.ctx.helper;
     resultObj.rows.forEach((element, index)=>{
 
-          element.profileImage = app.signatureUrl(app.imagePath + element.profileImage, "thumb_360_360");
+          element.profileImage = helper.signatureUrl(helper.imagePath + element.profileImage, "thumb_360_360");
 
           for (let subElement of element.artifacts){
-            subElement.profileImage = app.signatureUrl(app.imagePath + subElement.profileImage, "thumb_360_360");
+            subElement.profileImage = helper.signatureUrl(helper.imagePath + subElement.profileImage, "thumb_360_360");
           }
     });
 
@@ -38,11 +38,11 @@ class Topics extends Service {
       keyword,
     });
 
-    const app = this.ctx.app;
+    const helper = this.ctx.helper;
     resultObj.rows.forEach((element, index)=>{
 
           for (let subElement of element.artifacts){
-              subElement.profileImage = app.signatureUrl(app.imagePath + subElement.profileImage, "thumb_360_360");
+              subElement.profileImage = helper.signatureUrl(helper.imagePath + subElement.profileImage, "thumb_360_360");
           }
     });
 
@@ -129,10 +129,10 @@ class Topics extends Service {
       topicId
     });
 
-    const app = this.ctx.app;
+    const helper = this.ctx.helper;
 
     topic.rows.artifacts.forEach((element, index)=>{
-      element.profileImage = app.signatureUrl(app.imagePath + element.profileImage, "thumb_360_360");
+      element.profileImage = helper.signatureUrl(helper.imagePath + element.profileImage, "thumb_360_360");
     });
 
     return topic;

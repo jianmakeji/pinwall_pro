@@ -5,7 +5,7 @@ const Service = require('egg').Service;
 class SmsMessage extends Service {
 
   async createSmsMessage(smsMessage) {
-    let code = this.ctx.app.randomNumber(6);
+    let code = this.ctx.helper.randomNumber(6);
     smsMessage.code = code;
     Date curDate = new Date();
     let preDate = new Date(curDate.getTime() - 24 * 60 * 60 * 1000);

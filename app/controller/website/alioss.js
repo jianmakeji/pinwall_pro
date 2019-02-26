@@ -10,25 +10,25 @@ class AliOSSController extends BaseController {
   async getSTSSignature() {
 
     const ctx = this.ctx;
-    const aliConfigObj = ctx.app.aliConfig();
+    const aliConfigObj = ctx.helper.aliConfig();
 
     const fileType = ctx.params.fileType;
 
     let dir = '';
     if (fileType == 1){
-      dir = ctx.app.imagePath;
+      dir = ctx.helper.imagePath;
     }
     else if (fileType == 2){
-      dir = ctx.app.pdfPath;
+      dir = ctx.helper.pdfPath;
     }
     else if (fileType == 3){
-      dir = ctx.app.rar_zipPath;
+      dir = ctx.helper.rar_zipPath;
     }
     else if (fileType == 4){
-      dir = ctx.app.videoPath;
+      dir = ctx.helper.videoPath;
     }
     else{
-      dir = ctx.app.othersPath;
+      dir = ctx.helper.othersPath;
     }
 
     let host = "http://" + aliConfigObj.bucket + "." + aliConfigObj.endpoint;
@@ -69,7 +69,7 @@ class AliOSSController extends BaseController {
   async getUrlSignature(){
     const ctx = this.ctx;
 
-    ctx.body = ctx.app.signatureUrl(ctx.query.objectPath,ctx.query.thumbName);
+    ctx.body = ctx.helper.signatureUrl(ctx.query.objectPath,ctx.query.thumbName);
   }
 }
 

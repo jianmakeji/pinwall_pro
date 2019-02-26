@@ -31,8 +31,8 @@ class Users extends Service {
         let transaction;
         try {
           transaction = await this.ctx.model.transaction();
-          const app = this.ctx.app;
-          user.password = app.cryptoPwd(app.cryptoPwd(user.password));
+          const helper = this.ctx.helper;
+          user.password = helper.cryptoPwd(helper.cryptoPwd(user.password));
           user.activeCode =  UUID.v1();
           const createUserObj = await this.ctx.model.Users.createUser(user,transaction);
           await this.ctx.model.UserRole.creteUserRole(createUserObj.Id, 1, transaction);
@@ -154,8 +154,8 @@ class Users extends Service {
 
   async updatePwdWithEmailAndActiveCode(email, activeCode, newPwd){
     try{
-      const app = this.ctx.app;
-      const password = app.cryptoPwd(app.cryptoPwd(newPwd));
+      const helper = this.ctx.helper;
+      const password = app.cryptoPwd(helper.cryptoPwd(newPwd));
       await this.ctx.model.Users.updatePwdWithEmailAndActiveCode(email, activeCode, password);
       return true;
     }

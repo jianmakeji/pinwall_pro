@@ -12,8 +12,8 @@ class SearchController extends BaseController{
     const keyword = ctx.query.keyword;
 
     try{
-      let hits = await ctx.app.elasticsearch.search({
-        index: ctx.app.es_index,
+      let hits = await ctx.helper.elasticsearch.search({
+        index: ctx.helper.es_index,
         body: {
           from : offset,
           size : limit,
@@ -27,7 +27,7 @@ class SearchController extends BaseController{
           var hits = resp.hits;
           hits.hits.forEach((element,index)=>{
             if(element._source.profileImage.indexOf('pinwall.fzcloud') == -1){
-              element._source.profileImage = ctx.app.signatureUrl(ctx.app.imagePath + element._source.profileImage, "thumb_360_360");
+              element._source.profileImage = ctx.helper.signatureUrl(ctx.helper.imagePath + element._source.profileImage, "thumb_360_360");
             }
           });
           return hits;
@@ -47,8 +47,8 @@ class SearchController extends BaseController{
     const keyword = ctx.query.keyword;
 
     try{
-      let hits = await ctx.app.elasticsearch.search({
-        index: ctx.app.es_search_suggest_index,
+      let hits = await ctx.helper.elasticsearch.search({
+        index: ctx.helper.es_search_suggest_index,
         body: {
           size : 10,
           suggest: {
@@ -101,8 +101,8 @@ class SearchController extends BaseController{
         }
       };
 
-      let hits = await ctx.app.elasticsearch.search({
-        index: ctx.app.es_index,
+      let hits = await ctx.helper.elasticsearch.search({
+        index: ctx.helper.es_index,
         body: condition
       }).then(function (resp) {
         var hits = resp.hits;
@@ -137,8 +137,8 @@ class SearchController extends BaseController{
         }
       };
 
-      let hits = await ctx.app.elasticsearch.search({
-        index: ctx.app.es_index,
+      let hits = await ctx.helper.elasticsearch.search({
+        index: ctx.helper.es_index,
         body: condition
       }).then(function (resp) {
         var hits = resp.hits;
