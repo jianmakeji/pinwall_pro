@@ -42,13 +42,13 @@ class Users extends Service {
               const helper = this.ctx.helper;
               user.password = helper.cryptoPwd(helper.cryptoPwd(user.password));
               user.activeCode =  UUID.v1();
+              user.active = 1;
               const createUserObj = await this.ctx.model.Users.createUser(user,transaction);
               await this.ctx.model.UserRole.creteUserRole(createUserObj.Id, 1, transaction);
               await transaction.commit();
 
               return createUserObj;
             } catch (e) {
-              console.log(e.message);
               await transaction.rollback();
               return false;
             }
