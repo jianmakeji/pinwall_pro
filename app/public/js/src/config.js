@@ -37,7 +37,8 @@ var config = {
         transterInsertDataToES:'/website/artifacts/transterInsertDataToES',
         transterUpdateDataToES:'/website/artifacts/transterUpdateDataToES',
 
-        createSmsMessage:"/sms/createSmsMessage?mobile="
+        createSmsMessage:"/sms/createSmsMessage?mobile=",
+        vertifySms:"/sms/vertifySms"
     },
     viewUrl:{
         workFolder:'/workFolder/:id',

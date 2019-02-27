@@ -21,12 +21,12 @@
                 <form-item label="姓名" prop="fullname">
                     <i-input v-model="formItem.fullname" clearable placeholder="请输入姓名(无法修改)"></i-input>
                 </form-item>
-                <form-item label="手机号" prop="email">
-                    <i-input v-model="formItem.email" clearable placeholder="请输入手机号码"></i-input>
+                <form-item label="手机号" prop="mobile">
+                    <i-input v-model="formItem.mobile" clearable placeholder="请输入手机号码"></i-input>
                 </form-item>
-				<form-item label="短信验证码" prop="mobileCode">
-		            <i-input type="text" style="width:200px;" @on-blur="checkMobileCode" placeholder="验证码"></i-input>
-		        	<i-button type="default" @click="sendAcodeStg">点击获取验证码</i-button>
+				<form-item label="短信验证码" prop="smsCode">
+		            <i-input type="text" v-model="formItem.smsCode" style="width:200px;" @on-change="checkMobileCode" placeholder="验证码"></i-input>
+		        	<i-button type="default" :disabled="disableCodeBtn" @click="sendAcodeStg" v-text="mobileCodeText"></i-button>
 		        </form-item>
                 <form-item label="密码" prop="password">
                     <i-input type="password" v-model="formItem.password" clearable placeholder="请输入密码"></i-input>
