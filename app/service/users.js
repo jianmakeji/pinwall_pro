@@ -2,6 +2,7 @@
 
 const Service = require('egg').Service;
 const UUID = require('uuid');
+const moment = require('moment');
 
 class Users extends Service {
 
@@ -30,7 +31,7 @@ class Users extends Service {
       else{
         //判断短信验证码是否正确
         let curDate = new Date();
-        let preDate = new Date(curDate.getTime() - 30 * 60 * 1000);
+        let preDate = moment(new Date(curDate.getTime() - 30 * 60 * 1000)).format('YYYY-MM-DD HH:mm:ss');
         let smsObject = await this.ctx.model.SmsMessage.getDataByCondition({mobile:user.mobile,code:user.smsCode});
         if (smsObject)
         {
