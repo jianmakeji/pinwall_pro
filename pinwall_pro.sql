@@ -1,5 +1,5 @@
 ﻿# Host: 192.168.3.110  (Version 5.6.28-log)
-# Date: 2019-02-27 11:19:23
+# Date: 2019-02-27 18:02:16
 # Generator: MySQL-Front 6.0  (Build 2.25)
 
 
@@ -23,6 +23,11 @@ CREATE TABLE `artifact_assets` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
+# Data for table "artifact_assets"
+#
+
+
+#
 # Structure for table "artifact_comments"
 #
 
@@ -38,6 +43,11 @@ CREATE TABLE `artifact_comments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
+# Data for table "artifact_comments"
+#
+
+
+#
 # Structure for table "artifact_medal_like"
 #
 
@@ -50,6 +60,11 @@ CREATE TABLE `artifact_medal_like` (
   PRIMARY KEY (`Id`),
   KEY `artifactId` (`artifactId`,`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# Data for table "artifact_medal_like"
+#
+
 
 #
 # Structure for table "artifact_scores"
@@ -68,6 +83,11 @@ CREATE TABLE `artifact_scores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
+# Data for table "artifact_scores"
+#
+
+
+#
 # Structure for table "artifact_term"
 #
 
@@ -79,6 +99,11 @@ CREATE TABLE `artifact_term` (
   KEY `artifactId` (`termId`),
   KEY `artifactId_2` (`artifactId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# Data for table "artifact_term"
+#
+
 
 #
 # Structure for table "artifacts"
@@ -102,6 +127,11 @@ CREATE TABLE `artifacts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
+# Data for table "artifacts"
+#
+
+
+#
 # Structure for table "es_sync_data"
 #
 
@@ -110,7 +140,13 @@ CREATE TABLE `es_sync_data` (
   `syncType` smallint(6) NOT NULL DEFAULT '0' COMMENT '1:同步pinwall索引数据，2：同步suggest数据',
   `lastSyncTime` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+#
+# Data for table "es_sync_data"
+#
+
+INSERT INTO `es_sync_data` VALUES (1,1,'2019-02-26 19:33:10');
 
 #
 # Structure for table "roles"
@@ -121,7 +157,13 @@ CREATE TABLE `roles` (
   `name` varchar(30) NOT NULL DEFAULT '',
   `description` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+#
+# Data for table "roles"
+#
+
+INSERT INTO `roles` VALUES (1,'user','user can create artifact'),(2,'vip','vip can create topic'),(3,'admin','admin can do anything'),(4,'user','user can create artifact'),(5,'vip','vip can create topic'),(6,'admin','admin can do anything');
 
 #
 # Structure for table "sms_message"
@@ -129,13 +171,18 @@ CREATE TABLE `roles` (
 
 CREATE TABLE `sms_message` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `remoteAddress` varchar(20) NOT NULL DEFAULT '',
-  `remoteHost` varchar(30) NOT NULL DEFAULT '',
   `mobile` varchar(15) NOT NULL DEFAULT '',
   `code` varchar(6) DEFAULT NULL,
   `createtime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`Id`),
+  KEY `mobile` (`mobile`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+#
+# Data for table "sms_message"
+#
+
+INSERT INTO `sms_message` VALUES (1,'18684799929','601301','2019-02-27 00:36:27');
 
 #
 # Structure for table "terms"
@@ -146,6 +193,11 @@ CREATE TABLE `terms` (
   `name` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# Data for table "terms"
+#
+
 
 #
 # Structure for table "topic_artifact"
@@ -161,6 +213,11 @@ CREATE TABLE `topic_artifact` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
+# Data for table "topic_artifact"
+#
+
+
+#
 # Structure for table "topic_term"
 #
 
@@ -172,6 +229,11 @@ CREATE TABLE `topic_term` (
   KEY `termId` (`termId`),
   KEY `topicId` (`topicId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# Data for table "topic_term"
+#
+
 
 #
 # Structure for table "topics"
@@ -191,6 +253,11 @@ CREATE TABLE `topics` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
+# Data for table "topics"
+#
+
+
+#
 # Structure for table "user_role"
 #
 
@@ -203,12 +270,16 @@ CREATE TABLE `user_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
+# Data for table "user_role"
+#
+
+
+#
 # Structure for table "users"
 #
 
 CREATE TABLE `users` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(64) DEFAULT NULL,
   `fullname` varchar(30) DEFAULT NULL,
   `mobile` varchar(15) DEFAULT NULL,
   `password` varchar(64) NOT NULL DEFAULT '',
@@ -221,7 +292,7 @@ CREATE TABLE `users` (
   `city` varchar(20) DEFAULT NULL,
   `country` varchar(20) DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL,
-  `activeCode` varchar(40) DEFAULT NULL,
+  `wxActive` tinyint(1) DEFAULT NULL,
   `commentCount` int(11) NOT NULL DEFAULT '0',
   `medalCount` mediumint(9) NOT NULL DEFAULT '0',
   `artifactCount` int(11) NOT NULL DEFAULT '0',
@@ -230,3 +301,8 @@ CREATE TABLE `users` (
   `confirmedAt` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# Data for table "users"
+#
+
