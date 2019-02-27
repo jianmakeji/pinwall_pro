@@ -1,5 +1,7 @@
 /* jshint indent: 2 */
 
+let moment = require('moment');
+
 module.exports = app => {
 
   const { INTEGER, STRING, DATE } = app.Sequelize;
@@ -22,7 +24,10 @@ module.exports = app => {
     createtime: {
       type: DATE,
       allowNull: true,
-      defaultValue: app.Sequelize.literal('CURRENT_TIMESTAMP')
+      defaultValue: app.Sequelize.literal('CURRENT_TIMESTAMP'),
+      get() {
+          return moment(this.getDataValue('createtime')).format('YYYY-MM-DD HH:mm:ss');
+      }
     }
   }, {
     tableName: 'sms_message'
