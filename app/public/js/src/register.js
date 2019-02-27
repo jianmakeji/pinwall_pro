@@ -14,11 +14,16 @@ var index = new Vue({
                 captchaText:""
             },
             captchaBol:false,
+            mobileCodeText:"点击获取验证码",
             ruleValidate:{
                 fullname:{required: true, message: '用户名不能为空', trigger: 'blur'},
                 email:[
-        	       {required: true, message: '邮箱不能为空', trigger: 'blur'},
-        	       {type:"email", message: '请输入正确邮箱格式', trigger: 'blur'}
+        	       {required: true, message: '手机号码不能为空', trigger: 'blur'},
+        	       {required: true, len:11, message: '请输入正确手机号码格式', trigger: 'blur'}
+            	],
+                mobileCode:[
+					{required: true, message: '请输入验证码', trigger: 'blur'},
+					{len:6, message: '验证码为6位', trigger: 'blur'}
             	],
                 password:[
             	    {required: true, message: '请输入密码', trigger: 'blur'},
@@ -51,6 +56,60 @@ var index = new Vue({
                 }
             });
         },
+        //发送手机验证短信
+    	sendAcodeStg:function(){
+    		var that = this;
+    		this.$Loading.start();
+            console.log(this.formItem.email);
+    		if(this.formItem.email.length == 11){
+    			var url = config.ajaxUrls.createSmsMessage + this.formItem.email;
+    			$.ajax({
+                    dataType:"json",
+                    type:"get",
+                    url:url,
+                    success:function(res){
+                        console.log("==========",res);
+                        if(res.success){
+                    		that.$Loading.finish();
+                        	that.$Notice.success({title:res.message, duration:3});
+                        	clock(that);
+                        }else{
+                    		that.$Loading.error();
+                        	that.$Notice.error({title:res.message, duration:3});
+                        }
+                    },
+                    error:function(){
+                		that.$Loading.error();
+                    	that.$Notice.error({title:config.messages.networkError, duration:3});
+                    }
+                })
+    		}else if(this.formItem.email.length == 0){
+        		that.$Loading.error();
+    			that.$Notice.error({title:"请输入手机号", duration:3});
+    		}
+    	},
+        //验证手机验证码
+    	checkMobileCode(event){
+			// var that = this,
+			// url = config.ajaxUrls.vertifyCode;
+    		// $.ajax({
+            //     dataType:"json",
+            //     type:"GET",
+            //     url:url,
+            //     data:{email:this.formItem.email,code:this.formItem.mobileCode},
+            //     success:function(res){
+            //         if(res.success){
+            //         	that.$Notice.success({title:res.message, duration:3});
+            //         	// that.disabledBtn = false;
+            //         }else{
+            //         	that.$Notice.error({title:res.message, duration:3});
+            //         }
+            //     },
+            //     error:function(){
+            //     	that.$Notice.error({title:config.messages.networkError, duration:3});
+            //     }
+            // })
+    	},
         conPwdBlur(){
             if(this.formItem.password && this.formItem.confirmPassword != this.formItem.password){
     			this.$Notice.error({ title: '输入的密码不一致', duration:3});
@@ -114,3 +173,15 @@ var index = new Vue({
         });
     }
 })
+function clock(that){
+	var num = 60;
+	var int = setInterval(function(){
+		num > 0 ? num-- : clearInterval(int);
+		that.mobileCodeText = num + "秒后重试";
+		that.disableBtn = true;
+		if(num == 0){
+			that.mobileCodeText = "点击获取验证码";
+    		that.disableBtn = false;
+		}
+	},1000);
+}

@@ -35,7 +35,9 @@ var config = {
         bindWeixinInfoByEmail:"/website/users/bindWeixinInfoByEmail",
         //searchEngine
         transterInsertDataToES:'/website/artifacts/transterInsertDataToES',
-        transterUpdateDataToES:'/website/artifacts/transterUpdateDataToES'
+        transterUpdateDataToES:'/website/artifacts/transterUpdateDataToES',
+
+        createSmsMessage:"/sms/createSmsMessage?mobile="
     },
     viewUrl:{
         workFolder:'/workFolder/:id',
