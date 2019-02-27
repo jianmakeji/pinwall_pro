@@ -2,6 +2,7 @@
 
 const Service = require('egg').Service;
 const smsUtil = require('../utils/SmsUtils.js');
+const moment = require('moment');
 
 class SmsMessage extends Service {
 
@@ -26,12 +27,9 @@ class SmsMessage extends Service {
 
   async getDataByCondition(smsMessage) {
     let curDate = new Date();
-    curDate.setHours(curDate.getHours() + 8);
-    let preDate = new Date(curDate.getTime() - 30 * 60 * 1000);
+    let preDate = moment(new Date(curDate.getTime() - 30 * 60 * 1000)).format('YYYY-MM-DD HH:mm:ss');
     let smsObject = await this.ctx.model.SmsMessage.getDataByCondition(smsMessage);
-    console.log(preDate);
-    console.log(smsObject.createtime);
-
+    
     if (smsObject){
       if(smsObject.createtime > preDate){
         return {success:true,data:'验证成功!',status:200};
