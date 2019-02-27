@@ -7,7 +7,7 @@ class SmsMessage extends Service {
   async createSmsMessage(smsMessage) {
     let code = this.ctx.helper.randomNumber(6);
     smsMessage.code = code;
-    Date curDate = new Date();
+    let curDate = new Date();
     let preDate = new Date(curDate.getTime() - 24 * 60 * 60 * 1000);
     smsMessage.createtime = preDate;
     let count = await this.ctx.model.SmsMessage.getCountDataByDatetime(smsMessage);

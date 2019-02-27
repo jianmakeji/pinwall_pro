@@ -54,7 +54,7 @@ module.exports = app => {
     });
   }
 
-  EsSyncData.getCountDataByDatetime = async function (smsMessage) {
+  SmsMessage.getCountDataByDatetime = async function (smsMessage) {
     return this.count({
       where:{
         remoteAddress:smsMessage.remoteAddress,

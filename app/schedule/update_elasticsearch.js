@@ -4,7 +4,7 @@ class UpdateElasticsearch extends Subscription {
   // 通过 schedule 属性来设置定时任务的执行间隔等配置
   static get schedule() {
     return {
-      interval: '10s', // 1m 分钟间隔
+      interval: '10m', // 1m 分钟间隔
       type: 'worker', // 指定所有的 worker 都需要执行
     };
   }
