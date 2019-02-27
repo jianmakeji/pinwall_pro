@@ -219,13 +219,12 @@ module.exports = app => {
     });
   }
 
-  Users.updatePwdWithEmailAndActiveCode = async function(email, activeCode, newPwd){
+  Users.updatePwdWithMobileAndSmsCode = async function(mobile, password){
     return await this.update({
-      password:newPwd
+      password:password
     },{
       where:{
-        email:email,
-        activeCode:activeCode,
+        mobile:mobile
       }
     });
   }
@@ -259,7 +258,7 @@ module.exports = app => {
     });
   }
 
-  Users.updateWxInfoByEmail = async function(wxInfo){
+  Users.updateWxInfoByMobile = async function(wxInfo){
     return await this.update({
       openId:wxInfo.openId,
       unionId:wxInfo.unionId,
@@ -269,10 +268,9 @@ module.exports = app => {
       province:wxInfo.province,
       city:wxInfo.city,
       country:wxInfo.country,
-      wxActive:0,
     },{
       where:{
-        email:wxInfo.email
+        mobile:wxInfo.mobile
       }
     });
   }

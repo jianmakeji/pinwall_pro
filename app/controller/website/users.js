@@ -42,13 +42,12 @@ class UsersController extends BaseController{
         super.failure('验证码错误!');
       }
       else{
-        const user = await ctx.service.users.createUser(data,0);
+        const user = await ctx.service.users.createUser(data);
         super.success('创建成功!');
       }
 
     }
     catch(e){
-      console.log("====",e);
       super.failure(e.message);
     }
   }
@@ -91,20 +90,6 @@ class UsersController extends BaseController{
     }
     catch(e){
       super.failure(e.message);
-    }
-  }
-
-  async updateAcviveByActiveCodeAndEmail(){
-    const ctx = this.ctx;
-    const email = ctx.query.email;
-    const activeCode = ctx.query.activeCode;
-
-    try{
-      await ctx.service.users.updateAcviveByActiveCodeAndEmail(email,activeCode);
-      ctx.redirect('/login');
-    }
-    catch(e){
-      ctx.redirect('/login');
     }
   }
 
@@ -225,27 +210,9 @@ class UsersController extends BaseController{
     }
   }
 
-  async updateWxActive(){
-    const ctx = this.ctx;
-    const unionId = ctx.query.unionId;
-    const activeCode = ctx.query.activeCode;
-    try{
-      await ctx.service.users.updateWxActiveByActiveCodeAndUnionId(unionId,activeCode);
-      if (ctx.user){
-        ctx.redirect('/index');
-      }
-      else{
-        ctx.redirect('/login');
-      }
-    }
-    catch(e){
-      super.failure('激活失败,请稍后重试!');
-    }
-  }
-
   async createWxUser(){
     const ctx = this.ctx;
-    const email = ctx.request.body.email;
+    const mobile = ctx.request.body.mobile;
     const fullname = ctx.request.body.fullname;
     const password = ctx.request.body.password;
     const captcha = ctx.request.body.captchaText;
@@ -253,7 +220,7 @@ class UsersController extends BaseController{
     if (captcha == ctx.session.captcha){
       if (ctx.user){
         let user = {
-          email:email,
+          mobile:mobile,
           fullname:fullname,
           password:password,
           openId:ctx.user.openid,
@@ -266,12 +233,12 @@ class UsersController extends BaseController{
           unionId:ctx.user.unionid,
         };
         try{
-          const result = await ctx.service.users.createUser(user,1);
+          const result = await ctx.service.users.createUser(user);
           if (result){
-            super.success('操作成功！请到邮箱激活');
+            super.success('注册成功!');
           }
           else{
-            super.failure('操作失败！请重新操作');
+            super.failure('创建失败!');
           }
         }
         catch(e){
@@ -332,17 +299,17 @@ class UsersController extends BaseController{
     }
   }
 
-  async updatePwdWithEmailAndActiveCode(){
+  async updatePwdWithMobileAndSmsCode(){
     const ctx = this.ctx;
-    const email = ctx.request.body.email;
-    const activeCode = ctx.request.body.activeCode;
+    const mobile = ctx.request.body.mobile;
+    const smsCode = ctx.request.body.smsCode;
     const newPwd = ctx.request.body.newPwd;
-    const result = await ctx.service.users.updatePwdWithEmailAndActiveCode(email, activeCode, newPwd);
-    if (result){
+    const result = await ctx.service.users.updatePwdWithMobileAndSmsCode(mobile, smsCode, newPwd);
+    if (result.success){
       super.success('修改成功');
     }
     else{
-      super.failure('修改失败');
+      super.failure(result.message);
     }
   }
 
