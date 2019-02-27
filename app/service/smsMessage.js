@@ -9,14 +9,19 @@ class SmsMessage extends Service {
     let code = this.ctx.helper.randomNumber(6);
     smsMessage.code = code;
 
-    let result = smsUtil.sendSMS(code,3);
-    if (result && result.Message == 'OK' && result.Code == 'OK'){
+    let smsSendResult = await smsUtil.sendSMS(smsMessage,3);
+
+    let result = '';
+    
+    if (smsSendResult.Code == 'OK'){
       await this.ctx.model.SmsMessage.createSmsMessage(smsMessage);
       result = "发送成功！"
     }
     else{
       result = "发送失败！"
     }
+
+    return result;
   }
 
   async getDataByCondition(smsMessage) {

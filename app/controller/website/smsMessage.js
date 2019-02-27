@@ -12,6 +12,7 @@ class SmsMessageController extends BaseController{
 
     try{
       const result = await ctx.service.smsMessage.createSmsMessage(query);
+      console.log('=========:'+result);
       super.success(result);
     }
     catch(e){
