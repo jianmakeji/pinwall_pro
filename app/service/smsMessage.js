@@ -26,18 +26,22 @@ class SmsMessage extends Service {
 
   async getDataByCondition(smsMessage) {
     let curDate = new Date();
+    curDate.setHours(curDate.getHours() + 8);
     let preDate = new Date(curDate.getTime() - 30 * 60 * 1000);
     let smsObject = await this.ctx.model.SmsMessage.getDataByCondition(smsMessage);
+    console.log(preDate);
+    console.log(smsObject.createtime);
+
     if (smsObject){
       if(smsObject.createtime > preDate){
-        return {success:true,data:'验证成功',status:200};
+        return {success:true,data:'验证成功!',status:200};
       }
       else{
-        return {success:true,data:'验证码过时',status:500};
+        return {success:true,data:'验证码已失效!',status:500};
       }
     }
     else{
-      return {success:true,data:'验证失败',status:500};
+      return {success:true,data:'验证失败!',status:500};
     }
   }
 

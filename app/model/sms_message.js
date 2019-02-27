@@ -21,7 +21,8 @@ module.exports = app => {
     },
     createtime: {
       type: DATE,
-      allowNull: true
+      allowNull: true,
+      defaultValue: app.Sequelize.literal('CURRENT_TIMESTAMP')
     }
   }, {
     tableName: 'sms_message'

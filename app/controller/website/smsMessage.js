@@ -25,7 +25,7 @@ class SmsMessageController extends BaseController{
     const smsCode = ctx.query.smsCode;
     const mobile = ctx.query.mobile;
     try{
-      ctx.body = await ctx.service.artifacts.getDataByCondition(limit);
+      ctx.body = await ctx.service.smsMessage.getDataByCondition({mobile:mobile,code:smsCode});
     }
     catch(e){
       super.failure(e.message);
