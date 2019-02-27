@@ -55,8 +55,8 @@ module.exports = app => {
   router.get('/getUrlSignature', controller.website.alioss.getUrlSignature);
   router.get('/getCaptcha',controller.website.users.getCaptcha);
   router.get('/checkCaptcha',controller.website.users.checkCaptcha);
-  router.get('/sms/createSmsMessage',controller.website.users.SmsMessageController);
-  
+  router.get('/sms/createSmsMessage',controller.website.smsMessage);
+
   //自定义接口
   router.get('/website/artifacts/getMedalDataByRandom/:limit', controller.website.artifacts.getMedalDataByRandom);
   router.get('/website/artifacts/getPersonalJob', ajaxAuthCheck, controller.website.artifacts.getPersonalJob);
