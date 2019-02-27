@@ -11,10 +11,6 @@ module.exports = app => {
       primaryKey: true,
       autoIncrement: true
     },
-    email: {
-      type: STRING(64),
-      allowNull: true
-    },
     fullname:{
       type: STRING(30),
       allowNull: true
@@ -66,10 +62,6 @@ module.exports = app => {
     },
     wxActive: {
       type: BOOLEAN,
-      allowNull: true
-    },
-    activeCode: {
-      type: STRING(50),
       allowNull: true
     },
     commentCount: {
@@ -177,10 +169,10 @@ module.exports = app => {
     });
   }
 
-  Users.findByUserWithEmail = async function (email){
+  Users.findByUserWithMobile = async function (mobile){
     return await this.findOne({
       where:{
-        email:email
+        mobile:mobile
       },
       include:[
         {
@@ -195,10 +187,10 @@ module.exports = app => {
     });
   }
 
-  Users.loginFindByUserWithEmail = async function (email){
+  Users.loginFindByUserWithMobile = async function (mobile){
     return await this.findOne({
       where:{
-        email:email,
+        mobile:mobile,
         active:1,
       },
       include:[
@@ -211,27 +203,6 @@ module.exports = app => {
         }
       ],
       attributes:['Id','email','fullname','nickname','avatarUrl','password']
-    });
-  }
-
-  Users.updateUserActiveCodeByEmail = async function(email, activeCode){
-    return await this.update({
-      activeCode:activeCode
-    },{
-      where:{
-        email:email
-      }
-    });
-  }
-
-  Users.updateAcviveByActiveCodeAndEmail = async function(email,activeCode,active){
-    return await this.update({
-      active:active
-    },{
-      where:{
-        email:email,
-        activeCode:activeCode
-      }
     });
   }
 
@@ -296,7 +267,6 @@ module.exports = app => {
       city:wxInfo.city,
       country:wxInfo.country,
       wxActive:0,
-      activeCode:wxInfo.activeCode,
     },{
       where:{
         email:wxInfo.email

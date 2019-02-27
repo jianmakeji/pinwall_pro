@@ -7,8 +7,6 @@ class SmsMessageController extends BaseController{
   async createSmsMessage() {
     const ctx = this.ctx;
     const query = {
-      remoteAddress: ctx.host,
-      remoteHost: ctx.hostname,
       mobile: ctx.query.mobile,
     };
 

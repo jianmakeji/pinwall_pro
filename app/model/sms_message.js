@@ -11,14 +11,6 @@ module.exports = app => {
       primaryKey: true,
       autoIncrement: true
     },
-    remoteAddress: {
-      type: STRING,
-      allowNull: true
-    },
-    remoteHost: {
-      type: STRING,
-      allowNull: true
-    },
     mobile: {
       type: STRING,
       allowNull: true
@@ -37,18 +29,15 @@ module.exports = app => {
 
   SmsMessage.createSmsMessage = async function (smsMessage) {
     return this.create({
-      remoteAddress: smsMessage.remoteAddress,
-      remoteHost: smsMessage.remoteHost,
       mobile: smsMessage.mobile,
       code: smsMessage.code,
     });
   }
 
   SmsMessage.getDataByCondition = async function (smsMessage) {
-    return this.findAll({
+    return this.findOne({
       where:{
-        remoteAddress:remoteAddress,
-        remoteHost:remoteHost,
+        mobile:smsMessage.mobile,
         code: smsMessage.code,
       }
     });
@@ -57,8 +46,7 @@ module.exports = app => {
   SmsMessage.getCountDataByDatetime = async function (smsMessage) {
     return this.count({
       where:{
-        remoteAddress:smsMessage.remoteAddress,
-        remoteHost:smsMessage.remoteHost,
+        mobile:smsMessage.mobile,
         createtime:{
           [app.Sequelize.Op.gte]:smsMessage.createtime
         }

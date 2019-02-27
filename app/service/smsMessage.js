@@ -1,6 +1,7 @@
 'use strict';
 
 const Service = require('egg').Service;
+const smsUtil = require('../utils/SmsUtils.js');
 
 class SmsMessage extends Service {
 
@@ -16,7 +17,14 @@ class SmsMessage extends Service {
       result = "一天内不能发送超过10条信息!"
     }
     else{
-      await this.ctx.model.SmsMessage.createSmsMessage(smsMessage);
+      let result = smsUtil.sendSMS(code,3);
+      if (result && result.Message == 'OK' && result.Code == 'OK'){
+        await this.ctx.model.SmsMessage.createSmsMessage(smsMessage);
+        result = "发送成功！"
+      }
+      else{
+        result = "发送失败！"
+      }
     }
     return result;
   }

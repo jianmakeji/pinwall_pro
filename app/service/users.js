@@ -19,36 +19,44 @@ class Users extends Service {
   }
 
   async createUser(user,category) {
-    if (user.email == '' || user.email == null){
-      throw new Error('用户邮箱不能为空');
+    if (user.mobile == '' || user.mobile == null){
+      throw new Error('用户电话号码不能为空');
     }
     else{
-      const userObj = await this.ctx.model.Users.findUserByEmail(user.email);
+      const userObj = await this.ctx.model.Users.findUserByMobile(user.mobile);
       if (userObj){
         throw new Error('用户已经存在');
       }
       else{
-        let transaction;
-        try {
-          transaction = await this.ctx.model.transaction();
-          const helper = this.ctx.helper;
-          user.password = helper.cryptoPwd(helper.cryptoPwd(user.password));
-          user.activeCode =  UUID.v1();
-          const createUserObj = await this.ctx.model.Users.createUser(user,transaction);
-          await this.ctx.model.UserRole.creteUserRole(createUserObj.Id, 1, transaction);
-          await transaction.commit();
-          if (category == 0){
-            await this.ctx.service.emailService.sendActiveEmail(user.email, user.activeCode);
-          }
-          else if(category == 1){
-            await this.ctx.service.emailService.sendWxActiveEmail(user.email, user.unionId, user.activeCode);
-          }
+        //判断短信验证码是否正确
+        let preDate = new Date(curDate.getTime() - 30 * 60 * 1000);
+        let smsObject = await this.ctx.model.SmsMessage.getDataByCondition({mobile:user.mobile,code:user.smsCode});
+        if (smsObject)
+        {
+          if (smsObject.createtime > preDate){
+            let transaction;
+            try {
+              transaction = await this.ctx.model.transaction();
+              const helper = this.ctx.helper;
+              user.password = helper.cryptoPwd(helper.cryptoPwd(user.password));
+              user.activeCode =  UUID.v1();
+              const createUserObj = await this.ctx.model.Users.createUser(user,transaction);
+              await this.ctx.model.UserRole.creteUserRole(createUserObj.Id, 1, transaction);
+              await transaction.commit();
 
-          return createUserObj;
-        } catch (e) {
-          console.log(e.message);
-          await transaction.rollback();
-          return false;
+              return createUserObj;
+            } catch (e) {
+              console.log(e.message);
+              await transaction.rollback();
+              return false;
+            }
+          }
+          else{
+            throw new Error('手机验证码失效');
+          }
+        }
+        else{
+          throw new Error('手机验证码不正确');
         }
       }
     }
