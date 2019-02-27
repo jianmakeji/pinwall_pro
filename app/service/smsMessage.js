@@ -12,7 +12,7 @@ class SmsMessage extends Service {
     let smsSendResult = await smsUtil.sendSMS(smsMessage,3);
 
     let result = '';
-    
+
     if (smsSendResult.Code == 'OK'){
       await this.ctx.model.SmsMessage.createSmsMessage(smsMessage);
       result = "发送成功！"
@@ -25,7 +25,20 @@ class SmsMessage extends Service {
   }
 
   async getDataByCondition(smsMessage) {
-    return await this.ctx.model.SmsMessage.getDataByCondition(smsMessage);
+    let curDate = new Date();
+    let preDate = new Date(curDate.getTime() - 30 * 60 * 1000);
+    let smsObject = await this.ctx.model.SmsMessage.getDataByCondition(smsMessage);
+    if (smsObject){
+      if(smsObject.createtime > preDate){
+        return {success:true,data:'验证成功',status:200};
+      }
+      else{
+        return {success:true,data:'验证码过时',status:500};
+      }
+    }
+    else{
+      return {success:true,data:'验证失败',status:500};
+    }
   }
 
   async getCountDataByDatetime(syncType, date) {

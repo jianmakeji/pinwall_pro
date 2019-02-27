@@ -239,10 +239,10 @@ module.exports = app => {
     });
   }
 
-  Users.findUserByEmail = async function(email){
+  Users.findUserByMobile = async function(mobile){
     return await this.findOne({
       where:{
-        email:email
+        mobile:mobile
       },
       include:[
         {

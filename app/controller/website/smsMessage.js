@@ -12,7 +12,7 @@ class SmsMessageController extends BaseController{
 
     try{
       const result = await ctx.service.smsMessage.createSmsMessage(query);
-      console.log('=========:'+result);
+
       super.success(result);
     }
     catch(e){
@@ -20,9 +20,10 @@ class SmsMessageController extends BaseController{
     }
   }
 
-  async getDataByCondition(){
+  async vertifySms(){
     const ctx = this.ctx;
-    const limit = ctx.params.limit;
+    const smsCode = ctx.query.smsCode;
+    const mobile = ctx.query.mobile;
     try{
       ctx.body = await ctx.service.artifacts.getDataByCondition(limit);
     }

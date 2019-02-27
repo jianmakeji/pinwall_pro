@@ -29,6 +29,7 @@ class Users extends Service {
       }
       else{
         //判断短信验证码是否正确
+        let curDate = new Date();
         let preDate = new Date(curDate.getTime() - 30 * 60 * 1000);
         let smsObject = await this.ctx.model.SmsMessage.getDataByCondition({mobile:user.mobile,code:user.smsCode});
         if (smsObject)
