@@ -106,24 +106,6 @@ class UsersController extends BaseController{
     }
   }
 
-  async sendBindingEmailCode(){
-    const ctx = this.ctx;
-    const email = ctx.query.email;
-    const activeCode = ctx.helper.randomNumber(6);
-    try{
-      const result = await ctx.service.email.sendActiveEmail(email,activeCode,1);
-      if (result){
-        super.success('发送成功!');
-      }
-      else{
-        super.success('发送失败!');
-      }
-    }
-    catch(e){
-      super.failure(e.message);
-    }
-  }
-
   async getCaptcha(){
     let codeConfig = {
         size: 5,// 验证码长度
@@ -280,24 +262,6 @@ class UsersController extends BaseController{
     }
     else{
       ctx.redirect('/login');
-    }
-  }
-
-  async getBackPwdWithEmail(){
-    const ctx = this.ctx;
-    const email = ctx.query.email;
-    const userObj = await ctx.service.users.findByUserWithEmail(email);
-    if (userObj){
-      const result = await ctx.service.users.getBackPwdWithEmail(email);
-      if(result){
-        super.success('邮件发送成功,请点开邮箱链接更改密码!');
-      }
-      else{
-        super.failure('邮件发送失败');
-      }
-    }
-    else{
-      super.failure('邮箱不存在!');
     }
   }
 

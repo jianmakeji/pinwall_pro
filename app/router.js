@@ -73,7 +73,6 @@ module.exports = app => {
 
   router.get('website.users.findByUsersEmail', '/website/users/findByUsersEmail', controller.website.users.findByUsersEmail);
   router.put('website.users.updateAcviveByUserId', '/website/users/updateAcviveByUserId/:id', ajaxAuthCheck, controller.website.users.updateAcviveByUserId);
-  router.put('website.users.sendBindingEmailCode', '/website/users/sendBindingEmailCode', controller.website.users.sendBindingEmailCode);
 
   router.get('website.users.bindWeixin', '/website/users/bindWeixin', controller.website.users.bindWeixin);
   router.post('website.users.bindWeixinInfoByMobile', '/website/users/bindWeixinInfoByMobile', controller.website.users.bindWeixinInfoByMobile);
@@ -81,12 +80,10 @@ module.exports = app => {
   router.post('website.users.createUser', '/website/users/createUser', controller.website.users.createUser);
   router.put('website.users.updatePwd', '/website/users/updatePwd', controller.website.users.updatePwd);
   router.put('website.users.updatePwdWithMobileAndSmsCode', '/website/users/updatePwdWithMobileAndSmsCode', controller.website.users.updatePwdWithMobileAndSmsCode);
-  router.get('website.users.getBackPwdWithEmail', '/website/users/getBackPwdWithEmail', controller.website.users.getBackPwdWithEmail);
   router.put('website.users.updateUserRole', '/website/users/updateUserRole', adminAuthCheck, controller.website.users.updateUserRole);
   router.get('website.users.searchByUsername', '/website/users/searchByUsername', controller.website.users.searchByUsername);
   router.get('website.users.searchByEmail', '/website/users/searchByEmail', adminAuthCheck, controller.website.users.searchByEmail);
 
-  router.get('website.users.sendBindingEmailCode', '/website/users/sendBindingEmailCode', controller.website.users.sendBindingEmailCode);
   router.get('website.topics.getTopicAndArtifactById', '/website/topics/getTopicAndArtifactById', controller.website.topics.getTopicAndArtifactById);
   router.get('website.topics.findArtifactByTopicId', '/website/topics/findArtifactByTopicId', controller.website.topics.findArtifactByTopicId);
   router.get('website.topics.exportExcelByTopicId', '/website/topics/exportExcelByTopicId', controller.website.topics.exportExcelByTopicId);

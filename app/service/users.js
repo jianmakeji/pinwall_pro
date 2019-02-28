@@ -97,12 +97,12 @@ class Users extends Service {
     return await this.ctx.model.Users.findByUnionId(unionId);
   }
 
-  async findByUserWithEmail(email) {
-    return await this.ctx.model.Users.findByUserWithEmail(email);
+  async findByUserWithMobile(mobile) {
+    return await this.ctx.model.Users.findByUserWithMobile(mobile);
   }
 
-  async loginFindByUserWithEmail(email) {
-    return await this.ctx.model.Users.loginFindByUserWithEmail(email);
+  async loginFindByUserWithMobile(mobile) {
+    return await this.ctx.model.Users.loginFindByUserWithMobile(mobile);
   }
 
   async updateAcviveByUserId(userId) {
@@ -153,17 +153,6 @@ class Users extends Service {
       return false;
     }
 
-  }
-
-  async getBackPwdWithEmail(email) {
-    try {
-      const activeCode = UUID.v1();
-      await this.ctx.model.Users.updateUserActiveCodeByEmail(email, activeCode);
-      await this.ctx.service.emailService.sendBackPwdEmail(email, activeCode);
-      return true;
-    } catch (e) {
-      return false;
-    }
   }
 
   async updatePwdWithMobileAndSmsCode(mobile, smsCode, newPwd) {

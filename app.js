@@ -21,7 +21,7 @@ module.exports = app => {
   // 处理用户信息
 
   app.passport.verify(async (ctx, user) => {
-    const existsUser = await ctx.service.users.loginFindByUserWithEmail(user.username);
+    const existsUser = await ctx.service.users.loginFindByUserWithMobile(user.username);
 
     if (existsUser) {
       if (app.cryptoPwd(app.cryptoPwd(user.password)) == existsUser.password){
