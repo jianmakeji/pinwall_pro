@@ -43,8 +43,8 @@ class AliOSSController extends BaseController {
             "oss:PutObject"
             ],
             "Resource": [
-            "acs:oss:*:*:pinwall",
-            "acs:oss:*:*:pinwall/*"
+            "acs:oss:*:*:pinwall-pro",
+            "acs:oss:*:*:pinwall-pro/*"
             ]
         }
       ]
