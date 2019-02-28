@@ -234,12 +234,12 @@ class UsersController extends BaseController{
     if(ctx.user){
       const userObject = await ctx.service.users.find(ctx.user.Id);
       const app = this.ctx.helper;
-      const crypwd = app.cryptoPwd(app.cryptoPwd(password));
+      const crypwd = ctx.helper.cryptoPwd(ctx.helper.cryptoPwd(password));
       if(userObject.password != crypwd){
         super.failure('旧密码不正确!');
       }
       else{
-        const result = await ctx.service.users.updatePwd(ctx.user.Id, app.cryptoPwd(app.cryptoPwd(newPwd)));
+        const result = await ctx.service.users.updatePwd(ctx.user.Id, ctx.helper.cryptoPwd(ctx.helper.cryptoPwd(newPwd)));
         if (result){
           super.success('修改成功');
         }
