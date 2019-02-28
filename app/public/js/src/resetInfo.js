@@ -50,7 +50,7 @@ var index = new Vue({
             let that = this;
             this.$Loading.start();
             $.ajax({
-                url: '/website/users/updatePwd',
+                url: config.ajaxUrls.updatePwd,
                 type: 'PUT',
                 data: this.pwdItem,
                 success(res){

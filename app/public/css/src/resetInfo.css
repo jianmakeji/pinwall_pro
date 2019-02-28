@@ -72,9 +72,8 @@ body{
 /*  修改密码 */
 .resetPwd_panel {
 	width: 50%;
-	padding: 5px 10px;
-	margin: 0 auto;
-	border-top: #ccc 1px dotted;
+	padding: 30px 10px 5px;
+	margin: 20px auto;
 	background: #fff;
 	border-radius: 5px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

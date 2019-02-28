@@ -1,4 +1,5 @@
 /* jshint indent: 2 */
+let moment = require('moment');
 
 module.exports = app => {
 
@@ -201,7 +202,7 @@ module.exports = app => {
           attributes:['Id','name']
         }
       ],
-      attributes:['Id','mibile','fullname','nickname','avatarUrl','password']
+      attributes:['Id','mobile','fullname','nickname','avatarUrl','password']
     });
   }
 
