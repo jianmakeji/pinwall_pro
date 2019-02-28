@@ -77,7 +77,7 @@ module.exports  = app => {
       include:[
         {
           model: app.model.Users,
-          attributes:['Id','email','fullname','nickname','avatarUrl']
+          attributes:['Id','fullname','nickname','avatarUrl']
         },{
           model: app.model.Artifacts,
           through:{

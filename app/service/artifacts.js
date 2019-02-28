@@ -304,11 +304,15 @@ class Artifacts extends Service {
     const listData = await this.ctx.model.Artifacts.getMedalDataByRandom();
     const max = listData.length;
     const setData = new Set();
-    while(setData.size != limit){
-      let rand = Math.random();
-      let num = Math.floor(rand * max);
-      setData.add(num);
+
+    if (listData > 0){
+      while(setData.size != limit){
+        let rand = Math.random();
+        let num = Math.floor(rand * max);
+        setData.add(num);
+      }
     }
+
     let result = new Array();
     for (let item of setData.values()) {
       result.push(listData[item]);
