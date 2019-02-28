@@ -84,21 +84,12 @@ class UsersController extends BaseController {
             user:result
         }
         super.success(backObject);
+      }
+      else{
+        super.failure('绑定失败');
+      }
     } catch (e) {
       super.failure(e.message);
-    }
-  }
-
-  async getWxActiveCodeByEmail(){
-    const ctx = this.ctx;
-    const email = ctx.query.email;
-
-    const result = await ctx.service.users.getWxActiveCodeByEmail(email);
-
-    if (result) {
-      super.success('成功激活!');
-    } else {
-      super.failure('未激活!');
     }
   }
 

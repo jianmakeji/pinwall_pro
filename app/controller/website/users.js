@@ -177,18 +177,14 @@ class UsersController extends BaseController{
     const unionId = ctx.user.unionid;
     const user = await ctx.service.users.findByUnionId(unionId);
     if(user){
-      if(user.Id && user.email){
-        if(user.wxActive == 0){
-          ctx.redirect('/wxCompleteInfo');
-        }
-        else{
+      if(user.Id && user.mobile){
           ctx.user.Id = user.Id;
-          ctx.user.email = user.email;
+          ctx.user.mobile = user.mobile;
           ctx.user.fullname = user.fullname;
           ctx.user.roles = user.roles;
           ctx.user.avatarUrl = user.avatarUrl;
           ctx.redirect('/index');
-        }
+
       }else{
         ctx.redirect('/completeInfo');
       }
@@ -198,16 +194,22 @@ class UsersController extends BaseController{
     }
   }
 
-  async bindWeixinInfoByEmail(){
+  async bindWeixinInfoByMobile(){
     const ctx = this.ctx;
-    const email = ctx.request.body.email;
-    const result = await ctx.service.users.bindWeixinInfoByEmail(email,ctx.user);
-    if (result){
-      super.success('绑定成功，请进入邮箱激活!');
+    const mobile = ctx.request.body.mobile;
+    const result = await ctx.service.users.bindWeixinInfoByMobile(mobile,ctx.user);
+    try{
+      if (result){
+        super.success('绑定成功，请进入邮箱激活!');
+      }
+      else{
+        super.failure('绑定失败!');
+      }
     }
-    else{
-      super.failure('绑定失败!');
+    catch(e){
+      super.failure(e.message);
     }
+
   }
 
   async createWxUser(){

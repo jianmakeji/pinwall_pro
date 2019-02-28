@@ -145,10 +145,6 @@ class Users extends Service {
 
   }
 
-  async updateWxActiveByActiveCodeAndUnionId(unionId, activeCode) {
-    return await this.ctx.model.Users.updateWxActiveByActiveCodeAndUnionId(unionId, activeCode, 1);
-  }
-
   async updatePwd(userId, newPwd) {
     try {
       await this.ctx.model.Users.updatePwd(userId, newPwd);
@@ -225,14 +221,6 @@ class Users extends Service {
     return await this.ctx.model.Users.searchByEmail(query);
   }
 
-  async getWxActiveCodeByEmail(email) {
-    let user = await this.ctx.model.Users.findUserByEmail(email);
-    if (user.wxActive) {
-      return true
-    } else {
-      return false;
-    }
-  }
 }
 
 module.exports = Users;

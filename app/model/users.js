@@ -60,10 +60,6 @@ module.exports = app => {
       type: BOOLEAN,
       allowNull: true
     },
-    wxActive: {
-      type: BOOLEAN,
-      allowNull: true
-    },
     commentCount: {
       type: INTEGER,
       allowNull: true
@@ -168,7 +164,7 @@ module.exports = app => {
           attributes:['Id','name']
         }
       ],
-      attributes:['Id','email','fullname','avatarUrl','wxActive']
+      attributes:['Id','email','fullname','avatarUrl']
     });
   }
 
@@ -225,18 +221,6 @@ module.exports = app => {
     },{
       where:{
         mobile:mobile
-      }
-    });
-  }
-
-  Users.updateWxActiveByActiveCodeAndUnionId = async function(unionId,activeCode,wxActive){
-    return await this.update({
-      wxActive:wxActive,
-      active:wxActive
-    },{
-      where:{
-        unionId:unionId,
-        activeCode:activeCode
       }
     });
   }
