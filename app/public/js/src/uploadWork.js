@@ -1,5 +1,5 @@
 
-var bucket = 'pinwall';
+var bucket = 'pinwall-pro';
 var urllib = OSS.urllib;
 var Buffer = OSS.Buffer;
 var OSS = OSS.Wrapper;
