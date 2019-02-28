@@ -26,6 +26,7 @@ var config = {
         getPersonalJob: "/website/artifacts/getPersonalJob", //获取我的作品集
         getPersonalJobByUserId: "/website/artifacts/getPersonalJobByUserId", //获取别人的作品集
         // user
+        createUser:'/website/users/createUser',
         getUserData:"/website/users",
         updatePwdWithEmailAndActiveCode:'/website/users/updatePwdWithEmailAndActiveCode',
         updateUserRole:'/website/users/updateUserRole',
@@ -33,10 +34,12 @@ var config = {
         checkCaptcha:'/checkCaptcha',
         createWxUser:"/website/users/createWxUser",
         bindWeixinInfoByEmail:"/website/users/bindWeixinInfoByEmail",
+        updatePwd:"'/website/users/updatePwd'",
+        updatePwdWithMobileAndSmsCode:'/website/users/updatePwdWithMobileAndSmsCode',
         //searchEngine
         transterInsertDataToES:'/website/artifacts/transterInsertDataToES',
         transterUpdateDataToES:'/website/artifacts/transterUpdateDataToES',
-
+        //手机短信接口
         createSmsMessage:"/sms/createSmsMessage?mobile=",
         vertifySms:"/sms/vertifySms"
     },

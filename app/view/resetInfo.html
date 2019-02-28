@@ -15,7 +15,7 @@
 {% block container %}
 	<div class="container" :style="containerStyle">
 		<h3>修改个人信息</h3>
-        <div class="resetInfo_panel">
+        <!-- <div class="resetInfo_panel">
             <div class="photo_field">
                 <img :src="'{{user.avatarUrl}}' ? '{{user.avatarUrl}}' : 'http://pinwall.design-engine.org/images/default_profile.jpg'" alt="">
                 <p>点击更换</p>
@@ -28,9 +28,9 @@
                 <i-input type="textarea" placeholder="关于你···"></i-input><br><br>
                 <i-button type="success">保存</i-button>
             </div>
-        </div>
+        </div> -->
         <div class="resetPwd_panel">
-            <p style="font-weight: normal;font-size: 16px;color: #09bc72;margin: 15px 0;text-align: center;">设置一个好记的密码吧。</p>
+            <!-- <p style="font-weight: normal;font-size: 16px;color: #09bc72;margin: 15px 0;text-align: center;">设置一个好记的密码吧。</p> -->
             <i-form :model="pwdItem" :label-width="80" :rules="ruleValidate">
                 <form-item label="旧密码" prop="password">
                     <i-input type="password" v-model="pwdItem.password" placeholder="请输入旧密码"></i-input>

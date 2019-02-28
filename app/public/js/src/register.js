@@ -41,7 +41,7 @@ var index = new Vue({
     },
     computed:{
         disabledBtn(){
-            if (this.formItem.smsCode.length == 6 && this.formItem.fullname && this.formItem.mobile && this.formItem.password && this.captchaBol) {
+            if (this.cloak && this.formItem.smsCode.length == 6 && this.formItem.fullname && this.formItem.mobile && this.formItem.password && this.captchaBol) {
                 return false;
             } else {
                 return true;
@@ -52,7 +52,7 @@ var index = new Vue({
         tapClick(){
             let that = this;
             $.ajax({
-                url: '/getCaptcha',
+                url: config.ajaxUrls.getCaptcha,
                 type: 'GET',
                 success(res){
                     document.getElementsByTagName("object")[0].innerHTML = res;
@@ -70,7 +70,6 @@ var index = new Vue({
                     type:"get",
                     url:url,
                     success:function(res){
-                        console.log("==========",res);
                         if(res.status == 200){
                     		that.$Loading.finish();
                         	that.$Notice.success({title:res.data, duration:3});
@@ -125,7 +124,7 @@ var index = new Vue({
             let that = this;
             if(event.target.value.length == 5){
                 $.ajax({
-                    url: '/checkCaptcha',
+                    url: config.ajaxUrls.checkCaptcha,
                     type: 'GET',
                     data:{captchaText:this.formItem.captchaText},
                     success(res){
@@ -144,7 +143,7 @@ var index = new Vue({
             let that = this;
             this.$Loading.start();
             $.ajax({
-                url: '/website/users/createUser',
+                url: config.ajaxUrls.createUser,
                 type: 'POST',
                 data: this.formItem,
                 success(res){
@@ -152,7 +151,7 @@ var index = new Vue({
                         console.log(res);
                         that.$Loading.finish();
                         that.$Notice.success({
-                            title:"注册成功!请前往邮箱激活",
+                            title:res.data,
                             duration:3,
                             onClose(){
                                 window.location.href = "/login";
@@ -170,7 +169,7 @@ var index = new Vue({
         this.containerStyle.margin = (document.documentElement.clientHeight - 400 ) / 2 - 90 + "px auto";
         let that = this;
         $.ajax({
-            url: '/getCaptcha',
+            url: config.ajaxUrls.getCaptcha,
             type: 'GET',
             success(res){
                 document.getElementsByTagName("object")[0].innerHTML = res;
