@@ -182,7 +182,7 @@ module.exports = app => {
           attributes:['Id','name']
         }
       ],
-      attributes:['Id','email','fullname','nickname','avatarUrl','password']
+      attributes:['Id','fullname','nickname','avatarUrl','password']
     });
   }
 
