@@ -206,8 +206,8 @@ class Users extends Service {
     return await this.ctx.model.Users.searchByUsername(query);
   }
 
-  async searchByEmail(query) {
-    return await this.ctx.model.Users.searchByEmail(query);
+  async searchByMobile(query) {
+    return await this.ctx.model.Users.searchByMobile(query);
   }
 
 }

@@ -81,18 +81,6 @@ class UsersController extends BaseController{
     }
   }
 
-  async findByUsersEmail(){
-    const ctx = this.ctx;
-    const email = ctx.query.email;
-    try{
-      const result = await ctx.service.users.findByUsersEmail(email);
-      super.success(result);
-    }
-    catch(e){
-      super.failure(e.message);
-    }
-  }
-
   async updateAcviveByUserId(){
     const ctx = this.ctx;
     const userId = ctx.helper.parseInt(ctx.params.id);
@@ -312,18 +300,18 @@ class UsersController extends BaseController{
     }
   }
 
-  async searchByEmail(){
+  async searchByMobile(){
     const ctx = this.ctx;
     const limit = ctx.helper.parseInt(ctx.query.limit);
     const offset = ctx.helper.parseInt(ctx.query.offset);
-    const email = ctx.query.email;
+    const mobile = ctx.query.mobile;
     const query = {
       limit:limit,
       offset:offset,
-      email:email
+      mobile:mobile
     };
     try{
-      let result = await ctx.service.users.searchByEmail(query);
+      let result = await ctx.service.users.searchByMobile(query);
       super.success(result);
     }
     catch(e){

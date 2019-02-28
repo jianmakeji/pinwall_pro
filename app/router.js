@@ -71,7 +71,6 @@ module.exports = app => {
   router.get('/website/artifactComment/findByArtifactIdWithPage', controller.website.artifactComment.findByArtifactIdWithPage);
   router.get('/website/artifactComment/setCommentVisible', ajaxAuthCheck, controller.website.artifactComment.setCommentVisible);
 
-  router.get('website.users.findByUsersEmail', '/website/users/findByUsersEmail', controller.website.users.findByUsersEmail);
   router.put('website.users.updateAcviveByUserId', '/website/users/updateAcviveByUserId/:id', ajaxAuthCheck, controller.website.users.updateAcviveByUserId);
 
   router.get('website.users.bindWeixin', '/website/users/bindWeixin', controller.website.users.bindWeixin);
@@ -82,7 +81,7 @@ module.exports = app => {
   router.put('website.users.updatePwdWithMobileAndSmsCode', '/website/users/updatePwdWithMobileAndSmsCode', controller.website.users.updatePwdWithMobileAndSmsCode);
   router.put('website.users.updateUserRole', '/website/users/updateUserRole', adminAuthCheck, controller.website.users.updateUserRole);
   router.get('website.users.searchByUsername', '/website/users/searchByUsername', controller.website.users.searchByUsername);
-  router.get('website.users.searchByEmail', '/website/users/searchByEmail', adminAuthCheck, controller.website.users.searchByEmail);
+  router.get('website.users.searchByMobile', '/website/users/searchByMobile', adminAuthCheck, controller.website.users.searchByMobile);
 
   router.get('website.topics.getTopicAndArtifactById', '/website/topics/getTopicAndArtifactById', controller.website.topics.getTopicAndArtifactById);
   router.get('website.topics.findArtifactByTopicId', '/website/topics/findArtifactByTopicId', controller.website.topics.findArtifactByTopicId);

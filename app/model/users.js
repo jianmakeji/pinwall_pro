@@ -164,7 +164,7 @@ module.exports = app => {
           attributes:['Id','name']
         }
       ],
-      attributes:['Id','email','fullname','avatarUrl']
+      attributes:['Id','mobile','fullname','avatarUrl']
     });
   }
 
@@ -182,7 +182,7 @@ module.exports = app => {
           attributes:['Id','name']
         }
       ],
-      attributes:['Id','fullname','nickname','avatarUrl','password']
+      attributes:['Id','mobile','fullname','nickname','avatarUrl','password']
     });
   }
 
@@ -201,7 +201,7 @@ module.exports = app => {
           attributes:['Id','name']
         }
       ],
-      attributes:['Id','email','fullname','nickname','avatarUrl','password']
+      attributes:['Id','mibile','fullname','nickname','avatarUrl','password']
     });
   }
 
@@ -391,7 +391,7 @@ module.exports = app => {
     return this.findAndCountAll(condition);
   }
 
-  Users.searchByEmail = async function({ offset = 0, limit = 10, email='' }){
+  Users.searchByMobile = async function({ offset = 0, limit = 10, mobile='' }){
     let condition = {
       offset,
       limit,
@@ -401,10 +401,10 @@ module.exports = app => {
       ]
     };
 
-    if(email != null && email !=''){
+    if(fullname != null && fullname !=''){
       condition.where = {};
-      condition.where.email = {
-        [app.Sequelize.Op.like]: '%'+email+'%'
+      condition.where.mobile = {
+        [app.Sequelize.Op.like]: '%'+mobile+'%'
       }
     }
 
