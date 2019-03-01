@@ -6,7 +6,7 @@ class esUtils extends Service {
 
   async createObject(id, searchObject){
     const ctx = this.ctx;
-    await ctx.helper.elasticsearch.create({
+    await ctx.app.elasticsearch.create({
       index: ctx.helper.es_index,
       type: ctx.helper.es_type,
       id: id,
@@ -16,7 +16,7 @@ class esUtils extends Service {
 
   async deleteObjectById(id){
     const ctx = this.ctx;
-    await ctx.helper.elasticsearch.delete({
+    await ctx.app.elasticsearch.delete({
       index: ctx.helper.es_index,
       type: ctx.helper.es_type,
       id: id
@@ -25,7 +25,7 @@ class esUtils extends Service {
 
   async updateobject(id, updateObject){
     const ctx = this.ctx;
-    const response = await ctx.helper.elasticsearch.update({
+    const response = await ctx.app.elasticsearch.update({
       index: ctx.helper.es_index,
       type: ctx.helper.es_type,
       id: id,
@@ -39,8 +39,7 @@ class esUtils extends Service {
     const ctx = this.ctx;
     let i = 0;
     for (let object of batchObject){
-      console.log(i++);
-      await ctx.helper.elasticsearch.create({
+      await ctx.app.elasticsearch.create({
         index: ctx.helper.es_index,
         type: ctx.helper.es_type,
         id: object.Id,
@@ -53,8 +52,7 @@ class esUtils extends Service {
     const ctx = this.ctx;
     let i = 0;
     for (let object of batchObject){
-      console.log(i++);
-      await ctx.helper.elasticsearch.create({
+      await ctx.app.elasticsearch.create({
         index: ctx.helper.es_search_suggest_index,
         type: ctx.helper.es_search_suggest_type,
         id: object.Id,
@@ -65,7 +63,7 @@ class esUtils extends Service {
 
   async createSuggestObject(id, suggestObject){
     const ctx = this.ctx;
-    await ctx.helper.elasticsearch.create({
+    await ctx.app.elasticsearch.create({
       index: ctx.helper.es_search_suggest_index,
       type: ctx.helper.es_search_suggest_type,
       id: id,
@@ -75,7 +73,7 @@ class esUtils extends Service {
 
   async deleteSuggestObjectById(id){
     const ctx = this.ctx;
-    await ctx.helper.elasticsearch.delete({
+    await ctx.app.elasticsearch.delete({
       index: ctx.helper.es_search_suggest_index,
       type: ctx.helper.es_search_suggest_type,
       id: id
@@ -84,7 +82,7 @@ class esUtils extends Service {
 
   async updateSuggestObject(id, updateObject){
     const ctx = this.ctx;
-    const response = await ctx.helper.elasticsearch.update({
+    const response = await ctx.app.elasticsearch.update({
       index: ctx.helper.es_search_suggest_index,
       type: ctx.helper.es_search_suggest_type,
       id: id,
