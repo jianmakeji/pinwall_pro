@@ -15,6 +15,7 @@ class UsersController extends BaseController {
     const sessionKey = body.sessionKey;
     const iv = body.iv;
     const encryptedData = body.encryptedData;
+    const smsCode = body.smsCode;
     const appId = 'wxa4cd6f777c8b75d0'
 
     let user = {
@@ -28,6 +29,7 @@ class UsersController extends BaseController {
       province: body.province,
       country: body.country,
       avatarUrl: body.headimageurl,
+      smsCode:smsCode,
     };
     try {
       var pc = new WXBizDataCrypt(appId, sessionKey);
@@ -38,7 +40,7 @@ class UsersController extends BaseController {
 
       if (result) {
         let backObject = {
-            message:'操作成功！请进入邮箱激活!',
+            message:'操作成功!',
             user:result,
             roleName:'user'
         }
@@ -59,16 +61,18 @@ class UsersController extends BaseController {
     const sessionKey = body.sessionKey;
     const iv = body.iv;
     const encryptedData = body.encryptedData;
-    const appId = 'wxa4cd6f777c8b75d0'
+    const appId = 'wxa4cd6f777c8b75d0';
+    const smsCode = body.smsCode;
 
     let user = {
       openid: body.openid,
       nickname: body.nickname,
-      avatarUrl: body.headimageurl,
+      headimageurl: body.headimageurl,
       sex: body.sex,
       province: body.province,
       city: body.city,
-      country: body.country
+      country: body.country,
+      smsCode:smsCode,
     };
 
     try {
@@ -76,7 +80,7 @@ class UsersController extends BaseController {
       var data = pc.decryptData(encryptedData , iv);
       user.unionid = data.unionId;
 
-      const result = await ctx.service.users.bindWeixinInfoByMobile(mobile, user);
+      const result = await ctx.service.users.bindWeixinInfoByMobile(mobile, smsCode, user);
 
       if (result) {
         let backObject = {

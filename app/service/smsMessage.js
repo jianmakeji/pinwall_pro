@@ -12,14 +12,14 @@ class SmsMessage extends Service {
 
     let smsSendResult = await smsUtil.sendSMS(smsMessage,3);
 
-    let result = '';
+    let result = false;
 
     if (smsSendResult.Code == 'OK'){
       await this.ctx.model.SmsMessage.createSmsMessage(smsMessage);
-      result = "发送成功！"
+      result = true;
     }
     else{
-      result = "发送失败！"
+      result = false;
     }
 
     return result;
