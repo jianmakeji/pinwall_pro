@@ -109,7 +109,7 @@ class Users extends Service {
     return await this.ctx.model.Users.updateAcviveByUserId(userId);
   }
 
-  async bindWeixinInfoByMobile(mobile, user) {
+  async bindWeixinInfoByMobile(mobile, smsCode, user) {
     let wxInfo = {};
     wxInfo.mobile = mobile;
     wxInfo.openId = user.openid;
@@ -124,8 +124,8 @@ class Users extends Service {
     let curDate = new Date();
     let preDate = moment(new Date(curDate.getTime() - 30 * 60 * 1000)).format('YYYY-MM-DD HH:mm:ss');
     let smsObject = await this.ctx.model.SmsMessage.getDataByCondition({
-      mobile: user.mobile,
-      code: user.smsCode
+      mobile: mobile,
+      code: smsCode
     });
     if (smsObject) {
       if (smsObject.createtime > preDate) {

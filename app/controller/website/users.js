@@ -167,10 +167,12 @@ class UsersController extends BaseController{
   async bindWeixinInfoByMobile(){
     const ctx = this.ctx;
     const mobile = ctx.request.body.mobile;
-    const result = await ctx.service.users.bindWeixinInfoByMobile(mobile,ctx.user);
+    const smsCode = ctx.request.body.smsCode;
+
+    const result = await ctx.service.users.bindWeixinInfoByMobile(mobile,smsCode,ctx.user);
     try{
       if (result){
-        super.success('绑定成功，请进入邮箱激活!');
+        super.success('绑定成功，请登录!');
       }
       else{
         super.failure('绑定失败!');
@@ -188,6 +190,7 @@ class UsersController extends BaseController{
     const fullname = ctx.request.body.fullname;
     const password = ctx.request.body.password;
     const captcha = ctx.request.body.captchaText;
+    const smsCode = ctx.request.body.smsCode;
 
     if (captcha == ctx.session.captcha){
       if (ctx.user){
@@ -195,6 +198,7 @@ class UsersController extends BaseController{
           mobile:mobile,
           fullname:fullname,
           password:password,
+          smsCode:smsCode,
           openId:ctx.user.openid,
           nickname:ctx.user.nickname,
           gender:ctx.user.sex,
