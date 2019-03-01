@@ -4,18 +4,26 @@ var index = new Vue({
     data() {
         return {
             formItem:{
-                email:"",
+                mobile:"",
                 fullname:"",
+                smsCode:"",
                 password:"",
                 confirmPassword:"",
                 captchaText:""
             },
+            mobileCodeText:"点击获取验证码",
+            disableCodeBtn:false,
+            captchaBol:false,
             ruleValidate:{
-            	email:[
-        	       {required: true, message: '邮箱不能为空', trigger: 'blur'},
-        	       {type:"email", message: '请输入正确邮箱格式', trigger: 'blur'}
+            	mobile:[
+                   {required: true, message: '手机号码不能为空', trigger: 'blur'},
+         	       {required: true, len:11, message: '请输入正确手机号码格式', trigger: 'blur'}
             	],
             	fullname:{required: true, message: '用户名不能为空', trigger: 'blur'},
+                smsCode:[
+					{required: true, message: '请输入验证码', trigger: 'blur'},
+					{len:6, message: '验证码为6位', trigger: 'blur'}
+            	],
             	password:[
             	    {required: true, message: '请输入密码', trigger: 'blur'},
               	    {min:6, message: '密码至少为6位', trigger: 'blur'}
@@ -25,9 +33,8 @@ var index = new Vue({
               	    {min:6, message: '密码至少为6位', trigger: 'blur'}
             	]
             },
-            newOrOld:"",
+            newOrOld:"0",
             isRegister:true,
-            disableSbt:true,
             drawerShow: false,
         }
     },
@@ -35,14 +42,65 @@ var index = new Vue({
         radioChange(value){
             if(value == "0"){				//  new
                 this.isRegister = true;
-                this.disableSbt = true;
                 init_form(this);
     		}else if(value == "1"){			//  old
                 this.isRegister = false;
-                this.disableSbt = false;
                 init_form(this);
     		}
         },
+        //发送手机验证短信
+    	sendAcodeStg:function(){
+    		var that = this;
+    		this.$Loading.start();
+    		if(this.formItem.mobile.length == 11){
+    			var url = config.ajaxUrls.createSmsMessage + this.formItem.mobile;
+    			$.ajax({
+                    dataType:"json",
+                    type:"get",
+                    url:url,
+                    success:function(res){
+                        if(res.status == 200){
+                    		that.$Loading.finish();
+                        	that.$Notice.success({title:res.data, duration:3});
+                        	clock(that);
+                        }else{
+                    		that.$Loading.error();
+                        	that.$Notice.error({title:res.data, duration:3});
+                        }
+                    },
+                    error:function(){
+                		that.$Loading.error();
+                    	that.$Notice.error({title:"网络异常，请稍后重试！", duration:3});
+                    }
+                })
+    		}else if(this.formItem.mobile.length == 0){
+        		that.$Loading.error();
+    			that.$Notice.error({title:"请输入手机号", duration:3});
+    		}
+    	},
+        //验证手机验证码
+    	checkMobileCode(event){
+            if(event.target.value.length == 6){
+                var that = this,
+    			url = config.ajaxUrls.vertifySms;
+        		$.ajax({
+                    dataType:"json",
+                    type:"GET",
+                    url:url,
+                    data:{mobile:this.formItem.mobile,smsCode:this.formItem.smsCode},
+                    success:function(res){
+                        if(res.status == 200){
+                        	that.$Notice.success({title:res.data, duration:3});
+                        }else{
+                        	that.$Notice.error({title:res.data, duration:3});
+                        }
+                    },
+                    error:function(){
+                    	that.$Notice.error({title:"网络异常，请稍后重试！", duration:3});
+                    }
+                })
+            }
+    	},
         tapClick(){
             let that = this;
             $.ajax({
@@ -69,17 +127,16 @@ var index = new Vue({
                     data:{captchaText:this.formItem.captchaText},
                     success(res){
                         if (res.status == 200){
-                            that.disableSbt = false;
                             that.$Notice.success({title:res.data});
                         }else{
                             that.$Notice.error({title:res.data});
-                            that.disableSbt = true;
                         }
                     }
                 });
             }
         },
         submit(){
+            console.log(this.formItem);
             let that = this;
             this.$Loading.start();
             if (this.newOrOld == "0") {     //new
@@ -92,7 +149,6 @@ var index = new Vue({
                         that.$Loading.finish();
                         if (res.status == 200) {
                             that.$Notice.success({title:res.data});
-                            that.disableSbt = false;
                             init_form(that);
                         }else if(res.status == 999){
                             that.$Notice.error({
@@ -164,9 +220,22 @@ $(document).ready(function() {
     }
 });
 function init_form(that){
-    that.formItem.email = "";
     that.formItem.fullname = "";
+    that.formItem.mobile = "";
+    that.formItem.smsCode = "";
     that.formItem.password = "";
     that.formItem.confirmPassword = "";
     that.formItem.captchaText = "";
+}
+function clock(that){
+	var num = 60;
+	var int = setInterval(function(){
+		num > 0 ? num-- : clearInterval(int);
+		that.mobileCodeText = num + "秒后重试";
+		that.disableCodeBtn = true;
+		if(num == 0){
+			that.mobileCodeText = "点击获取验证码";
+    		that.disableCodeBtn = false;
+		}
+	},1000);
 }

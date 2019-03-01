@@ -7,12 +7,12 @@ body{
 
 .container{
     margin-top: 80px;
-    height: 500px;
+    height: 600px;
 }
 
 .complete_box{
     width: 950px;
-    height: 500px;
+    height: 600px;
     margin: 0 auto;
     padding: 20px 60px;
     background: #fff;
