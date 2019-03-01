@@ -33,7 +33,7 @@ var config = {
         getCaptcha:'/getCaptcha',
         checkCaptcha:'/checkCaptcha',
         createWxUser:"/website/users/createWxUser",
-        bindWeixinInfoByEmail:"/website/users/bindWeixinInfoByEmail",
+        bindWeixinInfoByMobile:"/website/users/bindWeixinInfoByMobile",
         updatePwd:"'/website/users/updatePwd'",
         updatePwdWithMobileAndSmsCode:'/website/users/updatePwdWithMobileAndSmsCode',
         //searchEngine
