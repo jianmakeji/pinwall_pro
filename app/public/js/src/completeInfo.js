@@ -13,8 +13,6 @@ var index = new Vue({
             },
             mobileCodeText:"点击获取验证码",
             disableCodeBtn:false,
-            captchaBol:false,
-            lock:false,
             ruleValidate:{
             	mobile:[
                    {required: true, message: '手机号码不能为空', trigger: 'blur'},
@@ -37,23 +35,6 @@ var index = new Vue({
             newOrOld:"0",
             isRegister:true,
             drawerShow: false,
-        }
-    },
-    computed:{
-        disableSbt(){
-            if (this.newOrOld == "0") {
-                if (this.cloak && this.formItem.smsCode.length == 6 && this.formItem.fullname && this.formItem.mobile && this.formItem.password && this.captchaBol) {
-                    return false;
-                } else {
-                    return true;
-                }
-            } else if(this.newOrOld == "1") {
-                if (this.cloak && this.formItem.smsCode.length == 6 && this.formItem.mobile && this.captchaBol) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
         }
     },
     methods: {
@@ -109,15 +90,12 @@ var index = new Vue({
                     success:function(res){
                         if(res.status == 200){
                         	that.$Notice.success({title:res.data, duration:3});
-                            this.lock = true;
                         }else{
                         	that.$Notice.error({title:res.data, duration:3});
-                            this.lock = false;
                         }
                     },
                     error:function(){
                     	that.$Notice.error({title:"网络异常，请稍后重试！", duration:3});
-                        this.lock = false;
                     }
                 })
             }
@@ -149,10 +127,8 @@ var index = new Vue({
                     success(res){
                         if (res.status == 200){
                             that.$Notice.success({title:res.data});
-                            that.captchaBol = true;
                         }else{
                             that.$Notice.error({title:res.data});
-                            that.captchaBol = false;
                         }
                     }
                 });
@@ -160,72 +136,72 @@ var index = new Vue({
         },
         submit(){
             console.log(this.formItem);
-            let that = this;
-            this.$Loading.start();
-            if (this.newOrOld == "0") {     //new
-                let subUrl = config.ajaxUrls.createWxUser;
-                $.ajax({
-                    url: subUrl,
-                    type: 'POST',
-                    data: this.formItem,
-                    success(res){
-                        that.$Loading.finish();
-                        if (res.status == 200) {
-                            that.$Notice.success({title:res.data});
-                            init_form(that);
-                        }else if(res.status == 999){
-                            that.$Notice.error({
-                                title:"没有操作权限，请登录",
-                                onClose(){
-                                    window.location.href = "/login";
-                                }
-                            });
-                        }else{
-                            that.$Notice.error({title:res.data});
-                            init_form(that);
-                        }
-                    },
-                    error(err){
-                        that.$Loading.error();
-                        that.$Notice.error({title:err.data});
-                        init_form(that);
-                    }
-                });
-            } else {
-                let subUrl = config.ajaxUrls.bindWeixinInfoByMobile;
-                $.ajax({
-                    url: subUrl,
-                    type: 'POST',
-                    data: this.formItem,
-                    success(res){
-                        that.$Loading.finish();
-                        if (res.status == 200) {
-                            that.$Notice.success({
-                                title:res.data,
-                                onClose(){
-                                    window.location.href = "/login";
-                                }
-                            });
-                            init_form(that);
-                        }else if(res.status == 999){
-                            that.$Notice.error({
-                                title:"没有操作权限，请登录",
-                                onClose(){
-                                    window.location.href = "/login";
-                                }
-                            });
-                        }else{
-                            that.$Notice.error({title:res.data});
-                            init_form(that);
-                        }
-                    },
-                    error(err){
-                        that.$Loading.error();
-                        that.$Notice.error({title:err.data});
-                        init_form(that);
-                    }
-                });
-            }
+            // let that = this;
+            // this.$Loading.start();
+            // if (this.newOrOld == "0") {     //new
+            //     let subUrl = config.ajaxUrls.createWxUser;
+            //     $.ajax({
+            //         url: subUrl,
+            //         type: 'POST',
+            //         data: this.formItem,
+            //         success(res){
+            //             that.$Loading.finish();
+            //             if (res.status == 200) {
+            //                 that.$Notice.success({title:res.data});
+            //                 init_form(that);
+            //             }else if(res.status == 999){
+            //                 that.$Notice.error({
+            //                     title:"没有操作权限，请登录",
+            //                     onClose(){
+            //                         window.location.href = "/login";
+            //                     }
+            //                 });
+            //             }else{
+            //                 that.$Notice.error({title:res.data});
+            //                 init_form(that);
+            //             }
+            //         },
+            //         error(err){
+            //             that.$Loading.error();
+            //             that.$Notice.error({title:err.data});
+            //             init_form(that);
+            //         }
+            //     });
+            // } else {
+            //     let subUrl = config.ajaxUrls.bindWeixinInfoByMobile;
+            //     $.ajax({
+            //         url: subUrl,
+            //         type: 'POST',
+            //         data: this.formItem,
+            //         success(res){
+            //             that.$Loading.finish();
+            //             if (res.status == 200) {
+            //                 that.$Notice.success({
+            //                     title:res.data,
+            //                     onClose(){
+            //                         window.location.href = "/login";
+            //                     }
+            //                 });
+            //                 init_form(that);
+            //             }else if(res.status == 999){
+            //                 that.$Notice.error({
+            //                     title:"没有操作权限，请登录",
+            //                     onClose(){
+            //                         window.location.href = "/login";
+            //                     }
+            //                 });
+            //             }else{
+            //                 that.$Notice.error({title:res.data});
+            //                 init_form(that);
+            //             }
+            //         },
+            //         error(err){
+            //             that.$Loading.error();
+            //             that.$Notice.error({title:err.data});
+            //             init_form(that);
+            //         }
+            //     });
+            // }
         }
     },
     created() {
