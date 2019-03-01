@@ -135,73 +135,72 @@ var index = new Vue({
             }
         },
         submit(){
-            console.log(this.formItem);
-            // let that = this;
-            // this.$Loading.start();
-            // if (this.newOrOld == "0") {     //new
-            //     let subUrl = config.ajaxUrls.createWxUser;
-            //     $.ajax({
-            //         url: subUrl,
-            //         type: 'POST',
-            //         data: this.formItem,
-            //         success(res){
-            //             that.$Loading.finish();
-            //             if (res.status == 200) {
-            //                 that.$Notice.success({title:res.data});
-            //                 init_form(that);
-            //             }else if(res.status == 999){
-            //                 that.$Notice.error({
-            //                     title:"没有操作权限，请登录",
-            //                     onClose(){
-            //                         window.location.href = "/login";
-            //                     }
-            //                 });
-            //             }else{
-            //                 that.$Notice.error({title:res.data});
-            //                 init_form(that);
-            //             }
-            //         },
-            //         error(err){
-            //             that.$Loading.error();
-            //             that.$Notice.error({title:err.data});
-            //             init_form(that);
-            //         }
-            //     });
-            // } else {
-            //     let subUrl = config.ajaxUrls.bindWeixinInfoByMobile;
-            //     $.ajax({
-            //         url: subUrl,
-            //         type: 'POST',
-            //         data: this.formItem,
-            //         success(res){
-            //             that.$Loading.finish();
-            //             if (res.status == 200) {
-            //                 that.$Notice.success({
-            //                     title:res.data,
-            //                     onClose(){
-            //                         window.location.href = "/login";
-            //                     }
-            //                 });
-            //                 init_form(that);
-            //             }else if(res.status == 999){
-            //                 that.$Notice.error({
-            //                     title:"没有操作权限，请登录",
-            //                     onClose(){
-            //                         window.location.href = "/login";
-            //                     }
-            //                 });
-            //             }else{
-            //                 that.$Notice.error({title:res.data});
-            //                 init_form(that);
-            //             }
-            //         },
-            //         error(err){
-            //             that.$Loading.error();
-            //             that.$Notice.error({title:err.data});
-            //             init_form(that);
-            //         }
-            //     });
-            // }
+            let that = this;
+            this.$Loading.start();
+            if (this.newOrOld == "0") {     //new
+                let subUrl = config.ajaxUrls.createWxUser;
+                $.ajax({
+                    url: subUrl,
+                    type: 'POST',
+                    data: this.formItem,
+                    success(res){
+                        that.$Loading.finish();
+                        if (res.status == 200) {
+                            that.$Notice.success({title:res.data});
+                            init_form(that);
+                        }else if(res.status == 999){
+                            that.$Notice.error({
+                                title:"没有操作权限，请登录",
+                                onClose(){
+                                    window.location.href = "/login";
+                                }
+                            });
+                        }else{
+                            that.$Notice.error({title:res.data});
+                            init_form(that);
+                        }
+                    },
+                    error(err){
+                        that.$Loading.error();
+                        that.$Notice.error({title:err.data});
+                        init_form(that);
+                    }
+                });
+            } else {
+                let subUrl = config.ajaxUrls.bindWeixinInfoByMobile;
+                $.ajax({
+                    url: subUrl,
+                    type: 'POST',
+                    data: this.formItem,
+                    success(res){
+                        that.$Loading.finish();
+                        if (res.status == 200) {
+                            that.$Notice.success({
+                                title:res.data,
+                                onClose(){
+                                    window.location.href = "/login";
+                                }
+                            });
+                            init_form(that);
+                        }else if(res.status == 999){
+                            that.$Notice.error({
+                                title:"没有操作权限，请登录",
+                                onClose(){
+                                    window.location.href = "/login";
+                                }
+                            });
+                        }else{
+                            that.$Notice.error({title:res.data});
+                            init_form(that);
+                        }
+                    },
+                    error(err){
+                        that.$Loading.error();
+                        that.$Notice.error({title:err.data});
+                        init_form(that);
+                    }
+                });
+            }
         }
     },
     created() {
