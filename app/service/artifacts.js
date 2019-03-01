@@ -352,6 +352,7 @@ class Artifacts extends Service {
   }
 
   async transterInsertDataToES(idArray) {
+    const ctx = this.ctx;
     try{
       let esArray = await this.ctx.model.Artifacts.transferArtifacts(idArray);
       for (let artiObj of esArray){
@@ -387,6 +388,7 @@ class Artifacts extends Service {
   }
 
   async transterUpdateDataToES(idArray) {
+    const ctx = this.ctx;
     try{
       let esArray = await this.ctx.model.Artifacts.transferArtifacts(idArray);
       for (let artiObj of esArray){
