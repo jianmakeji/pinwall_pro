@@ -13,21 +13,21 @@ class Artifacts extends Service {
       jobTag,
     });
 
-    const app = this.ctx.helper;
+    const helper = this.ctx.helper;
     resultObj.rows.forEach((element, index)=>{
-      element.profileImage = app.signatureUrl(app.imagePath + element.profileImage, "thumb_360_360");
+      element.profileImage = helper.signatureUrl(helper.imagePath + element.profileImage, "thumb_360_360");
 
       for (let subElement of element.artifact_assets){
-        subElement.profileImage = app.signatureUrl(app.imagePath + subElement.profileImage, "thumb_1000");
+        subElement.profileImage = helper.signatureUrl(helper.imagePath + subElement.profileImage, "thumb_1000");
 
         if (subElement.type == 2 && subElement.mediaFile != null){
-            subElement.mediaFile = app.signatureUrl(app.pdfPath + subElement.mediaFile);
+            subElement.mediaFile = helper.signatureUrl(helper.pdfPath + subElement.mediaFile);
         }
         else if (subElement.type == 3 && subElement.mediaFile != null){
-            subElement.mediaFile = app.signatureUrl(app.rar_zipPath + subElement.mediaFile);
+            subElement.mediaFile = helper.signatureUrl(helper.rar_zipPath + subElement.mediaFile);
         }
         else if (subElement.type == 4 && subElement.mediaFile != null){
-            subElement.mediaFile = app.signatureUrl(app.videoPath + subElement.mediaFile);
+            subElement.mediaFile = helper.signatureUrl(helper.videoPath + subElement.mediaFile);
         }
       }
     });
@@ -38,21 +38,21 @@ class Artifacts extends Service {
   async find(id) {
 
     const artifact = await this.ctx.model.Artifacts.findArtifactById(id);
-    const app = this.ctx.helper;
+    const helper = this.ctx.helper;
 
-    artifact.profileImage = app.signatureUrl(app.imagePath + artifact.profileImage, "thumb_360_360");
+    artifact.profileImage = helper.signatureUrl(helper.imagePath + artifact.profileImage, "thumb_360_360");
 
     for (let subElement of artifact.artifact_assets){
-      subElement.profileImage = app.signatureUrl(app.imagePath + subElement.profileImage, "thumb_1000");
+      subElement.profileImage = helper.signatureUrl(helper.imagePath + subElement.profileImage, "thumb_1000");
 
       if (subElement.type == 2 && subElement.mediaFile != null){
-        subElement.mediaFile = app.signatureUrl(app.pdfPath + subElement.mediaFile);
+        subElement.mediaFile = helper.signatureUrl(helper.pdfPath + subElement.mediaFile);
       }
       else if (subElement.type == 3 && subElement.mediaFile != null){
-        subElement.mediaFile = app.signatureUrl(app.rar_zipPath + subElement.mediaFile);
+        subElement.mediaFile = helper.signatureUrl(helper.rar_zipPath + subElement.mediaFile);
       }
       else if (subElement.type == 4 && subElement.mediaFile != null){
-        subElement.mediaFile = app.signatureUrl(app.videoPath + subElement.mediaFile);
+        subElement.mediaFile = helper.signatureUrl(helper.videoPath + subElement.mediaFile);
       }
     }
 
@@ -323,21 +323,21 @@ class Artifacts extends Service {
 
   async getPersonalJobByUserId(query) {
     let resultObj = await this.ctx.model.Artifacts.getPersonalJobByUserId(query);
-    const app = this.ctx.helper;
+    const helper = this.ctx.helper;
     resultObj.rows.forEach((element, index)=>{
-      element.profileImage = app.signatureUrl(app.imagePath + element.profileImage, "thumb_360_360");
+      element.profileImage = helper.signatureUrl(helper.imagePath + element.profileImage, "thumb_360_360");
 
       for (let subElement of element.artifact_assets){
-        subElement.profileImage = app.signatureUrl(app.imagePath + subElement.profileImage, "thumb_1000");
+        subElement.profileImage = helper.signatureUrl(helper.imagePath + subElement.profileImage, "thumb_1000");
 
         if (subElement.type == 2 && subElement.mediaFile != null){
-          subElement.mediaFile = app.signatureUrl(app.pdfPath + subElement.mediaFile);
+          subElement.mediaFile = helper.signatureUrl(helper.pdfPath + subElement.mediaFile);
         }
         else if (subElement.type == 3 && subElement.mediaFile != null){
-          subElement.mediaFile = app.signatureUrl(app.rar_zipPath + subElement.mediaFile);
+          subElement.mediaFile = helper.signatureUrl(helper.rar_zipPath + subElement.mediaFile);
         }
         else if (subElement.type == 4 && subElement.mediaFile != null){
-          subElement.mediaFile = app.signatureUrl(app.videoPath + subElement.mediaFile);
+          subElement.mediaFile = helper.signatureUrl(helper.videoPath + subElement.mediaFile);
         }
       }
 
