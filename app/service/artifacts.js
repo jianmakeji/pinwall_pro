@@ -301,24 +301,33 @@ class Artifacts extends Service {
   }
 
   async getMedalDataByRandom(limit){
+    const helper = this.ctx.helper;
     const listData = await this.ctx.model.Artifacts.getMedalDataByRandom();
     const max = listData.length;
-    const setData = new Set();
+    if(max < limit){
+        listData.forEach((element, index)=>{
+            let profileImage = element.profileImage;
+            element.profileImage = helper.signatureUrl(helper.imagePath + profileImage, "thumb_360_360");
+        });
 
-    if (listData > 0){
+        return listData;
+    }
+    else{
+      const setData = new Set();
       while(setData.size != limit){
         let rand = Math.random();
         let num = Math.floor(rand * max);
         setData.add(num);
       }
-    }
+      let result = new Array();
+      for (let item of setData.values()) {
+        let profileImage = listData[item].dataValues.profileImage;
+        listData[item].dataValues.profileImage = helper.signatureUrl(helper.imagePath + profileImage, "thumb_360_360");
+        result.push(listData[item]);
+      }
 
-    let result = new Array();
-    for (let item of setData.values()) {
-      result.push(listData[item]);
+      return result;
     }
-
-    return result;
   }
 
   async getPersonalJobByUserId(query) {
