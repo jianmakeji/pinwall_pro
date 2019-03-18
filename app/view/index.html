@@ -17,7 +17,7 @@
 	<div class="container" :style="containerStyle">
 		<ul class="de_project_photowall">
 
-			<li v-for="(item, index) in dataList" :class="'item-'+index">
+			<li v-if="screenType == 'PC'" v-for="(item, index) in dataList" :class="'item-'+index">
 				<div class="flip">
 			        <div class="front">
 			            <img :src="item.profileImage">
@@ -53,6 +53,13 @@
 			            	</div>
 			            </div>
 					</div>
+			    </div>
+			</li>
+			<li v-if="screenType == 'mobile'" v-for="(item, index) in dataList" :class="'item-'+index">
+				<div class="flip">
+					<div class="front" >
+			            <img :src="item.profileImage" @click="tapArtifact(item.Id)">
+			        </div>
 			    </div>
 			</li>
 		</ul>
