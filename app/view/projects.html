@@ -13,13 +13,13 @@
 			<div class="zan_box">
 				{% if user.roles[0].name != "" %}
 					<a @click="zan('{{data.userId}}','{{user.roles[0].name}}')">
-						<img :src="artifactZanTag ? 'http://pinwall.design-engine.org/images/app/flag_green.png' : 'http://pinwall.design-engine.org/images/app/flag_gray.png'" alt="">
+						<img :src="artifactZanTag ? '../public/images/flag_green.png' : '../public/images/flag_gray.png'" alt="">
 						<icon type="ios-thumbs-up" style="font-size: 40px; position: absolute;top: 15px;left: 20px;"></icon>
 						<span>赞</span>
 					</a>
 				{% else %}
 					<a @click="zan('{{data.userId}}','{{user.roles[0].name}}')">
-						<img src="http://pinwall.design-engine.org/images/app/flag_gray.png" alt="">
+						<img src="../public/images/flag_gray.png" alt="">
 						<icon type="ios-thumbs-up" style="font-size: 40px; position: absolute;top: 15px;left: 20px;"></icon>
 						<span>赞</span>
 					</a>
@@ -71,7 +71,7 @@
 						{% if data.user.avatarUrl %}
 						<img class="photo" src="{{data.user.avatarUrl}}" alt="">
 						{% else %}
-                        <img class="photo" src="http://pinwall.design-engine.org/images/default_profile.jpg" alt="">
+                        <img class="photo" src="../public/images/default_profile.jpg" alt="">
 						{% endif %}
                         <p class="name">{{data.user.fullname}}</p>
                     </a>
@@ -127,7 +127,7 @@
 					<li v-for="item in dataList">
 						<div class="user_info">
 							<a :href="'/users/'+item.user.Id">
-								<img class="photo" :src="item.user.avatarUrl ? item.user.avatarUrl : 'http://pinwall.design-engine.org/images/default_profile.jpg'">
+								<img class="photo" :src="item.user.avatarUrl ? item.user.avatarUrl : '../public/images/default_profile.jpg'">
 							</a>
 						</div>
 						<div class="comment_wrapper">
@@ -143,7 +143,7 @@
 				<div class="comment_form">
 					<div class="user_info">
 						<a href="/users/{{user.Id}}">
-							<img class="photo" src="http://pinwall.design-engine.org/images/default_profile.jpg" alt="">
+							<img class="photo" src="../public/images/default_profile.jpg" alt="">
 						</a>
 					</div>
 					<div class="comment_wrapper">

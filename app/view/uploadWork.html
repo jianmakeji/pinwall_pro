@@ -51,7 +51,7 @@
 								<p>请上传一张正方形、宽度500~800px的jpg或png图像作为作品封面。</p>
 							</form-item>
 							<form-item label="封面预览" prop="profileImage">
-								<img class="project_thumb" :src="step1_upload_fengmian_src ? step1_upload_fengmian_src : 'http://pinwall.design-engine.org/images/app/default_thumb_500.png'">
+								<img class="project_thumb" :src="step1_upload_fengmian_src ? step1_upload_fengmian_src : '../public/images/default_thumb_500.png'">
 							</form-item>
 						</i-col>
 				</div>
@@ -134,14 +134,14 @@
 				<div class="step3" v-show="stepThreeActive">
 					<div class="submit_box">
 						<a @click="submitData">
-							<img src="http://pinwall.design-engine.org/images/app/flag_green.png">
+							<img src="../public/images/flag_green.png">
 							<icon type="ios-thumbs-up" style="font-size: 40px; position: absolute;top: 15px;left: 20px;"></icon>
 							<span>提交</span>
 						</a>
 					</div>
 					<div class="user_info">
 						<a href="#">
-							<img class="photo" :src="'{{user.avatarUrl}}' ? '{{user.avatarUrl}}' : 'http://pinwall.design-engine.org/images/default_profile.jpg'">
+							<img class="photo" :src="'{{user.avatarUrl}}' ? '{{user.avatarUrl}}' : '../public/images/default_profile.jpg'">
 							<p class="name">{{user.fullname}}</p>
 						</a>
 					</div>
