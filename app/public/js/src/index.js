@@ -4,7 +4,7 @@ var index = new Vue({
         return{
             containerStyle:{
                 width: "100%",
-                height: "500px",
+                height: "",
                 marginTop:"",
                 overflow: "hidden",
                 position: "relative",
@@ -15,7 +15,12 @@ var index = new Vue({
     },
     created:function(){
         this.$Loading.start();
-        this.containerStyle.marginTop = (document.documentElement.clientHeight - 100 - 500 - 50 ) / 2 + "px";
+        if(document.documentElement.clientWidth < 450){
+            this.containerStyle.height = 1150 + "px";
+        }else{
+            this.containerStyle.marginTop = (document.documentElement.clientHeight - 100 - 500 - 50 ) / 2 + "px";
+            this.containerStyle.height = 500 + "px";
+        }
         var that = this;
         isChorme(this);
         this.$http({

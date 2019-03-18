@@ -1,0 +1,260 @@
+
+@media screen and (max-width: 420px){  /* 当屏幕尺寸小于992px时，应用下面的CSS样式 */
+
+    .de_project_photowall {
+    	position: absolute;
+    	top: 0;
+    	left: 0;
+    	transform: translate(0, 0);
+    }
+
+    .front img,
+    .back img {
+    	width: 100%;
+    	height: 100%;
+    }
+
+    .front {z-index: 2;}
+    .back {transform: rotateX(-180deg);width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #07af69;
+        padding: 20px;
+        box-sizing: border-box;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);}
+    /*第一尺寸*/
+    .item-0 {perspective: 1000px;transform-style: preserve-3d;}
+    .item-0 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 180px;}
+    .item-0:hover .flip {transform: rotateX(180deg);height: 180px;}
+    .item-0,.item-0 .front,.item-0 .back {width: 180px;	height: 180px;}
+    .item-0 .front{	position: absolute;	top: 10px;	left: 10px;	backface-visibility: hidden;}
+    .item-0 .back {	position: absolute;	top: -10px;	left: 10px;	backface-visibility: hidden;}
+
+    .item-0 .back .photo{width: 40px;height: 40px;overflow: hidden;border-radius: 18px;display: block;}
+    .item-0 .back .name{position: absolute;top: 20px;left: 65px;right: 0;margin: auto;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;font-size: 12px;font-weight: bold;text-align: left;color: #fff;}
+    .item-0 .back .date{position: absolute;top: 40px;left: 65px;right: 0;text-align: left;margin: 0;font-size: 10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;display: inline-block;color: #ccc;}
+
+    .item-0 .project_info h4{
+    	font-size: 12px;
+        text-align: left;
+        color: #fff;
+        margin: 0;
+        line-height: 1.5em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .item-0 .project_info .abstract{
+    	font-size: 14px;
+        text-align: left;
+        color: #333;
+        margin: 0;
+        line-height: 1.5em;
+        max-height: 6em;
+        overflow: hidden;
+        display: block;
+    }
+    .item-0 .topic_title {
+    	font-size: 14px;
+        line-height: 1.5em;
+        display: block;
+    }
+    .item-0 .topic_title_url {
+        color: #fff;
+    }
+    .item-0 .de_stats_tags {
+        padding: 10px 20px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .item-0 .de_stats_tags .badges, .item-0 .de_stats_tags .likes,.item-0 .de_stats_tags .comments{
+    	margin-right: 10px;
+        width: 40px;
+        height: 25px;
+        align-items: center;
+        justify-content: center;
+    }
+    .item-0 .de_stats_tags img{
+        width: 25px;
+        height: 25px;
+        align-items: center;
+    }
+    .item-0 .de_stats_tags span{
+    	position: absolute;
+        top: 10px;
+    	font-size: 14px;
+        width: 15px;
+        height: 25px;
+        color: white;
+        margin-left: 5px;
+    }
+
+
+    /*第二尺寸*/
+    item-1 {	perspective: 1000;	transform-style: preserve-3d;}
+    .item-1 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 180px;}
+    .item-1:hover .flip {	transform: rotateX(180deg);}
+    .item-1,.item-1 .front,.item-1 .back {	width: 180px;	height: 180px;	position: absolute;	top: 10px;	right: -200px;}
+    .item-1 .front,.item-1 .back {	position: absolute;	top: 0px;	left: 0px;	backface-visibility: hidden;}
+    .item-1 .back .photo{width: 40px;height: 40px;overflow: hidden;border-radius: 18px;display: block;}
+    .item-1 .back .name{position: absolute;top: 20px;left: 65px;right: 0;margin: auto;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;font-size: 12px;font-weight: bold;text-align: left;color: #fff;}
+    .item-1 .back .date{position: absolute;top: 40px;left: 65px;right: 0;text-align: left;margin: 0;font-size: 10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;display: inline-block;color: #ccc;}
+
+    .item-2 {	perspective: 1000px;	transform-style: preserve-3d;}
+    .item-2 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 180px;}
+    .item-2:hover .flip {	transform: rotateX(180deg);}
+    .item-2,.item-2 .front,.item-2 .back {	width: 180px;	height: 180px;	position: absolute;	left: 10px;	top: 200px;}
+    .item-2 .front,.item-2 .back {	position: absolute;	top: 0px;	left: 0px;	backface-visibility: hidden;}
+    .item-2 .back .photo{width: 40px;height: 40px;overflow: hidden;border-radius: 18px;display: block;}
+    .item-2 .back .name{position: absolute;top: 20px;left: 65px;right: 0;margin: auto;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;font-size: 12px;font-weight: bold;text-align: left;color: #fff;}
+    .item-2 .back .date{position: absolute;top: 40px;left: 65px;right: 0;text-align: left;margin: 0;font-size: 10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;display: inline-block;color: #ccc;}
+
+    .item-1 .project_info h4,.item-2 .project_info h4{
+    	font-size: 16px;
+        text-align: left;
+        color: #fff;
+        margin-top: 10px;
+        line-height: 1.5em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .item-1 .de_stats_tags,.item-2 .de_stats_tags {
+        padding: 10px 20px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .item-1 .de_stats_tags .badges, .item-1 .de_stats_tags .likes,.item-1 .de_stats_tags .comments,
+    .item-2 .de_stats_tags .badges, .item-2 .de_stats_tags .likes,.item-2 .de_stats_tags .comments{
+    	margin-right: 10px;
+        width: 40px;
+        height: 25px;
+        align-items: center;
+        justify-content: center;
+    }
+    .item-1 .de_stats_tags img,
+    .item-2 .de_stats_tags img{
+        width: 25px;
+        height: 25px;
+        align-items: center;
+    }
+    .item-1 .de_stats_tags span,
+    .item-2 .de_stats_tags span{
+    	position: absolute;
+        top: 10px;
+    	font-size: 14px;
+        width: 15px;
+        height: 25px;
+        color: #fff;
+        margin-left: 5px;
+    } */
+
+    /*第三尺寸*/
+    .item-3 {	perspective: 1000px;	transform-style: preserve-3d;}
+    .item-3 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 180px;}
+    .item-3:hover .flip {	transform: rotateX(180deg);}
+    .item-3,.item-3 .front,.item-3 .back {	width: 180px;	height: 180px;	position: absolute;	right: -200px;	top: 200px;}
+    .item-3 .front,.item-3 .back {	position: absolute;	top: 0px;	left: 0px;	backface-visibility: hidden;}
+
+    .item-4 {	perspective: 1000px;	transform-style: preserve-3d;}
+    .item-4 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 180px;}
+    .item-4:hover .flip {	transform: rotateX(180deg);}
+    .item-4,.item-4 .front,.item-4 .back {	width: 180px;	height: 180px;	position: absolute;	left: 10px;	top: 400px;}
+    .item-4 .front,.item-4 .back {	position: absolute;	top: 0px;	left: 0px;	backface-visibility: hidden;}
+
+    .item-3 .back .name,.item-4 .back .name{
+    	position: absolute;top: 20px;margin: auto;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;font-size: 12px;font-weight: bold;text-align: left;color: #fff;
+    	}
+    .item-3 .project_info h4,.item-4 .project_info h4{
+    	font-size: 12px;
+        text-align: left;
+        color: #fff;
+        line-height: 1.5em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /*第四尺寸*/
+
+    .item-5 {	perspective: 1000px;	transform-style: preserve-3d;}
+    .item-5 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 180px;}
+    .item-5:hover .flip {	transform: rotateX(180deg);}
+    .item-5,.item-5 .front,.item-5 .back {	width: 180px;	height: 180px;	position: absolute;	top: 400px;	right: -200px;}
+    .item-5 .front,.item-5 .back {	position: absolute;top: 0px;	left: 0px;	backface-visibility: hidden;}
+
+    .item-6 {	perspective: 1000px;	transform-style: preserve-3d;}
+    .item-6 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 180px;}
+    .item-6:hover .flip {	transform: rotateX(180deg);}
+    .item-6,.item-6 .front,.item-6 .back {	width: 180px;	height: 180px;	position: absolute;	top: 600px;	left: 10px;}
+    .item-6 .front,.item-6 .back {	position: absolute;	top: 0px;	left: 0px;	backface-visibility: hidden;}
+
+    .item-7 {	perspective: 1000px;	transform-style: preserve-3d;}
+    .item-7 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 180px;}
+    .item-7:hover .flip {	transform: rotateX(180deg);}
+    .item-7,.item-7 .front,.item-7 .back {	width: 180px;	height: 180px;	position: absolute;	top: 600px;	right: -200px;}
+    .item-7 .front,.item-7 .back {	position: absolute;	top: 0px;	left: 0px;	backface-visibility: hidden;}
+
+    .item-8 {	perspective: 1000px;	transform-style: preserve-3d;}
+    .item-8 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 180px;}
+    .item-8:hover .flip {	transform: rotateX(180deg);}
+    .item-8,.item-8 .front,.item-8 .back {	width: 180px;	height: 180px;	position: absolute;	left: 10px; top: 800px;}
+    .item-8 .front,.item-8 .back {	position: absolute;	top: 0px;	left: 0px;	backface-visibility: hidden;}
+
+    .item-9 {	perspective: 1000px;	transform-style: preserve-3d;}
+    .item-9 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 180px;}
+    .item-9:hover .flip {	transform: rotateX(180deg);}
+    .item-9,.item-9 .front,.item-9 .back {	width: 180px;	height: 180px;	position: absolute;	right:-200px;	top: 800px;}
+    .item-9 .front,.item-9 .back {	position: absolute;	top: 0px;	left: 0px;	backface-visibility: hidden;}
+
+    .item-10 {	perspective: 1000px;	transform-style: preserve-3d;}
+    .item-10 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 180px;}
+    .item-10:hover .flip {	transform: rotateX(180deg);}
+    .item-10,.item-10 .front,.item-10 .back {	width: 180px;	height: 180px;	position: absolute;	top: 1000px;	left: 10px;}
+    .item-10 .front,.item-10 .back {	position: absolute;top: 0px;	left: 0px;	backface-visibility: hidden;}
+
+    .item-11 {	perspective: 1000px;	transform-style: preserve-3d;}
+    .item-11 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 180px;}
+    .item-11:hover .flip {	transform: rotateX(180deg);}
+    .item-11,.item-11 .front,.item-11 .back {	width: 180px;	height: 180px;	position: absolute;top: 1000px;	right: -200px;}
+    .item-11 .front,.item-11 .back {	position: absolute;	top: 0px;	left: 0px;	backface-visibility: hidden;}
+    .item-5 .project_info h4,.item-6 .project_info h4,
+    .item-7 .project_info h4,.item-8 .project_info h4,
+    .item-9 .project_info h4,.item-10 .project_info h4,
+    .item-11 .project_info h4{
+    	font-size: 4px;
+        text-align: left;
+        color: #fff;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    	display: -webkit-box;
+    	-webkit-line-clamp: 2;
+    	-webkit-box-orient: vertical;
+    }
+
+    .footer {
+    	padding: 5px 0;
+    	color: #999;
+    	text-shadow: 0 1px rgba(255, 255, 255, 1);
+    	font-size: 12px;
+    	height: 50px;
+    	width: 100%;
+    	overflow: hidden;
+    	text-align: center;
+    	position: relative;
+    	margin-top: 5px;
+    }
+}

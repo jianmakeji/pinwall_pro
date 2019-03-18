@@ -50,7 +50,7 @@ img{
 }
 .header .pinwall_logo .div2{
     position: absolute;
-    background: url('http://pinwall.design-engine.org/images/app/loading_spinner.png');
+    background: url('../../images/loading_spinner.png');
     background-repeat: no-repeat;
     background-position: center;
     transform: rotateY(35deg);
@@ -122,25 +122,30 @@ img{
         display: none;
     }
     .header .index{
-        width: 60px;
+        width: 70px;
     }
     .header .topicsAbout{
-        width: 60px;
+        width: 70px;
     }
     .header .topics{
-        width: 60px;
+        width: 70px;
     }
     .header .search{
-        width: 60px;
+        width: 70px;
     }
     .header .user_profile{
-        right: 60px;
+        right: 0px;
         width: 100px;
+        top: 10px;
+    }
+    .header .user_profile span{
+        display: none;
     }
     .header .drawerShow{
-        display: none;
+        position: absolute;
+        left: 330px;
     }
     .header .login{
-        display: none;
+        right:5px;
     }
 }
