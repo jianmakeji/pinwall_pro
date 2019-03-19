@@ -86,7 +86,9 @@ img{
     display: flex;flex-direction: row;align-items: center;position:absolute;right:20px;top: 10px;
 }
 
-
+.header .drawerShow{
+    position:absolute;right:20px;
+}
 
 @media screen and (min-width: 530px) and (max-width: 850px){ /*当屏幕尺寸小于992px时，应用下面的CSS样式*/
 
@@ -143,7 +145,7 @@ img{
     }
     .header .drawerShow{
         position: absolute;
-        left: 330px;
+        right: 0;
     }
     .header .login{
         right:5px;

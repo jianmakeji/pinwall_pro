@@ -5,6 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="public/css/src/base.css"/>
 	<link rel="stylesheet" type="text/css" href="public/css/src/model.css">
 	<link rel="stylesheet" type="text/css" href="public/css/src/index.css"/>
+	<link rel="stylesheet" type="text/css" href="public/css/src/phoneIndex.css"/>
 {% endblock %}
 
 {% block head_btn %}
@@ -36,8 +37,6 @@
 			            		<p class="abstract" v-if="!index" v-text="item.description"></p>
 			            	</a>
 			            </div>
-			            <!-- <p class="topic_title" v-if="!index">收录于</p>
-			            <a class="topic_title_url" :href="'topics/'+item.Id" v-if="!index">2016级2班 整合设计表达（2018-2019秋季学期）</a> -->
 			            <div class="de_stats_tags"  v-if="index < 3">
 			            	<div class="badges" title="勋章">
 			            		<icon type="ios-ribbon" style="font-size: 20px;" color="#fff"></icon>

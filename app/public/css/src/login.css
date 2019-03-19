@@ -106,7 +106,9 @@ body{
 	width: 120px;
 }
 
-
+.login_panel .rememberPwd .wxLoginBtn{
+	border:none;margin-left:100px;
+}
 
 .login_panel .submit{
 	width: 120px;
@@ -137,7 +139,34 @@ body{
 	margin: 15px 0;
 }
 
+@media screen and (max-width: 540px){  /* 当屏幕尺寸小于540px时，应用下面的CSS样式 */
 
+	.login_panel {
+	    display: flex;
+	    flex-direction: column;
+	    width: 370px;
+	    height: 500px;
+	    margin: 0 auto;
+	    background: white;
+	    padding: 10px 20px;
+	    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	}
+	.login_panel .login_info{
+		width: 100%;			/* 弹出层  90%*/
+		height: auto;
+	}
+
+	.login_panel .register {
+	    width: 100%;
+	    padding-left: 60px;
+	    border-left: none;
+	    border-top: #ccc 1px dotted;
+	    margin-left: 20px;
+	}
+	.login_panel .rememberPwd .wxLoginBtn {
+	    margin-left: 60px;
+	}
+}
 
 
 
