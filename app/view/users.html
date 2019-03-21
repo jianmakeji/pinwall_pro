@@ -19,7 +19,7 @@
 				<i-col :xs="12" :sm="2" :md="1" :lg="1">
 					<div class="user_info">
 						<a>
-							<img :src="userInfo.avatarUrl ? userInfo.avatarUrl : 'http://pinwall.design-engine.org/images/default_profile.jpg'" alt="">
+							<img :src="userInfo.avatarUrl ? userInfo.avatarUrl : '../public/images/default_profile.jpg'">
 							<p class="name" v-text="userInfo.fullname"></p>
 						</a>
 					</div>
@@ -72,14 +72,13 @@
 					<li class="de_card_m">
 						<div class="user_info">
 							<a :href="'/project/'+item.Id" target="_blank">
-								<img class="photo" :src="userInfo.avatarUrl ? userInfo.avatarUrl : 'http://pinwall.design-engine.org/images/default_profile.jpg'" alt="">
+								<img class="photo" :src="userInfo.avatarUrl ? userInfo.avatarUrl : '../public/images/default_profile.jpg'">
 								<p class="name" v-text="item.user.fullname"></p>
 								<p class="date" v-text="item.createAt.split('T')[0]"></p>
 							</a>
 						</div>
 						<div class="project_info">
 							<a :href="'/project/'+item.Id" target="_blank">
-								<!-- <img class="thumb" :src="item.profileImage" alt=""> -->
 								<img class="thumb" v-lazy="item.profileImage" loading="../public//images/default_thumb_500.png">
 								<h4 v-text="item.name"></h4>
 							</a>

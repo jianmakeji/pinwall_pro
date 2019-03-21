@@ -331,6 +331,8 @@ module.exports = app => {
         },
         visible:0
       },
+      order:[['createAt', 'DESC']],
+      limit: 100,
       include: [{
           model: app.model.Users
       }],

@@ -50,7 +50,7 @@ img{
 }
 .header .pinwall_logo .div2{
     position: absolute;
-    background: url('http://pinwall.design-engine.org/images/app/loading_spinner.png');
+    background: url('../../images/loading_spinner.png');
     background-repeat: no-repeat;
     background-position: center;
     transform: rotateY(35deg);
@@ -86,7 +86,9 @@ img{
     display: flex;flex-direction: row;align-items: center;position:absolute;right:20px;top: 10px;
 }
 
-
+.header .drawerShow{
+    position:absolute;right:20px;
+}
 
 @media screen and (min-width: 530px) and (max-width: 850px){ /*当屏幕尺寸小于992px时，应用下面的CSS样式*/
 
@@ -122,25 +124,30 @@ img{
         display: none;
     }
     .header .index{
-        width: 60px;
+        width: 70px;
     }
     .header .topicsAbout{
-        width: 60px;
+        width: 70px;
     }
     .header .topics{
-        width: 60px;
+        width: 70px;
     }
     .header .search{
-        width: 60px;
+        width: 70px;
     }
     .header .user_profile{
-        right: 60px;
+        right: 0px;
         width: 100px;
+        top: 10px;
+    }
+    .header .user_profile span{
+        display: none;
     }
     .header .drawerShow{
-        display: none;
+        position: absolute;
+        right: 0;
     }
     .header .login{
-        display: none;
+        right:5px;
     }
 }

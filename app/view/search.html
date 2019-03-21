@@ -23,14 +23,13 @@
 					<li class="de_card_m">
 						<div class="user_info">
 							<a :href="'/users/'+item._source.user.Id">
-								<img class="photo" :src="item._source.user.avatarUrl? item._source.user.avatarUrl : 'http://pinwall.design-engine.org/images/default_profile.jpg'">
+								<img class="photo" :src="item._source.user.avatarUrl? item._source.user.avatarUrl : '../public/images/default_profile.jpg'">
 								<p class="name" v-text="item._source.user.fullname"></p>
 								<p class="date" v-text="item._source.createAt.split('T')[0]"></p>
 							</a>
 						</div>
 						<div class="project_info">
 							<a :href="'/project/'+item._source.Id" target="_blank">
-								<!-- <img class="thumb" :src="item._source.profileImage? item._source.profileImage : 'http://pinwall.design-engine.org/images/default_profile.jpg'"> -->
 								<img class="thumb" v-lazy="item._source.profileImage" loading="../public//images/default_thumb_500.png">
 								<h4 v-text="item._source.name"></h4>
 							</a>

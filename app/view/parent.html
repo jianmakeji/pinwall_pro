@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 		<title>图钉墙 - HNU Design</title>
 
 		<!-- css文件引用 -->
@@ -35,11 +36,11 @@
 					{% if user.avatarUrl %}
 						<img class="photo" src="{{user.avatarUrl}}" title="用户头像">
 					{% else %}
-						<img class="photo" src="http://pinwall.design-engine.org/images/default_profile.jpg" title="用户头像">
+						<img class="photo" src="../public/images/default_profile.jpg" title="用户头像">
 					{% endif %}
 					<span style="margin-left: 12px;overflow: hidden;white-space: nowrap;" title="{{user.fullname}}">{{user.fullname}}</span>
 				</a>
-				<div class="drawerShow" style="position:absolute;right:20px;">
+				<div class="drawerShow">
 					<i-button type="text" ghost="true" @click="drawerShow = !drawerShow" size="small"><icon type="md-menu" size="30"></icon></i-button>
 				</div>
 				{% else %}

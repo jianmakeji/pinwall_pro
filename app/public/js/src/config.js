@@ -48,5 +48,5 @@ var config = {
         uploadWork:'/uploadWork/1?topicId=:id',
         topicsUpdate:'/topicsUpdate/:id'
     },
-    default_profile: "http://pinwall.design-engine.org/images/default_profile.jpg"
+    default_profile: "../public/images/default_profile.jpg"
 }

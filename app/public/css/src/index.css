@@ -33,7 +33,7 @@ body{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);}
 
 /*第一尺寸*/
-.item-0 {perspective: 1000;transform-style: preserve-3d;}
+.item-0 {perspective: 1000px;transform-style: preserve-3d;}
 .item-0 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 300px;}
 .item-0:hover .flip {transform: rotateX(180deg);height: 300px;}
 .item-0,.item-0 .front,.item-0 .back {width: 300px;	height: 300px;}
@@ -114,7 +114,7 @@ body{
 .item-1 .back .name{position: absolute;top: 20px;left: 65px;right: 0;margin: auto;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;font-size: 12px;font-weight: bold;text-align: left;color: #fff;}
 .item-1 .back .date{position: absolute;top: 40px;left: 65px;right: 0;text-align: left;margin: 0;font-size: 10px;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;display: inline-block;color: #ccc;}
 
-.item-2 {	perspective: 1000;	transform-style: preserve-3d;}
+.item-2 {	perspective: 1000px;	transform-style: preserve-3d;}
 .item-2 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 200px;}
 .item-2:hover .flip {	transform: rotateX(180deg);}
 .item-2,.item-2 .front,.item-2 .back {	width: 200px;	height: 200px;	position: absolute;	bottom: 0;	left: -210px;}
@@ -169,13 +169,13 @@ body{
 }
 
 /*第三尺寸*/
-.item-3 {	perspective: item-8;	transform-style: preserve-3d;}
+.item-3 {	perspective: 1000px;	transform-style: preserve-3d;}
 .item-3 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 150px;}
 .item-3:hover .flip {	transform: rotateX(180deg);}
 .item-3,.item-3 .front,.item-3 .back {	width: 150px;	height: 150px;	position: absolute;	right: -370px;	top: 90px;}			/* 小屏幕 right: -260px;top: 210px; */
 .item-3 .front,.item-3 .back {	position: absolute;	top: 0px;	left: 0px;	backface-visibility: hidden;}
 
-.item-4 {	perspective: 1000;	transform-style: preserve-3d;}
+.item-4 {	perspective: 1000px;	transform-style: preserve-3d;}
 .item-4 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 150px;}
 .item-4:hover .flip {	transform: rotateX(180deg);}
 .item-4,.item-4 .front,.item-4 .back {	width: 150px;	height: 150px;	position: absolute;	left: -370px;	top: 190px;}	/* 小屏幕 left: -260px;top: -60px; */
@@ -196,43 +196,43 @@ body{
 
 /*第四尺寸*/
 
-.item-5 {	perspective: 1000;	transform-style: preserve-3d;}
+.item-5 {	perspective: 1000px;	transform-style: preserve-3d;}
 .item-5 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 80px;}
 .item-5:hover .flip {	transform: rotateX(180deg);}
 .item-5,.item-5 .front,.item-5 .back {	width: 80px;	height: 80px;	position: absolute;	top: 0;	right: -300px;}
 .item-5 .front,.item-5 .back {	position: absolute;top: 0px;	left: 0px;	backface-visibility: hidden;}
 
-.item-6 {	perspective: 1000;	transform-style: preserve-3d;}
+.item-6 {	perspective: 1000px;	transform-style: preserve-3d;}
 .item-6 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 80px;}
 .item-6:hover .flip {	transform: rotateX(180deg);}
 .item-6,.item-6 .front,.item-6 .back {	width: 80px;	height: 80px;	position: absolute;	top: 100px;	left: -300px;}
 .item-6 .front,.item-6 .back {	position: absolute;	top: 0px;	left: 0px;	backface-visibility: hidden;}
 
-.item-7 {	perspective: 1000;	transform-style: preserve-3d;}
+.item-7 {	perspective: 1000px;	transform-style: preserve-3d;}
 .item-7 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 80px;}
 .item-7:hover .flip {	transform: rotateX(180deg);}
 .item-7,.item-7 .front,.item-7 .back {	width: 80px;	height: 80px;	position: absolute;	top: -90px;	right: -90px;}
 .item-7 .front,.item-7 .back {	position: absolute;	top: 0px;	left: 0px;	backface-visibility: hidden;}
 
-.item-8 {	perspective: 1000;	transform-style: preserve-3d;}
+.item-8 {	perspective: 1000px;	transform-style: preserve-3d;}
 .item-8 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 80px;}
 .item-8:hover .flip {	transform: rotateX(180deg);}
 .item-8,.item-8 .front,.item-8 .back {	width: 80px;	height: 80px;	position: absolute;	bottom: -90px;	left: 0;}
 .item-8 .front,.item-8 .back {	position: absolute;	top: 0px;	left: 0px;	backface-visibility: hidden;}
 
-.item-9 {	perspective: 1000;	transform-style: preserve-3d;}
+.item-9 {	perspective: 1000px;	transform-style: preserve-3d;}
 .item-9 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 90px;}
 .item-9:hover .flip {	transform: rotateX(180deg);}
 .item-9,.item-9 .front,.item-9 .back {	width: 90px;	height: 90px;	position: absolute;	right: -100px;	top: 210px;}
 .item-9 .front,.item-9 .back {	position: absolute;	top: 0px;	left: 0px;	backface-visibility: hidden;}
 
-.item-10 {	perspective: 1000;	transform-style: preserve-3d;}
+.item-10 {	perspective: 1000px;	transform-style: preserve-3d;}
 .item-10 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 90px;}
 .item-10:hover .flip {	transform: rotateX(180deg);}
 .item-10,.item-10 .front,.item-10 .back {	width: 90px;	height: 90px;	position: absolute;	bottom: 210px;	left: -100px;}
 .item-10 .front,.item-10 .back {	position: absolute;top: 0px;	left: 0px;	backface-visibility: hidden;}
 
-.item-11 {	perspective: 1000;	transform-style: preserve-3d;}
+.item-11 {	perspective: 1000px;	transform-style: preserve-3d;}
 .item-11 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 80px;}
 .item-11:hover .flip {	transform: rotateX(180deg);}
 .item-11,.item-11 .front,.item-11 .back {	width: 80px;	height: 80px;	position: absolute;	bottom: -90px;	left: 90px;}
@@ -279,13 +279,13 @@ body{
 }
 
 @media screen and (min-width: 992px) and (max-width: 1200px){  /* 当屏幕尺寸小于1200px时，应用下面的CSS样式 */
-	.item-3 {	perspective: item-8;	transform-style: preserve-3d;}
+	.item-3 {	perspective: 1000px;	transform-style: preserve-3d;}
 	.item-3 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 150px;}
 	.item-3:hover .flip {transform: rotateX(180deg);}
 	.item-3,.item-3 .front,.item-3 .back {	width: 150px;	height: 150px;	position: absolute;	right: -260px;	top: 210px;}
 	.item-3 .front,.item-3 .back {	position: absolute;	top: 0px;	left: 0px;	backface-visibility: hidden;}
 
-	.item-4 {	perspective: 1000;	transform-style: preserve-3d;}
+	.item-4 {	perspective: 1000px;	transform-style: preserve-3d;}
 	.item-4 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 150px;}
 	.item-4:hover .flip {	transform: rotateX(180deg);}
 	.item-4,.item-4 .front,.item-4 .back {	width: 150px;	height: 150px;	position: absolute;	left: -260px;	top: -60px;}	/* 小屏幕 left: -260px;top: -60px; */
