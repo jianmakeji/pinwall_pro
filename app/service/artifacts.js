@@ -42,7 +42,7 @@ class Artifacts extends Service {
 
     artifact.profileImage = helper.signatureUrl(helper.imagePath + artifact.profileImage, "thumb_360_360");
 
-    for (let subElement of artifact.artifact_assets){
+    for (let subElement of artifact.dataValues.artifact_assets){
       subElement.profileImage = helper.signatureUrl(helper.imagePath + subElement.profileImage, "thumb_1000");
 
       if (subElement.type == 2 && subElement.mediaFile != null){
@@ -210,7 +210,11 @@ class Artifacts extends Service {
       let deleteAliOSSArray = new Array();
       try{
 
-        for (const artifactAssets of artifact.artifact_assets){
+        if(artifact.profileImage != updates.profileImage){
+          deleteAliOSSArray.push(ctx.app.imagePath + artifact.profileImage);
+        }
+
+        for (const artifactAssets of artifact.dataValues.artifact_assets){
           if(ctx.helper.judgeImageStringInArrayObject(artifactAssets.profileImage,updates.artifact_assets)){
             deleteAliOSSArray.push(ctx.helper.imagePath + artifactAssets.profileImage);
           }
@@ -271,7 +275,7 @@ class Artifacts extends Service {
       try{
         deleteAliOSSArray.push(ctx.helper.imagePath + artifact.profileImage);
 
-        for (const artifactAssets of artifact.artifactAssets){
+        for (const artifactAssets of artifact.dataValues.artifactAssets){
           deleteAliOSSArray.push(ctx.helper.imagePath + artifactAssets.profileImage);
 
           if(artifactAssets.type == 2){
