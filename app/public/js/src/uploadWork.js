@@ -517,6 +517,7 @@ var container = new Vue({
                     let profileImage_url = new String();
                     profileImage_url = this.step2_upload_neirong_src[i];
                     this.dataItem.artifact_assets[i].profileImage = profileImage_url.split("?")[0].split("images/")[1];
+                }
             }else{
                 this.$Notice.error({title:"请输入必填信息！"})
             }
