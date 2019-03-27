@@ -481,6 +481,9 @@ var container = new Vue({
             if (this.step2_upload_neirong_src.length == 0) {
                 this.upload_show = false;
             }
+            for(let i=index; i<this.step2_upload_neirong_src.length;i++){
+                this.step2_between_arr[i].position = this.step2_between_arr[i].position - 1;
+            }
         },
         /* 步骤调整事件 */
         goStep1(){
@@ -514,7 +517,6 @@ var container = new Vue({
                     let profileImage_url = new String();
                     profileImage_url = this.step2_upload_neirong_src[i];
                     this.dataItem.artifact_assets[i].profileImage = profileImage_url.split("?")[0].split("images/")[1];
-                }
             }else{
                 this.$Notice.error({title:"请输入必填信息！"})
             }
@@ -534,7 +536,7 @@ var container = new Vue({
                                 title:"上传作品成功，2秒后返回!",
                                 duration:2,
                                 onClose(){
-                                    history.back(-1);
+                                    window.location.href="/project/" + that.dataItem.Id;
                                 }
                             });
                         }else if (res.status == 500) {
