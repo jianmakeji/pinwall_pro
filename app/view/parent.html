@@ -39,6 +39,10 @@
 						<img class="photo" src="../public/images/default_profile.jpg" title="用户头像">
 					{% endif %}
 					<span style="margin-left: 12px;overflow: hidden;white-space: nowrap;" title="{{user.fullname}}">{{user.fullname}}</span>
+					{% if user.roles[0].name == "vip" %}
+					<img class="vip_img" src="../public/images/VIP.png" style="width: 25px;height: auto;position: absolute;margin-top: -15px;
+    margin-left: 40px;">
+					{% endif %}
 				</a>
 				<div class="drawerShow">
 					<i-button type="text" ghost="true" @click="drawerShow = !drawerShow" size="small"><icon type="md-menu" size="30"></icon></i-button>
