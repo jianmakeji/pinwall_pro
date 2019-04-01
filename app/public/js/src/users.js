@@ -27,7 +27,7 @@ var index = new Vue({
             this.aoData.userId = urlId;
             this.aoUrl = config.ajaxUrls.getPersonalJobByUserId;
         }
-        this.aoData.jobTag = window.location.href.split("jobTag=")[1];
+        // this.aoData.jobTag = window.location.href.split("jobTag=")[1];
         this.containerStyle.minHeight = document.documentElement.clientHeight - 150 + "px";
 
         this.$Loading.start();
