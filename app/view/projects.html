@@ -30,15 +30,19 @@
 					<i-button shape="circle" icon="md-create" @click="editArtifact('{{data.jobTag}}')" size="large"></i-button>
 				</li>
 
-				{% if data.topics[0].status == 0 %}
-					<li class="delete_btn" v-if="'{{user.roles[0].name}}' == 'admin' || '{{data.topics[0].userId}}' == '{{user.Id}}' || '{{data.userId}}' == '{{user.Id}}'">
+				{% if data.jobTag == 2 %}
+					<li class="delete_btn" v-if=" '{{data.userId}}' == '{{user.Id}}'">
 						<i-button shape="circle" icon="ios-trash" @click="deleteArtifact" size="large"></i-button>
 					</li>
+				{% else %}
+					{% if data.topics[0].status == 0 %}
+						<li class="delete_btn" v-if="'{{user.roles[0].name}}' == 'admin' || '{{data.topics[0].userId}}' == '{{user.Id}}' || '{{data.userId}}' == '{{user.Id}}'">
+							<i-button shape="circle" icon="ios-trash" @click="deleteArtifact" size="large"></i-button>
+						</li>
+
+					{% endif %}
 				{% endif %}
 
-				<li class="delete_btn" v-if="'{{data.jobTag}}' == '2' && '{{data.userId}}' == '{{user.Id}}'">
-					<i-button shape="circle" icon="ios-trash" @click="deleteArtifact" size="large"></i-button>
-				</li>
 
 				<!-- <li class="show_btn" v-if="'{{user.roles[0].name}}' == 'admin'">
 					<i-button shape="circle" icon="md-eye" @click="showArtifact" size="large"></i-button>

@@ -34,8 +34,8 @@ module.exports = app => {
   router.get('/editUploadWork', controller.home.uploadWork);
 
   router.get('/project/:id', controller.home.project);
-  router.get('/topics', controller.home.topics);
-  router.get('/topicsAbout', controller.home.topicsAbout);
+  router.get('/courseProjects', controller.home.topics);
+  router.get('/graduationProjects', controller.home.topicsAbout);
   router.get('/users/:id', controller.home.users);
   router.get('/workFolder/:id', controller.home.workFolder);
   router.get('/userManager', pageAuthCheck, controller.home.userManager);
