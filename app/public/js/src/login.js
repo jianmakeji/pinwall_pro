@@ -67,7 +67,7 @@ var index = new Vue({
 })
 
 function check(form) {
-    var usernameExp = /^1[3|4|5|6|7|8][0-9]{9}$/;
+    var usernameExp = /^1[3|4|5|6|7|8|9][0-9]{9}$/;
     if (!usernameExp.test(form.username.value)) {
         index.$Notice.error({
             title: "请输入正确的手机格式！",
