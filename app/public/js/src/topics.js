@@ -154,6 +154,7 @@ var index = new Vue({
     },
     created(){
         let that = this;
+        that.containerStyle.minHeight = document.documentElement.clientHeight - 150 + "px";
         //老师点击我的作业荚
         let myTopics = new String();
         if (window.location.href.split("?")[1]) {
