@@ -54,9 +54,9 @@ var index = new Vue({
                             duration:2,
                             onClose:function(){
                                 if (that.formItem.jobTag == 1) {
-                                    window.location.href = "/topics";
+                                    window.location.href = "/courseProjects";
                                 } else {
-                                    window.location.href = "/topicsAbout";
+                                    window.location.href = "/graduationProjects";
                                 }
                             }
                         })
