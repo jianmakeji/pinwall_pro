@@ -105,7 +105,7 @@ body{
 
 
 /*第二尺寸*/
-.item-1 {	perspective: 1000;	transform-style: preserve-3d;}
+.item-1 {	perspective: 1000px;	transform-style: preserve-3d;}
 .item-1 .flip {position: relative;transition: 0.6s;transform-style: preserve-3d;height: 200px;}
 .item-1:hover .flip {	transform: rotateX(180deg);}
 .item-1,.item-1 .front,.item-1 .back {	width: 200px;	height: 200px;	position: absolute;	top: 0;	right: -210px;}

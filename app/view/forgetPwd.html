@@ -20,7 +20,7 @@
         <p style="color:#09bc72;width:60%;margin:20px 120px;text-align: left;">不记得密码了？请输入您的手机号，随后输入短信验证码帮您找回密码。</p>
         <i-form :label-width="120">
             <form-item label="手机号码">
-                <i-input v-model="mobile" placeholder="请输入手机号码"></i-input>
+                <i-input v-model="mobile" placeholder="请输入手机号"></i-input>
             </form-item>
             <form-item label="短信验证码">
                 <i-input type="text" v-model="smsCode" style="width:200px;margin-left: -355px;" @on-change="checkMobileCode" placeholder="验证码"></i-input>

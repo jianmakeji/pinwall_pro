@@ -21,7 +21,7 @@
 			<label>筛选规则：</label>
 			<i-select :value="groupModel" style="width:120px" @on-change="groupCheck">
 		        <i-option :value="1" :key="1">用户名</i-option>
-                <i-option :value="2" :key="2">注册邮箱</i-option>
+                <i-option :value="2" :key="2">手机号</i-option>
 		    </i-select>
             <i-input class="search_input" v-model="searchValue" placeholder="输入搜索信息" prefix="ios-brush-outline" @on-enter="searchUser" clearable></i-input>
 			<i-button type="default" icon="ios-search" @click="searchUser">筛选</i-button>
