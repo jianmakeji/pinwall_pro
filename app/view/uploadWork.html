@@ -8,9 +8,9 @@
 {% endblock %}
 
 {% block head_btn %}
-<a class="index" href="/">精选</a>
-<a class="topicsAbout" href="/topicsAbout">毕设展</a>
-<a class="topics" href="/topics">作业荚</a>
+<a class="index" href="/">首页</a>
+<a class="topicsAbout" href="/graduationProjects">毕设展</a>
+<a class="topics" href="/courseProjects">作业荚</a>
 {% endblock %}
 
 {% block container %}
@@ -106,13 +106,7 @@
 												<dropdown-item>
 													<div class="step2_upload">
 														<i-button icon="ios-folder" id="step2_upload_ZIP_btn">压缩包(ZIP)</i-button>
-														<input type="file" @change="step2_upload_ZIP_change" id="step2_upload_ZIP_input" accept="aplication/zip" style="display:none;"/>
-													</div>
-												</dropdown-item>
-												<dropdown-item>
-													<div class="step2_upload">
-														<i-button icon="logo-html5" id="step2_upload_HTML5_btn">HTML5应用(ZIP)</i-button>
-														<input type="file" @change="step2_upload_HTML5_change" id="step2_upload_HTML5_input" accept="aplication/zip" style="display:none;"/>
+														<input type="file" @change="step2_upload_ZIP_change" id="step2_upload_ZIP_input" accept="application/x-zip-compressed" style="display:none;"/>
 													</div>
 												</dropdown-item>
 											</dropdown-menu>

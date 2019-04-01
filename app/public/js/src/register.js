@@ -166,7 +166,7 @@ var index = new Vue({
         }
     },
     created(){
-        this.containerStyle.margin = (document.documentElement.clientHeight - 400 ) / 2 - 90 + "px auto";
+        this.containerStyle.margin = (document.documentElement.clientHeight - 400 ) / 2 - 120 + "px auto";
         let that = this;
         $.ajax({
             url: config.ajaxUrls.getCaptcha,

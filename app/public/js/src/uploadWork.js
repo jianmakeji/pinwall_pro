@@ -363,48 +363,6 @@ var container = new Vue({
                 }
             })
         },
-        step2_upload_HTML5_change(files){
-            let that = this;
-            let file = files.target.files[0];
-            let fileTrueName = files.target.files[0].name;
-            this.file_otherinof_arr[this.which_artifact_assets].fileTrueName = files.target.files[0].name;
-            let fileName = calculate_object_name(files.target.files[0].name);
-            $.ajax({
-                url: config.ajaxUrls.getSTSSignature.replace(":type",3),
-                type: 'GET',
-                success:function(res){
-                    if (res.res.status == 200) {
-                        let client = new OSS({
-                      		accessKeyId: res.credentials.AccessKeyId,
-                      		accessKeySecret: res.credentials.AccessKeySecret,
-                      		stsToken: res.credentials.SecurityToken,
-                            bucket:bucket
-                    	});
-                        client.multipartUpload('rar_zip/'+ fileName, file, {
-                    		progress: progress
-                    	}).then(function (res) {
-                            that.step2_between_arr[that.which_artifact_assets].position = that.which_artifact_assets;
-                            that.step2_between_arr[that.which_artifact_assets].type = 3;
-                            that.step2_between_arr[that.which_artifact_assets].mediaFile = fileName;
-                            that.step2_between_arr[that.which_artifact_assets].viewUrl = res.res.requestUrls[0].split("?")[0].split("rar_zip/")[1];
-                            that.step2_between_arr[that.which_artifact_assets].filename = files.target.files[0].name;
-                    	});
-                    } else if (res.res.status == 999) {
-                        that.$Notice.error({
-                            title:res.data,
-                            duration:3,
-                            onClose(){
-                                window.location.href = "/login";
-                            }
-                        });
-                    }else if(res.status == 500){
-                        that.$Notice.error({
-                            title:"上传出现异常，请刷新界面重试！"
-                        })
-                    }
-                }
-            })
-        },
         /**
          * 添加标签
          */

@@ -34,7 +34,7 @@ var config = {
         checkCaptcha:'/checkCaptcha',
         createWxUser:"/website/users/createWxUser",
         bindWeixinInfoByMobile:"/website/users/bindWeixinInfoByMobile",
-        updatePwd:"'/website/users/updatePwd'",
+        updatePwd:"/website/users/updatePwd",
         updatePwdWithMobileAndSmsCode:'/website/users/updatePwdWithMobileAndSmsCode',
         //searchEngine
         transterInsertDataToES:'/website/artifacts/transterInsertDataToES',
