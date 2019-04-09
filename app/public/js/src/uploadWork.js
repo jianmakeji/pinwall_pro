@@ -27,7 +27,7 @@ var container = new Vue({
             },
             ruleValidate:{
                 name:[
-                    {required: true, message: '用户名不能为空', trigger: 'blur'},
+                    {required: true, message: '作品名不能为空', trigger: 'blur'},
                     {type: 'string', max: 130, message: '字数请控制在130之内', trigger: 'blur' }
                 ],
                 description:{required: true, message: '内容说明不能为空', trigger: 'blur'},
