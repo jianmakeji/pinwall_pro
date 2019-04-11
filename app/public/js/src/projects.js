@@ -219,7 +219,7 @@ var projects = new Vue({
             success(res){
                 if (res.status == 200) {
                     that.artifactZanTag = 1;
-                }else if(res.status == 200){
+                }else if(res.status == 500){
                     that.artifactZanTag = 0;
                 }
             }
