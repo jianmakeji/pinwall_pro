@@ -7,7 +7,7 @@ var index = new Vue({
             headDataList:[],
             uploadTotal:"",
             dataList:[],
-            headInfo:{fullname:"",date:"",name:"",count:""},
+            headInfo:{fullname:"",date:"",name:"",description:"",count:""},
             containerStyle:{
                 minHeight:""
             },
@@ -35,6 +35,7 @@ var index = new Vue({
 
                     that.headInfo.avatarUrl = res.data.rows.user.avatarUrl;
                     that.headInfo.fullname = res.data.rows.user.fullname;
+                    that.headInfo.description = res.data.rows.description;
                     that.headInfo.date = res.data.rows.createAt.split("T")[0] + " 发布";
                     that.headInfo.name = res.data.rows.name;
                     that.headInfo.Id = res.data.rows.userId;

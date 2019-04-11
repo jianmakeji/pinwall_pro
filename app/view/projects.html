@@ -51,7 +51,7 @@
 			<i-button class="close_btn" type="default" shape="circle" icon="md-close" size="large" @click="closeThePage"></i-button>
 			<back-top></back-top>
             <div class="project_detail">
-				<div class="score_box" v-if="'{{data.topics[0].userId}}' == '{{user.Id}}' && {{data.topics.length}} != 0">
+				<div class="score_box" v-if="'{{user.roles[0].name}}' == 'vip' && '{{data.topics[0].userId}}' == '{{user.Id}}' && {{data.topics.length}} != 0">
 					<label>作品分数：</label>
 					<i-input type="text" value="{{data.artifact_scores[0].score}}" @on-change="scoreChange(event,{{data.Id}})" placeholder="0~100之间的整数" size="large" number autofocus></i-input>
 					<i-button type="success" @click="submitScore">打分</i-button>
@@ -147,7 +147,11 @@
 				<div class="comment_form">
 					<div class="user_info">
 						<a href="/users/{{user.Id}}">
-							<img class="photo" src="../public/images/default_profile.jpg" alt="">
+							{% if data.user.avatarUrl %}
+							<img class="photo" src="{{data.user.avatarUrl}}" alt="">
+							{% else %}
+	                        <img class="photo" src="../public/images/default_profile.jpg" alt="">
+							{% endif %}
 						</a>
 					</div>
 					<div class="comment_wrapper">
