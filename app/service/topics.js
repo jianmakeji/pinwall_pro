@@ -17,8 +17,6 @@ class Topics extends Service {
     const helper = this.ctx.helper;
     resultObj.rows.forEach((element, index)=>{
 
-          element.profileImage = helper.signatureUrl(helper.imagePath + element.profileImage, "thumb_360_360");
-
           for (let subElement of element.artifacts){
             subElement.profileImage = helper.signatureUrl(helper.imagePath + subElement.profileImage, "thumb_360_360");
           }

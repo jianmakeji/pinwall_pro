@@ -11,7 +11,6 @@ class UpdateElasticsearch extends Subscription {
 
   // subscribe 是真正定时任务执行时被运行的函数
   async subscribe() {
-
     const ctx = this.ctx;
 
     let insertPinwallTime;
@@ -25,8 +24,8 @@ class UpdateElasticsearch extends Subscription {
        insertPinwallTime = insertPinwall[0].lastSyncTime;
     }
 
-    let insertPinwallObject = false;
-    let insertSuggestObject = false;
+    let insertObject = false;
+    let updateObject = false;
 
     try{
       let esArray = await ctx.model.Artifacts.findArtifactByTime(insertPinwallTime,0);
@@ -57,32 +56,32 @@ class UpdateElasticsearch extends Subscription {
         await ctx.service.esUtils.createSuggestObject(artiObj.Id, object);
         ctx.getLogger('elasticLogger').info(artiObj.Id+"\n");
       }
-      insertPinwallObject = true;
+      insertObject = true;
     }
     catch(e){
-      insertPinwallObject = false;
+      insertObject = false;
       this.ctx.getLogger('elasticLogger').info(e.message+"\n");
     }
 
-    if(insertPinwallObject){
+    if(insertObject){
       await ctx.service.esSyncData.update(1, insertPinwallTime);
     }
 
-    let insertSuggestTime;
+    let updatePinwallTime;
 
-    const insertSuggest = await ctx.service.esSyncData.getDateBySyncType(2);
-    if (insertSuggest.length == 0){
-       insertSuggestTime = new Date();
-       await ctx.service.esSyncData.createEsSyncData(2,insertSuggestTime);
+    const updatePinwall = await ctx.service.esSyncData.getDateBySyncType(2);
+    if (updatePinwall.length == 0){
+       updatePinwallTime = new Date();
+       await ctx.service.esSyncData.createEsSyncData(2,updatePinwallTime);
     }
     else{
-       insertSuggestTime = insertSuggest[0].lastSyncTime;
+       updatePinwallTime = updatePinwall[0].lastSyncTime;
     }
 
     //更新数据到es
     try{
-      let esArray = await ctx.model.Artifacts.findArtifactByTime(insertSuggestTime,1);
-      insertSuggestTime = new Date();
+      let esArray = await ctx.model.Artifacts.findArtifactByTime(updatePinwallTime,1);
+      updatePinwallTime = new Date();
       for (let artiObj of esArray){
         await ctx.service.esUtils.updateobject(artiObj.Id, artiObj);
         let object = {};
@@ -108,14 +107,14 @@ class UpdateElasticsearch extends Subscription {
         await ctx.service.esUtils.updateSuggestObject(artiObj.Id, artiObj);
         ctx.getLogger('elasticLogger').info(artiObj.Id+"\n");
       }
-      insertSuggestObject = true;
+      updateObject = true;
     }
     catch(e){
-      insertSuggestObject = false;
+      updateObject = false;
       this.ctx.getLogger('elasticLogger').info(e.message+"\n");
     }
 
-    if(insertSuggestObject){
+    if(updateObject){
       await ctx.service.esSyncData.update(2, insertSuggestTime);
     }
   }
