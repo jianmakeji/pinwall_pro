@@ -402,7 +402,7 @@ module.exports = app => {
       ]
     };
 
-    if(fullname != null && fullname !=''){
+    if(mobile != null && mobile !=''){
       condition.where = {};
       condition.where.mobile = {
         [app.Sequelize.Op.like]: '%'+mobile+'%'
