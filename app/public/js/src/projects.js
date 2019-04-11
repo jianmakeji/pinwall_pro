@@ -147,24 +147,27 @@ var projects = new Vue({
         addComment(id) {
             let that = this;
             this.artifactCommentData.commenterId = id;
-            this.$Loading.start();
-            $.ajax({
-                url: '/website/artifactComment',
-                type: 'POST',
-                data: this.artifactCommentData,
-                success(res){
-                    if(res.status == 200){
-                        that.$Loading.finish();
-                        that.$Notice.success({title:"评论成功！"});
-                        that.artifactCommentData.content = "";
-                        getConmentData(that, that.aoData);
-                    }else{
-                        that.$Loading.error();
-                        that.$Notice.error({title:res.data});
+            if(this.artifactCommentData.content){
+                this.$Loading.start();
+                $.ajax({
+                    url: '/website/artifactComment',
+                    type: 'POST',
+                    data: this.artifactCommentData,
+                    success(res){
+                        if(res.status == 200){
+                            that.$Loading.finish();
+                            that.$Notice.success({title:"评论成功！"});
+                            that.artifactCommentData.content = "";
+                            getConmentData(that, that.aoData);
+                        }else{
+                            that.$Loading.error();
+                            that.$Notice.error({title:res.data});
+                        }
                     }
-                }
-            });
-
+                });
+            }else{
+                that.$Notice.error({title:"评论内容不能为空"});
+            }
         },
         scoreChange(event, scoreId) {
             let regex = /^100$|^(\d|[1-9]\d)$/;
