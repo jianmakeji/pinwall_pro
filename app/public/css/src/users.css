@@ -273,6 +273,7 @@ body{
 	font-size: 18px;
     width: 15px;
     height: 20px;
+	line-height: 20px;
     color: #999;
     margin-left: 5px;
 }
