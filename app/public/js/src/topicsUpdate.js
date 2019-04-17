@@ -92,7 +92,7 @@ var index = new Vue({
                             title:"作业荚删除成功！2秒后返回",
                             duration:2,
                             onClose:function(){
-                                window.history.go(-1);
+                                self.location=document.referrer;
                             }
                         })
                     }else{
@@ -118,7 +118,7 @@ var index = new Vue({
                             title:res.data,
                             duration:2,
                             onClose(){
-                                window.history.go(-1);
+                                self.location=document.referrer;
                             }
                         })
                     } else {
