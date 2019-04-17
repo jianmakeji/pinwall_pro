@@ -109,7 +109,7 @@ class UsersController extends BaseController{
 
   async checkCaptcha(){
     const captchaText = this.ctx.query.captchaText;
-    if (captchaText == this.ctx.session.captcha){
+    if (captchaText.toLowerCase() == this.ctx.session.captcha){
       super.success('校验成功!');
     }
     else{
