@@ -495,7 +495,7 @@ var container = new Vue({
                                 title:"上传作品成功，2秒后返回!",
                                 duration:2,
                                 onClose(){
-                                    window.location.href="/project/" + that.dataItem.Id;
+                                    self.location=document.referrer;
                                 }
                             });
                         }else if (res.status == 500) {
@@ -515,7 +515,7 @@ var container = new Vue({
                                 title:"上传作品成功，2秒后返回!",
                                 duration:2,
                                 onClose(){
-                                    window.location.href = "/uploadWork/2";
+                                    self.location=document.referrer;
                                 }
                             });
                         }else if (res.status == 500) {

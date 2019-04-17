@@ -42,3 +42,9 @@ body{
     position: absolute;
     bottom: 0px
 }
+@media screen and (max-width: 540px){  /* 当屏幕尺寸小于540px时，应用下面的CSS样式 */
+
+	.register_panel {
+	    width: auto;
+	}
+}

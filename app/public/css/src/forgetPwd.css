@@ -21,7 +21,12 @@ body{
     font-size: 18px;
     font-weight: bold;
 }
-
+.recoverPwd_panel .des{
+    color:#09bc72;width:60%;margin:20px 120px;text-align: left;
+}
+.recoverPwd_panel .code_input{
+	width:200px;margin-left: -355px;
+}
 
 .footer {
 	padding: 5px 0;
@@ -34,4 +39,15 @@ body{
 	text-align: center;
     position: absolute;
     bottom: 0px
+}
+@media screen and (max-width: 540px){  /* 当屏幕尺寸小于540px时，应用下面的CSS样式 */
+	.recoverPwd_panel{
+	    width: auto;
+	}
+	.recoverPwd_panel .des{
+	    color:#09bc72;width:100%;margin:0 auto;text-align: left;
+	}
+	.recoverPwd_panel .code_input{
+		width:auto;margin-left: 0;
+	}
 }
