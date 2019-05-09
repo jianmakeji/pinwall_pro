@@ -12,7 +12,7 @@ body{
     margin: 20px;
     display: flex;
     flex-direction: row;
-    margin-left: 60%;
+    justify-content: flex-end;
 }
 
 .de_topic_box{
@@ -162,7 +162,7 @@ body{
 	    margin: 20px;
 	    display: flex;
 	    flex-direction: row;
-	    margin-left: 50%;
+	    justify-content: flex-end;
 	}
 
 }
@@ -174,7 +174,7 @@ body{
 	    margin: 20px;
 	    display: flex;
 	    flex-direction: row;
-	    margin-left: 2%;
+	    justify-content: flex-end;
 	}
 
 }
