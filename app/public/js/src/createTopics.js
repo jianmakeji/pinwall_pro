@@ -16,6 +16,10 @@ var index = new Vue({
                 description:"",
                 status:0,
                 jobTag:1,
+            },
+            ruleValidate:{
+                name:[{required: true, message: '作业荚名称不能为空', trigger: 'blur'}],
+                description:[{required: true, message: '作业荚描述不能为空', trigger: 'blur'}],
             }
         }
     },
@@ -38,34 +42,40 @@ var index = new Vue({
         deleteTerm(index){
             this.terms_arr.splice(index,1);
         },
-        submitData(){
+        submitData(name){
             let that = this;
-            this.$Loading.start();
-            this.formItem.terms = this.terms_arr;
-            $.ajax({
-                url: config.ajaxUrls.getTopicsData,
-                type: 'POST',
-                data: this.formItem,
-                success:function(res){
-                    if (res.status == 200) {
-                        that.$Loading.finish();
-                        that.$Notice.success({
-                            title:"作业荚创建成功，2秒后返回",
-                            duration:2,
-                            onClose:function(){
-                                if (that.formItem.jobTag == 1) {
-                                    window.location.href = "/courseProjects";
-                                } else {
-                                    window.location.href = "/graduationProjects";
-                                }
+            this.$refs[name].validate((valid) => {
+                if (valid) {
+                    this.$Loading.start();
+                    this.formItem.terms = this.terms_arr;
+                    $.ajax({
+                        url: config.ajaxUrls.getTopicsData,
+                        type: 'POST',
+                        data: this.formItem,
+                        success:function(res){
+                            if (res.status == 200) {
+                                that.$Loading.finish();
+                                that.$Notice.success({
+                                    title:"作业荚创建成功，2秒后返回",
+                                    duration:2,
+                                    onClose:function(){
+                                        if (that.formItem.jobTag == 1) {
+                                            window.location.href = "/courseProjects";
+                                        } else {
+                                            window.location.href = "/graduationProjects";
+                                        }
+                                    }
+                                })
+                            }else{
+                                that.$Loading.error();
+                                that.$Notice.error({title:res.data});
                             }
-                        })
-                    }else{
-                        that.$Loading.error();
-                        that.$Notice.error({title:res.data});
-                    }
+                        }
+                    })
+                }else {
+                    this.$Notice.error({title:"请输入必填项!"});
                 }
-            })
+            }
         }
     },
     created(){
