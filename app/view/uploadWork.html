@@ -113,7 +113,7 @@
 										</dropdown>
 									</div>
 									<div  v-for="(item,index) in step2_between_arr" v-if="which_artifact_assets === index">
-										<div><i-progress :percent="file_otherinof_arr[index].progress ? file_otherinof_arr[index].progress: 0" /><br></div>
+										<div><i-progress :percent="file_otherinof_arr[index].progress ? file_otherinof_arr[index].progress: 0" /><span v-text="file_otherinof_arr[index].progress + '%'"></span><br></div>
 										<p v-text="'文件名:' + file_otherinof_arr[index].fileTrueName"></p><br><br>
 										<p>标题 <span style="color: #3399cc;">(可选)</span></p>
 										<i-input placeholder="请输入标题(100个字符以内)" v-model="step2_between_arr[index].name" maxlength='100' clearable></i-input><br><br>

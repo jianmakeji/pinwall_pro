@@ -147,8 +147,8 @@
 				<div class="comment_form">
 					<div class="user_info">
 						<a href="/users/{{user.Id}}">
-							{% if data.user.avatarUrl %}
-							<img class="photo" src="{{data.user.avatarUrl}}" alt="">
+							{% if user.avatarUrl %}
+							<img class="photo" src="{{user.avatarUrl}}" alt="">
 							{% else %}
 	                        <img class="photo" src="../public/images/default_profile.jpg" alt="">
 							{% endif %}
