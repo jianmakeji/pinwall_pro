@@ -59,13 +59,16 @@ class Topics extends Service {
       transaction = await this.ctx.model.transaction();
       const topicObj = await this.ctx.model.Topics.createTopic(topic,transaction);
       let terms = topic.terms;
-      for (let term of terms){
-        const termObj = await this.ctx.model.Terms.createTerm(term,transaction);
-        await this.ctx.model.TopicTerm.createTopicTerm({
-          topicId:topicObj.Id,
-          termId:termObj.Id
-        },transaction);
+      if(terms && terms.length > 0){
+        for (let term of terms){
+          const termObj = await this.ctx.model.Terms.createTerm(term,transaction);
+          await this.ctx.model.TopicTerm.createTopicTerm({
+            topicId:topicObj.Id,
+            termId:termObj.Id
+          },transaction);
+        }
       }
+
       await transaction.commit();
       return true
     } catch (e) {
