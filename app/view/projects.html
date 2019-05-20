@@ -14,7 +14,7 @@
 				{% if user.roles[0].name != "" %}
 					<a @click="zan('{{data.userId}}','{{user.roles[0].name}}')">
 						<img :src="artifactZanTag ? '../public/images/flag_green.png' : '../public/images/flag_gray.png'" alt="">
-						<icon type="ios-thumbs-up" style="font-size: 40px; position: absolute;top: 15px;left: 20px;"></icon>
+						<icon :type="'{{user.roles[0].name}}' == 'vip' || '{{user.roles[0].name}}' == 'admin'  ? 'ios-ribbon' : 'ios-thumbs-up'" style="font-size: 40px; position: absolute;top: 15px;left: 20px;"></icon>
 						<span>赞</span>
 					</a>
 				{% else %}
