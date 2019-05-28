@@ -4,13 +4,14 @@ class UpdateElasticsearch extends Subscription {
   // 通过 schedule 属性来设置定时任务的执行间隔等配置
   static get schedule() {
     return {
-      interval: '200m', // 1m 分钟间隔
+      interval: '1m', // 1m 分钟间隔
       type: 'worker', // 指定所有的 worker 都需要执行
     };
   }
 
   // subscribe 是真正定时任务执行时被运行的函数
   async subscribe() {
+
     const ctx = this.ctx;
 
     let insertPinwallTime;
@@ -24,14 +25,15 @@ class UpdateElasticsearch extends Subscription {
        insertPinwallTime = insertPinwall[0].lastSyncTime;
     }
 
-    let insertObject = false;
-    let updateObject = false;
-
-    try{
-      let esArray = await ctx.model.Artifacts.findArtifactByTime(insertPinwallTime,0);
-      insertPinwallTime = new Date();
-      for (let artiObj of esArray){
-        await ctx.service.esUtils.createObject(artiObj.Id, artiObj);
+    let esArray1 = await ctx.model.Artifacts.findArtifactByTime(insertPinwallTime,0);
+    insertPinwallTime = new Date();
+    for (let artiObj of esArray1){
+        try{
+            await ctx.service.esUtils.createObject(artiObj.Id, artiObj);
+        }
+        catch(e){
+          this.ctx.getLogger('elasticLogger').info("insert artifact:"+artiObj.Id+"\n"+e.message+"\n");
+        }
 
         let object = {};
         object.Id = artiObj.Id;
@@ -53,37 +55,40 @@ class UpdateElasticsearch extends Subscription {
           term_suggest.weight = 8;
           object.suggest.push(term_suggest);
         });
-        await ctx.service.esUtils.createSuggestObject(artiObj.Id, object);
-        ctx.getLogger('elasticLogger').info(artiObj.Id+"\n");
-      }
-      insertObject = true;
-    }
-    catch(e){
-      insertObject = false;
-      this.ctx.getLogger('elasticLogger').info(e.message+"\n");
-    }
 
-    if(insertObject){
-      await ctx.service.esSyncData.update(1, insertPinwallTime);
+        try{
+          await ctx.service.esUtils.createSuggestObject(artiObj.Id, object);
+        }
+        catch(e){
+          this.ctx.getLogger('elasticLogger').info("insert suggest"+artiObj.Id+"\n"+e.message+"\n");
+        }
     }
 
-    let updatePinwallTime;
+    await ctx.service.esSyncData.update(1, insertPinwallTime);
 
-    const updatePinwall = await ctx.service.esSyncData.getDateBySyncType(2);
-    if (updatePinwall.length == 0){
-       updatePinwallTime = new Date();
-       await ctx.service.esSyncData.createEsSyncData(2,updatePinwallTime);
+    let updateDataTime;
+
+    const lastSyncTime = await ctx.service.esSyncData.getDateBySyncType(2);
+    if (lastSyncTime.length == 0){
+       updateDataTime = new Date();
+       await ctx.service.esSyncData.createEsSyncData(2,updateDataTime);
     }
     else{
-       updatePinwallTime = updatePinwall[0].lastSyncTime;
+       updateDataTime = lastSyncTime[0].lastSyncTime;
     }
 
     //更新数据到es
-    try{
-      let esArray = await ctx.model.Artifacts.findArtifactByTime(updatePinwallTime,1);
-      updatePinwallTime = new Date();
-      for (let artiObj of esArray){
-        await ctx.service.esUtils.updateobject(artiObj.Id, artiObj);
+    let esArray2 = await ctx.model.Artifacts.findArtifactByTime(updateDataTime,1);
+    updateDataTime = new Date();
+    for (let artiObj of esArray2){
+
+        try{
+            await ctx.service.esUtils.updateobject(artiObj.Id, artiObj);
+        }
+        catch(e){
+            this.ctx.getLogger('elasticLogger').info("update artifact:"+artiObj.Id+"\n"+e.message+"\n");
+        }
+
         let object = {};
         object.Id = artiObj.Id;
         object.suggest = new Array();
@@ -104,19 +109,16 @@ class UpdateElasticsearch extends Subscription {
           term_suggest.weight = 8;
           object.suggest.push(term_suggest);
         });
-        await ctx.service.esUtils.updateSuggestObject(artiObj.Id, artiObj);
-        ctx.getLogger('elasticLogger').info(artiObj.Id+"\n");
-      }
-      updateObject = true;
-    }
-    catch(e){
-      updateObject = false;
-      this.ctx.getLogger('elasticLogger').info(e.message+"\n");
-    }
 
-    if(updateObject){
-      await ctx.service.esSyncData.update(2, insertSuggestTime);
+        try{
+          await ctx.service.esUtils.updateSuggestObject(artiObj.Id, artiObj);
+        }
+        catch(e){
+          this.ctx.getLogger('elasticLogger').info("update suggest"+artiObj.Id+"\n"+e.message+"\n");
+        }
     }
+    await ctx.service.esSyncData.update(2, updateDataTime);
+
   }
 }
 
