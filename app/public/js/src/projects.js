@@ -72,7 +72,11 @@ var projects = new Vue({
             window.open(url);
         },
         closeThePage() {
-            window.close();
+            if(document.referrer != ""){
+                window.close();
+            }else{
+                window.location.href = "/index";
+            }
         },
         zan(artifactUserId,userRole) {
             let that = this;
